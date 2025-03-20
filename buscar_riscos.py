@@ -1,4 +1,4 @@
-# buscar_riscos.py
+# buscar_riscos.py 
 from modelo import model, criar_embeddings, criar_indice_faiss
 import numpy as np
 from sentence_transformers import util

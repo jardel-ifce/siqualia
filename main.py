@@ -4,7 +4,7 @@ from modelo import criar_embeddings, criar_indice_faiss
 from buscar_riscos import encontrar_riscos
 
 # 🔹 Carregar riscos da planilha
-riscos_data = carregar_riscos("riscos.csv")
+riscos_data = carregar_riscos("/Users/jardelrodrigues/Desktop/siqualia-ia-main/siqualia/riscos.csv")
 
 # 🔹 Criar embeddings dos riscos
 riscos_embeddings = criar_embeddings(riscos_data)

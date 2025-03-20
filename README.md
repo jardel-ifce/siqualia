@@ -1,2 +1,1 @@
-# siqualia
-SIQUALIA PROJECT
+# siqualia-ia
