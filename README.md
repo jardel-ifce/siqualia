@@ -42,7 +42,7 @@ uvicorn
 Para iniciar o servidor backend, execute o seguinte comando:
 
 ```bash
-uvicorn app:app --reload --host 127.0.0.1 --port 8001
+uvicorn api_pcc:app --reload --host 127.0.0.1 --port 8001
 ```
 
 Isso irá rodar o servidor na URL `http://127.0.0.1:8001`. A API estará escutando as requisições POST no endpoint `/query`.
