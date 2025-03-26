@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "etapa": "Recepção",
+    "perigo": {
+      "biologico": "Presença de esporos de fungos e bactérias",
+      "quimico": "Resíduos de defensivos agrícolas",
+      "fisico": "Partículas de sujeira e detritos"
+    },
+    "medida_controle": "Inspeção visual das melgueiras e boas práticas na recepção"
+  },
+  {
+    "id": 2,
+    "etapa": "Desoperculação",
+    "perigo": {
+      "biologico": "Contaminação cruzada por bactérias e leveduras",
+      "quimico": "Resíduos de produtos de limpeza inadequadamente removidos",
+      "fisico": "Presença de fragmentos de cera"
+    },
+    "medida_controle": "Uso de equipamentos higienizados e manuseio adequado"
+  },
+  {
+    "id": 3,
+    "etapa": "Centrifugação dos quadros de mel",
+    "perigo": {
+      "biologico": "Desenvolvimento de microrganismos devido à má higienização",
+      "quimico": "Resíduos de lubrificantes da máquina de centrifugação",
+      "fisico": "Possível presença de fragmentos de cera e partes de abelha"
+    },
+    "medida_controle": "Higienização do equipamento antes e após o uso"
+  },
+  {
+    "id": 4,
+    "etapa": "Peneiragem do mel",
+    "perigo": {
+      "biologico": "Proliferação de leveduras caso o processo seja inadequado",
+      "quimico": "Não identificado",
+      "fisico": "Presença de fragmentos de cera e detritos sólidos"
+    },
+    "medida_controle": "Uso de peneiras adequadas para remoção de partículas indesejadas"
+  },
+  {
+    "id": 5,
+    "etapa": "Decantação",
+    "perigo": {
+      "biologico": "Desenvolvimento de leveduras devido à temperatura inadequada",
+      "quimico": "Não identificado",
+      "fisico": "Resíduos sólidos não totalmente removidos"
+    },
+    "medida_controle": "Controle do tempo e temperatura da decantação"
+  },
+  {
+    "id": 6,
+    "etapa": "Envase",
+    "perigo": {
+      "biologico": "Não identificado",
+      "quimico": "Resíduos de detergentes das embalagens",
+      "fisico": "Partículas de poeira ou detritos nas embalagens"
+    },
+    "medida_controle": "Higienização rigorosa das embalagens e equipamentos de envase"
+  },
+  {
+    "id": 7,
+    "etapa": "Rotulagem de mel de abelha",
+    "perigo": {
+      "biologico": "Presença de Clostridium botulinum",
+      "quimico": "Não identificado",
+      "fisico": "Não identificado"
+    },
+    "medida_controle": "Garantia de que os rótulos informem sobre o risco do consumo infantil"
+  },
+  {
+    "id": 8,
+    "etapa": "Armazenamento do produto acabado",
+    "perigo": {
+      "biologico": "Desenvolvimento de leveduras devido à umidade excessiva",
+      "quimico": "Não identificado",
+      "fisico": "Cristalização excessiva do mel"
+    },
+    "medida_controle": "Controle rigoroso de temperatura e umidade no armazenamento"
+  }
+]

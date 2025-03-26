@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Perigos</title>
+    <script>
+        async function buscarPerigos() {
+            const etapa = document.getElementById("etapa").value.trim();
+            if (!etapa) {
+                alert("Por favor, insira uma etapa.");
+                return;
+            }
+
+            const response = await fetch("http://127.0.0.1:8000/query", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({etapa: etapa})
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // Montando a saída formatada
+                let perigosHTML = '';
+                for (let tipo in data.perigos) {
+                    perigosHTML += `<strong>${tipo.charAt(0).toUpperCase() + tipo.slice(1)}:</strong> ${data.perigos[tipo]}<br>`;
+                }
+
+                document.getElementById("resultado").innerHTML = `
+            <strong>Etapa:</strong> ${data.etapa} <br>
+            ${perigosHTML}
+            <strong>Medida de Controle:</strong> ${data.medida_controle} <br>
+            <strong>Similaridade:</strong> ${data.similaridade.toFixed(2)}
+        `;
+            } else {
+                const data = await response.json();
+                document.getElementById("resultado").innerHTML = `
+            <strong>Erro:</strong> ${data.detail}
+        `;
+            }
+        }
+
+    </script>
+</head>
+<body>
+<h2>Consulta de Perigos</h2>
+<label for="etapa">Digite a etapa do processo:</label>
+<input type="text" id="etapa" placeholder="Exemplo: Armazenamento">
+<button onclick="buscarPerigos()">Buscar</button>
+<div id="resultado" style="margin-top: 20px;"></div>
+</body>
+</html>
