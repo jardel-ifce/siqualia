@@ -16,3 +16,5 @@ __pycache__/
 
 # Ignorar arquivos de configuração específicos do PyCharm
 *.iml
+
+app/tests
