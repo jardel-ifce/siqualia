@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Dict
 
-from app.utils.dados import carregar_documentos, buscar_etapa_por_nome  # ✅ novo
+from app.utils.dados import carregar_documentos, buscar_etapa_por_nome
 
 router = APIRouter(prefix="/etapa", tags=["Etapas"])
 
