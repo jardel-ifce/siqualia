@@ -5,26 +5,22 @@ from app.utils.dados import carregar_documentos
 
 router = APIRouter(prefix="/etapa", tags=["Etapas"])
 
-# Carregar modelo
 model = SentenceTransformer("all-MiniLM-L6-v2")
-
-# Carregar documentos
-documents = carregar_documentos()
-
-# Pré-calcular embeddings
-doc_embeddings = {
-    doc["id"]: model.encode(doc["etapa"], convert_to_tensor=True)
-    for doc in documents
-}
-
 SIMILARIDADE_LIMITE = 0.4
 
 class EtapaRequest(BaseModel):
+    produto: str
     etapa: str
 
 @router.post("/pesquisar")
 def pesquisar_etapa(request: EtapaRequest):
+    documentos = carregar_documentos(request.produto)
     query_embedding = model.encode(request.etapa, convert_to_tensor=True)
+    doc_embeddings = {
+        doc["id"]: model.encode(doc["etapa"], convert_to_tensor=True)
+        for doc in documentos
+    }
+
     similarities = {
         doc_id: util.pytorch_cos_sim(query_embedding, emb)[0].item()
         for doc_id, emb in doc_embeddings.items()
@@ -41,7 +37,7 @@ def pesquisar_etapa(request: EtapaRequest):
             "mensagem": "Etapa não corresponde ao contexto do produto."
         }
 
-    etapa_encontrada = next(doc for doc in documents if doc["id"] == best_id)
+    etapa_encontrada = next(doc for doc in documentos if doc["id"] == best_id)
     return {
         "contexto_valido": True,
         "dados": etapa_encontrada,
