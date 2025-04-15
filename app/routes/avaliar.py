@@ -1,20 +1,19 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Dict
-
 from app.utils.dados import carregar_documentos, buscar_etapa_por_nome
 
 router = APIRouter(prefix="/etapa", tags=["Etapas"])
 
-documents = carregar_documentos()
-
 class AvaliarRequest(BaseModel):
+    produto: str
     etapa: str
     respostas: Dict[str, Dict[str, str]]
 
 @router.post("/avaliar")
 def avaliar_pcc(request: AvaliarRequest):
-    etapa_match = buscar_etapa_por_nome(request.etapa, documents)
+    documentos = carregar_documentos(request.produto)
+    etapa_match = buscar_etapa_por_nome(request.etapa, documentos)
 
     if not etapa_match:
         raise HTTPException(status_code=404, detail="Etapa não encontrada na base de dados.")
@@ -40,7 +39,6 @@ def avaliar_pcc(request: AvaliarRequest):
         q3 = r.get("Q3", "-")
         q4 = r.get("Q4", "-")
 
-        # Árvore de decisão
         if q1 == "Não":
             pcc = "Modificar processo" if q1a == "Sim" else "Não"
         elif q1 == "Sim":

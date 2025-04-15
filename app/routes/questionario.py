@@ -1,17 +1,17 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-
 from app.utils.dados import carregar_documentos, buscar_etapa_por_nome
 
 router = APIRouter(prefix="/etapa", tags=["Etapas"])
-documents = carregar_documentos()
 
 class EtapaQuestionarioRequest(BaseModel):
+    produto: str
     etapa: str
 
 @router.post("/questionario")
 def iniciar_questionario(request: EtapaQuestionarioRequest):
-    etapa_match = buscar_etapa_por_nome(request.etapa, documents)
+    documentos = carregar_documentos(request.produto)
+    etapa_match = buscar_etapa_por_nome(request.etapa, documentos)
 
     if not etapa_match:
         raise HTTPException(status_code=404, detail="Etapa não encontrada na base de dados.")
