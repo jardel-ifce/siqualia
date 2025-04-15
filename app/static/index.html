@@ -7,6 +7,10 @@
 </head>
 <body>
   <h2>Pesquisa de Etapa</h2>
+
+  <label for="produto">Selecione o produto:</label><br>
+  <select id="produto"></select><br><br>
+
   <label for="etapa">Digite a etapa do processo:</label><br>
   <input type="text" id="etapa" placeholder="Ex: armazenamento do produto"><br>
   <button onclick="consultar()">Consultar Etapa</button>
@@ -21,15 +25,36 @@
     let etapaAtual = "";
     let perguntas = {};
     let perigos = {};
+    let produtoAtual = "";
+
+    async function carregarProdutos() {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/produtos");
+        const lista = await res.json();
+
+        const select = document.getElementById("produto");
+        select.innerHTML = "<option value=''>Selecione</option>";
+        for (const nome of lista) {
+          select.innerHTML += `<option value="${nome}">${nome}</option>`;
+        }
+      } catch (err) {
+        alert("Erro ao carregar produtos.");
+        console.error(err);
+      }
+    }
 
     async function consultar() {
+      produtoAtual = document.getElementById("produto").value;
       const etapaDigitada = document.getElementById("etapa").value.trim();
-      if (!etapaDigitada) return alert("Informe uma etapa válida.");
+
+      if (!produtoAtual || !etapaDigitada) {
+        return alert("Selecione um produto e digite uma etapa.");
+      }
 
       const res = await fetch("http://127.0.0.1:8000/etapa/pesquisar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ etapa: etapaDigitada })
+        body: JSON.stringify({ produto: produtoAtual, etapa: etapaDigitada })
       });
 
       const data = await res.json();
@@ -41,7 +66,7 @@
         return;
       }
 
-      etapaAtual = data.dados.etapa;  // Etapa confirmada
+      etapaAtual = data.dados.etapa;
       perigos = data.dados.perigo;
       const medidas = data.dados.medida_controle;
 
@@ -68,7 +93,7 @@
       const res = await fetch("http://127.0.0.1:8000/etapa/questionario", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ etapa: etapaAtual })
+        body: JSON.stringify({ produto: produtoAtual, etapa: etapaAtual })
       });
 
       const data = await res.json();
@@ -88,7 +113,6 @@
         const letra = { biologico: "B", quimico: "Q", fisico: "F" }[tipo];
         let html = `<div class="question-box"><h4>Perigo ${letra} - ${tipo}</h4><p><strong>${perigoDesc}</strong></p>`;
 
-        // Q1
         html += `
           <label for="${letra}_Q1">${perguntas["Q1"]}</label>
           <select id="${letra}_Q1" onchange="atualizarFluxo('${letra}')">
@@ -98,7 +122,6 @@
           </select><br>
         `;
 
-        // Q1a
         html += `
           <div id="${letra}_Q1a_box" style="display:none;">
             <label for="${letra}_Q1a">${perguntas["Q1a"]}</label>
@@ -110,7 +133,6 @@
           </div>
         `;
 
-        // Q2-Q4
         for (let q of ["Q2", "Q3", "Q4"]) {
           html += `
             <div id="${letra}_${q}_box" style="display:none;">
@@ -133,8 +155,6 @@
 
     function atualizarFluxo(letra) {
       const q1 = document.getElementById(`${letra}_Q1`).value;
-
-      // Resetar tudo
       document.getElementById(`${letra}_Q1a_box`).style.display = "none";
       document.getElementById(`${letra}_Q2_box`).style.display = "none";
       document.getElementById(`${letra}_Q3_box`).style.display = "none";
@@ -143,14 +163,11 @@
       if (q1 === "Não") {
         document.getElementById(`${letra}_Q1a_box`).style.display = "block";
       }
-
       if (q1 === "Sim") {
         document.getElementById(`${letra}_Q2_box`).style.display = "block";
-
         const q2 = document.getElementById(`${letra}_Q2`).value;
         if (q2 === "Não") {
           document.getElementById(`${letra}_Q3_box`).style.display = "block";
-
           const q3 = document.getElementById(`${letra}_Q3`).value;
           if (q3 === "Sim") {
             document.getElementById(`${letra}_Q4_box`).style.display = "block";
@@ -160,10 +177,7 @@
     }
 
     async function enviarRespostas() {
-      if (!etapaAtual) {
-        alert("Nenhuma etapa carregada.");
-        return;
-      }
+      if (!etapaAtual) return alert("Nenhuma etapa carregada.");
 
       const respostas = {};
       for (let tipo of ["biologico", "quimico", "fisico"]) {
@@ -179,31 +193,24 @@
         }
       }
 
-      try {
-        const response = await fetch("http://127.0.0.1:8000/etapa/avaliar", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ etapa: etapaAtual, respostas })
-        });
+      const response = await fetch("http://127.0.0.1:8000/etapa/avaliar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ produto: produtoAtual, etapa: etapaAtual, respostas })
+      });
 
-        const result = await response.json();
-
-        if (response.ok && result.tabela) {
-          exibirResultado(result.tabela);
-        } else {
-          console.error("Resposta inesperada:", result);
-          alert("Erro ao avaliar PCC. Verifique o console para detalhes.");
-        }
-      } catch (err) {
-        console.error("Erro ao enviar respostas:", err);
-        alert("Erro inesperado ao comunicar com a API.");
+      const result = await response.json();
+      if (response.ok && result.tabela) {
+        exibirResultado(result.tabela);
+      } else {
+        alert("Erro ao avaliar PCC.");
+        console.error(result);
       }
     }
 
     function exibirResultado(tabela) {
       const container = document.getElementById("resultadoFinal");
       let html = "<h3>Resultado Final - PCC</h3><table><thead><tr><th>Perigo</th><th>Descrição</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>PCC</th><th>Medida de Controle</th></tr></thead><tbody>";
-
       for (let linha of tabela) {
         html += `<tr>
           <td>${linha.perigo}</td>
@@ -216,10 +223,12 @@
           <td>${linha.medida_controle}</td>
         </tr>`;
       }
-
       html += "</tbody></table>";
       container.innerHTML = html;
     }
+
+    // Executa ao abrir a página
+    carregarProdutos();
   </script>
 </body>
 </html>
