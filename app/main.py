@@ -7,6 +7,7 @@ from pathlib import Path
 from app.routes import etapa
 from app.routes import questionario
 from app.routes import avaliar
+from app.routes import produtos
 
 app = FastAPI()
 
@@ -20,6 +21,7 @@ app.add_middleware(
 )
 
 # Rotas da API
+app.include_router(produtos.router)
 app.include_router(etapa.router)
 app.include_router(questionario.router)
 app.include_router(avaliar.router)
