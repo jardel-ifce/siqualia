@@ -98,3 +98,26 @@ class FormularioH(Base):
     q3_aumento_perigo = Column(Text)
     q4_eliminacao_posterior = Column(Text)
     pcc = Column(Text)
+
+class PerguntaFormularioH(Base):
+    __tablename__ = "perguntas_formulario_h"
+
+    id = Column(Integer, primary_key=True)
+    codigo = Column(String(10), unique=True, nullable=False)
+    texto_pergunta = Column(Text, nullable=False)
+    tipo = Column(String(20), default="objetiva")  # ex: 'sim_nao', 'texto_livre'
+    id_pergunta_pai = Column(Integer, ForeignKey("perguntas_formulario_h.id"), nullable=True)
+    ordem = Column(Integer, default=0)
+
+    opcoes = relationship("OpcaoPerguntaH", back_populates="pergunta", cascade="all, delete")
+
+class OpcaoPerguntaH(Base):
+    __tablename__ = "opcoes_pergunta_h"
+
+    id = Column(Integer, primary_key=True)
+    id_pergunta = Column(Integer, ForeignKey("perguntas_formulario_h.id"), nullable=False)
+    texto_opcao = Column(String(255), nullable=False)
+    proxima_codigo = Column(String(10), nullable=True)
+    resultado_final = Column(Text, nullable=True)
+
+    pergunta = relationship("PerguntaFormularioH", back_populates="opcoes")
