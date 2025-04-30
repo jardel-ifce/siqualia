@@ -1,14 +1,15 @@
 from sqlalchemy.orm import Session
 from app.models.appcc import Produto, Etapa, TipoPerigo, Perigo, Justificativa, MedidaControle
 
+
 def verificar_ou_criar_ids(
-    db: Session,
-    produto_nome: str,
-    etapa_nome: str,
-    tipo_perigo_nome: str,
-    perigo_nome: str,
-    justificativa_texto: str,
-    medida_texto: str
+        db: Session,
+        produto_nome: str,
+        etapa_nome: str,
+        tipo_perigo_nome: str,
+        perigo_nome: str,
+        justificativa_texto: str,
+        medida_texto: str
 ):
     # Produto (já selecionado)
     produto = db.query(Produto).filter(Produto.nome_produto == produto_nome).first()
@@ -28,11 +29,26 @@ def verificar_ou_criar_ids(
         db.refresh(etapa)
         etapa_existente = False
 
-    # Tipo de perigo
-    tipo = db.query(TipoPerigo).filter(TipoPerigo.nome_tipo_perigo == tipo_perigo_nome).first()
+    # Mapeamento de tipo pelo código}
+    # Dinâmica pela tabela (atualizar depois)
+    mapa_tipo_codigo = {
+        "Biológico": "B",
+        "Químico": "Q",
+        "Físico": "F",
+        "Alergênico": "A",
+        "Radiológico": "R",
+        "Qualidade": "QUAL"
+    }
+
+    codigo = mapa_tipo_codigo.get(tipo_perigo_nome.strip().capitalize(), tipo_perigo_nome[:3].upper())
+
+    tipo = db.query(TipoPerigo).filter(TipoPerigo.codigo_perigo == codigo).first()
     tipo_existente = True
     if not tipo:
-        tipo = TipoPerigo(nome_tipo_perigo=tipo_perigo_nome, codigo_perigo=tipo_perigo_nome[:3].upper())
+        tipo = TipoPerigo(
+            nome_tipo_perigo=tipo_perigo_nome.strip().capitalize(),
+            codigo_perigo=codigo
+        )
         db.add(tipo)
         db.commit()
         db.refresh(tipo)
