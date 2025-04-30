@@ -6,6 +6,7 @@ let perigosContexto = [];
 document.addEventListener("DOMContentLoaded", async () => {
     const select = document.getElementById("produto");
     try {
+        setLoading(true);
         const res = await fetch("http://127.0.0.1:8000/produtos");
         const data = await res.json();
         select.innerHTML = '<option value="">Selecione um produto</option>';
@@ -18,8 +19,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (err) {
         console.error("Erro ao carregar produtos:", err);
         select.innerHTML = '<option value="">Erro ao carregar produtos</option>';
+    } finally {
+        setLoading(false);
     }
 });
+
+function setLoading(visivel) {
+    document.getElementById("loading").style.display = visivel ? "block" : "none";
+}
 
 function confirmarProduto() {
     produtoSelecionado = document.getElementById("produto").value;
@@ -110,6 +117,7 @@ async function exibirDetalhesPerigo() {
     document.getElementById("perigo_significativo").innerHTML = dados.perigo_significativo;
 
     try {
+        setLoading(true);
         const res = await fetch("http://127.0.0.1:8000/formulario/checar-ids", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -138,9 +146,10 @@ async function exibirDetalhesPerigo() {
 
     } catch (err) {
         console.error("Erro ao verificar existência dos dados:", err);
+    } finally {
+        setLoading(false);
+        document.getElementById("formularioG").style.display = "block";
     }
-
-    document.getElementById("formularioG").style.display = "block";
 }
 
 async function salvarFormularioG() {
@@ -153,6 +162,7 @@ async function salvarFormularioG() {
     const dados = perigosContexto[parseInt(idx)];
 
     try {
+        setLoading(true);
         const res = await fetch("http://127.0.0.1:8000/formulario-g", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -173,6 +183,7 @@ async function salvarFormularioG() {
         const data = await res.json();
 
         if (res.ok) {
+            setLoading(false);
             document.getElementById("msgSucesso").textContent = data.message + ` (ID: ${data.id})`;
             document.getElementById("msgSucesso").style.display = "block";
         } else {
