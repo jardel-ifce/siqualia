@@ -1,11 +1,26 @@
+from typing import List, Optional
+
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import Query
 from pydantic import BaseModel
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+
 from app.db.database import get_db
 from app.models.appcc import FormularioG
 from app.services.formulario import verificar_ou_criar_ids
 
 router = APIRouter()
+
+
+class FormularioGResumo(BaseModel):
+    id_formulario_g: int
+    nome_etapa: str
+    codigo_perigo: str
+    descricao_perigo: str
+    perigo_significativo: Optional[str]
+    pcc: Optional[str]  # pode ser 'É um PCC', 'Não é um PCC', ou None
+
 
 class FormularioGEntrada(BaseModel):
     produto: str
@@ -14,6 +29,7 @@ class FormularioGEntrada(BaseModel):
     perigo: str
     justificativa: str
     medida_preventiva: str
+
 
 class FormularioGCompleto(BaseModel):
     produto: str
@@ -26,6 +42,7 @@ class FormularioGCompleto(BaseModel):
     risco: str
     medida_preventiva: str
     perigo_significativo: str
+
 
 @router.post("/formulario/checar-ids")
 def checar_ids(payload: FormularioGEntrada, db: Session = Depends(get_db)):
@@ -94,3 +111,38 @@ def salvar_formulario_g(payload: FormularioGCompleto, db: Session = Depends(get_
 
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.get("/formulario-g/tabela", response_model=List[FormularioGResumo])
+def listar_formularios_g(produto: str = Query(...), db: Session = Depends(get_db)):
+    query = text("""
+                 SELECT
+                    g.id_formulario_g,
+                    e.nome_etapa,
+                    tp.codigo_perigo,
+                    pe.descricao_perigo,
+                    g.perigo_significativo,
+                    fh.pcc
+                FROM formulario_g g
+                JOIN produtos p ON g.id_produto = p.id_produto
+                JOIN etapas e ON g.id_etapa = e.id_etapa
+                JOIN tipo_perigo tp ON g.id_tipo_perigo = tp.id_tipo_perigo
+                JOIN perigos pe ON g.id_perigo = pe.id_perigo
+                LEFT JOIN formulario_h fh ON fh.id_formulario_g = g.id_formulario_g
+                WHERE p.nome_produto = :produto
+                ORDER BY g.id_formulario_g DESC;
+                 """)
+
+    resultados = db.execute(query, {"produto": produto}).fetchall()
+
+    return [
+        FormularioGResumo(
+            id_formulario_g=row[0],
+            nome_etapa=row[1],
+            codigo_perigo=row[2],
+            descricao_perigo=row[3],
+            perigo_significativo=row[4],
+            pcc=row[5]
+        )
+        for row in resultados
+    ]
