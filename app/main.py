@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import produto, rag, etapa_rag, formulario_g, formulario_h
+from app.routes import produto, rag, etapa_rag, formulario_g, formulario_h, plano_resumo
 
 app = FastAPI(title="SIQUALIA API")
 
@@ -19,3 +19,4 @@ app.include_router(rag.router)
 app.include_router(etapa_rag.router)
 app.include_router(formulario_g.router)
 app.include_router(formulario_h.router)
+app.include_router(plano_resumo.router)
