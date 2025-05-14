@@ -11,7 +11,7 @@ def lematizar(texto: str) -> str:
     doc = nlp(texto)
     return " ".join([t.lemma_ for t in doc if not t.is_stop and t.is_alpha])
 
-def consultar_etapas_similares(prodto: str, etapa_digitada: str, top_n: int = 3):
+def consultar_etapas_similares(produto: str, etapa_digitada: str, top_n: int = 3):
     indexes_dir = Path("indexes") / produto
     etapa_emb = model.encode([lematizar(etapa_digitada)], convert_to_numpy=True, normalize_embeddings=True)
 
