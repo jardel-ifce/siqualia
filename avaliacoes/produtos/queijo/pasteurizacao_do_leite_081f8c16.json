@@ -1,0 +1,27 @@
+{
+  "produto": "queijo",
+  "etapa": "Pasteurização do leite",
+  "formulario_g": [
+    {
+      "tipo": "Q",
+      "perigo": "Resíduos de produtos de limpeza",
+      "justificativa": "Resíduos dos produtos de limpeza utilizados na limpeza CIP.",
+      "probabilidade": "Baixa",
+      "severidade": "Baixa",
+      "risco": "Baixo",
+      "medida": "Teste de enxágue.",
+      "perigo_significativo": "Não",
+      "origem": "appcc"
+    }
+  ],
+  "formulario_h": [
+    {
+      "questao_1": "",
+      "questao_1a": "",
+      "questao_2": "",
+      "questao_3": "",
+      "questao_4": "",
+      "resultado": ""
+    }
+  ]
+}

@@ -1,11 +1,14 @@
-# app/main.py
-
+from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import produto, rag, etapa_rag, formulario_g, formulario_h, plano_resumo
+from app.routes import produtos, etapas, avaliacoes
 
-app = FastAPI(title="SIQUALIA API")
+app = FastAPI(
+    title="SIQUALIA IA MODULE API",
+    version="1.0.0"
+)
 
+# Middleware CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,9 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(produto.router)
-app.include_router(rag.router)
-app.include_router(etapa_rag.router)
-app.include_router(formulario_g.router)
-app.include_router(formulario_h.router)
-app.include_router(plano_resumo.router)
+# ✅ Primeiro registre as rotas da API
+app.include_router(produtos.router)
+app.include_router(etapas.router)
+app.include_router(avaliacoes.router)
+
+# ✅ Só depois monte os arquivos estáticos
+app.mount("/", StaticFiles(directory="app/static", html=True), name="static")

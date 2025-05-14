@@ -5,6 +5,9 @@ venv/
 *.pyd
 __pycache__/
 
+tests/
+app_old/
+
 # Ignorar arquivos de configuração do editor (exemplo: VSCode)
 .vscode/
 
@@ -16,5 +19,3 @@ __pycache__/
 
 # Ignorar arquivos de configuração específicos do PyCharm
 *.iml
-
-old_app/tests

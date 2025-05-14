@@ -1,0 +1,27 @@
+{
+  "produto": "queijo",
+  "etapa": "Pasteurização do leite",
+  "formulario_g": [
+    {
+      "tipo": "F",
+      "perigo": "Nenhum",
+      "justificativa": "Condições da etapa não geram contaminação",
+      "probabilidade": "",
+      "severidade": "",
+      "risco": "",
+      "medida": "",
+      "perigo_significativo": "",
+      "origem": "appcc"
+    }
+  ],
+  "formulario_h": [
+    {
+      "questao_1": "",
+      "questao_1a": "",
+      "questao_2": "",
+      "questao_3": "",
+      "questao_4": "",
+      "resultado": ""
+    }
+  ]
+}
