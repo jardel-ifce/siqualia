@@ -25,8 +25,10 @@ class AvaliacaoRequest(BaseModel):
     etapa: str
     formulario_g: List[Dict]
     formulario_h: Optional[List[Dict]] = None  # opcional
+    formulario_i: Optional[List[Dict]] = None  # opcional
 
 
+@router.post("/salvar")
 @router.post("/salvar")
 def salvar_avaliacoes(dados: AvaliacaoRequest):
     base_dir = Path("avaliacoes/produtos") / dados.produto
@@ -34,7 +36,28 @@ def salvar_avaliacoes(dados: AvaliacaoRequest):
 
     etapa_formatada = normalizar_etapa(dados.etapa)
 
-    for i, (g, h) in enumerate(zip(dados.formulario_g, dados.formulario_h or [])):
+    # Garantir estrutura de formulário I vazia para cada G
+    formulario_i_completo = dados.formulario_i or [{} for _ in dados.formulario_g]
+
+    def estrutura_formulario_i(dados=None):
+        return {
+            "limite_critico": dados.get("limite_critico", "") if dados else "",
+            "monitoramento": {
+                "oque": dados.get("monitoramento", {}).get("oque", "") if dados else "",
+                "como": dados.get("monitoramento", {}).get("como", "") if dados else "",
+                "quando": dados.get("monitoramento", {}).get("quando", "") if dados else "",
+                "quem": dados.get("monitoramento", {}).get("quem", "") if dados else ""
+            },
+            "acao_corretiva": dados.get("acao_corretiva", "") if dados else "",
+            "registro": dados.get("registro", "") if dados else "",
+            "verificacao": dados.get("verificacao", "") if dados else ""
+        }
+
+    for i, (g, h, i_data) in enumerate(zip(
+        dados.formulario_g,
+        dados.formulario_h or [{} for _ in dados.formulario_g],
+        formulario_i_completo
+    )):
         id_arquivo = uuid.uuid4().hex[:8]
         nome_arquivo = f"{etapa_formatada}_{id_arquivo}.json"
         caminho = base_dir / nome_arquivo
@@ -43,7 +66,8 @@ def salvar_avaliacoes(dados: AvaliacaoRequest):
             "produto": dados.produto,
             "etapa": dados.etapa,
             "formulario_g": [g],
-            "formulario_h": [h]
+            "formulario_h": [h],
+            "formulario_i": [estrutura_formulario_i(i_data)],
         }
 
         with open(caminho, "w", encoding="utf-8") as f:
@@ -68,6 +92,7 @@ def listar_etapas_salvas(produto: str = Query(...)):
 
             formulario_g = dados.get("formulario_g", [])
             formulario_h = dados.get("formulario_h", [])
+            formulario_i = dados.get("formulario_i", [])
             perigos_resumo = []
 
             for i, item in enumerate(formulario_g):

@@ -1,7 +1,7 @@
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import produtos, etapas, avaliacoes
+from app.routes import produtos, etapas, avaliacoes, formulario_i
 
 app = FastAPI(
     title="SIQUALIA IA MODULE API",
@@ -21,6 +21,8 @@ app.add_middleware(
 app.include_router(produtos.router)
 app.include_router(etapas.router)
 app.include_router(avaliacoes.router)
+
+app.include_router(formulario_i.router)
 
 # ✅ Só depois monte os arquivos estáticos
 app.mount("/", StaticFiles(directory="app/static", html=True), name="static")

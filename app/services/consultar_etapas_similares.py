@@ -4,7 +4,7 @@ from pathlib import Path
 from sentence_transformers import SentenceTransformer
 import spacy
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("intfloat/e5-base-v2")
 nlp = spacy.load("pt_core_news_sm")
 
 def lematizar(texto: str) -> str:
