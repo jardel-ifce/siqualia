@@ -1,0 +1,41 @@
+{
+  "produto": "mel",
+  "etapa": "Envase / Rotulagem",
+  "formulario_g": [
+    {
+      "tipo": "QUAL",
+      "perigo": "Umidade elevada",
+      "justificativa": "Utilização de equipamentos e embalagens que não estejam convenientemente secos após higienização.",
+      "probabilidade": "Desprezível",
+      "severidade": "Alta",
+      "risco": "Baixo",
+      "medida": "BPF: procedimentos de higienização dos equipamentos e embalagens e treinamento dos manipuladores.",
+      "perigo_significativo": "Sim",
+      "origem": "appcc"
+    }
+  ],
+  "formulario_h": [
+    {
+      "questao_1": "Sim",
+      "questao_1a": "",
+      "questao_2": "Sim",
+      "questao_3": "",
+      "questao_4": "",
+      "resultado": "É um PCC"
+    }
+  ],
+  "formulario_i": [
+    {
+      "limite_critico": "",
+      "monitoramento": {
+        "oque": "",
+        "como": "",
+        "quando": "",
+        "quem": ""
+      },
+      "acao_corretiva": "",
+      "registro": "",
+      "verificacao": ""
+    }
+  ]
+}

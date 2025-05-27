@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>SIQUALIA – Início</title>
+  <link href="/css/base.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="menu"></div>
+
+<div class="container">
+  <h1>Bem-vindo ao SIQUALIA</h1>
+  <p>Escolha uma das opções no menu acima para começar a usar o sistema.</p>
+  <a href="/assistente.html" class="btn">Ir para o Assistente APPCC</a>
+</div>
+
+<script>
+  fetch("/partials/menu.html")
+    .then(res => res.text())
+    .then(html => document.getElementById("menu").innerHTML = html);
+</script>
+
+</body>
+</html>

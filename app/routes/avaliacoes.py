@@ -27,8 +27,6 @@ class AvaliacaoRequest(BaseModel):
     formulario_h: Optional[List[Dict]] = None  # opcional
     formulario_i: Optional[List[Dict]] = None  # opcional
 
-
-@router.post("/salvar")
 @router.post("/salvar")
 def salvar_avaliacoes(dados: AvaliacaoRequest):
     base_dir = Path("avaliacoes/produtos") / dados.produto

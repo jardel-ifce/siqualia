@@ -3,135 +3,156 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Formulário I – Relatório de PCCs | SIQUALIA</title>
+	<link href="css/base.css" rel="stylesheet">
+	<link href="css/avaliacoes.css" rel="stylesheet">
 	<style>
-		body {
-			font-family: sans-serif;
-			padding: 2rem;
-			max-width: 960px;
-			margin: auto;
-		}
-		
-		table {
+		.modal {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
 			width: 100%;
-			border-collapse: collapse;
-			margin-top: 1rem;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.4);
+			justify-content: center;
+			align-items: flex-start;
+			overflow-y: auto;
+			padding-top: 3rem;
+			z-index: 1000;
 		}
 		
-		th, td {
-			padding: 0.75rem;
+		.modal-content {
+			background: white;
+			padding: 2rem;
+			border-radius: 8px;
+			max-width: 600px;
+			width: 90%;
+			margin: auto;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+		}
+		
+		.modal-content h3 {
+			margin-top: 0;
+		}
+		
+		.modal-content .close {
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			font-size: 1.5rem;
+			cursor: pointer;
+		}
+		
+		.modal-content .form-group,
+		.modal-content fieldset {
+			margin-bottom: 1.5rem;
+		}
+		
+		.modal-content fieldset {
+			padding: 1rem;
 			border: 1px solid #ccc;
-			text-align: left;
-			vertical-align: top;
+			border-radius: 6px;
+			background-color: #f6f6f6;
 		}
 		
-		th {
-			background-color: #f0f0f0;
-		}
-		
-		button {
-			padding: 0.4rem 0.8rem;
-			font-size: 0.85rem;
-			margin-left: 0.25rem;
-		}
-		
-		select {
-			padding: 0.5rem;
-			font-size: 1rem;
-			margin-bottom: 1rem;
-		}
-		
-		.pcc {
+		.modal-content label {
+			display: block;
+			margin-top: 0.5rem;
 			font-weight: bold;
-			color: #b30000;
+		}
+		
+		.modal-content input {
+			width: 100%;
+			padding: 0.5rem;
+			margin-top: 0.25rem;
+			box-sizing: border-box;
+		}
+		
+		.modal-content button {
+			margin-top: 1rem;
+			padding: 0.6rem 1.2rem;
+			background: #004080;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		
+		.modal-content button:hover {
+			background: #003060;
 		}
 	</style>
+
 </head>
 <body>
+<div id="menu"></div>
 
-<h2>Formulário I – Relatório de Pontos Críticos de Controle (PCCs)</h2>
+<div class="container">
+	<h2>Formulário I – Relatório de Pontos Críticos de Controle (PCCs)</h2>
+	
+	<label for="produtoSelect">Selecione o Produto:</label>
+	<select id="produtoSelect"></select>
+	<button onclick="carregarEtapas()">Confirmar</button>
+	
+	<table id="tabelaResumo" style="display:none;">
+		<thead>
+		<tr>
+			<th>Etapa</th>
+			<th>Perigo</th>
+			<th>Resultado</th>
+			<th>Ações</th>
+		</tr>
+		</thead>
+		<tbody id="corpoTabelaResumo"></tbody>
+	</table>
+</div>
 
-<label for="produtoSelect">Selecione o Produto:</label>
-<select id="produtoSelect"></select>
-<button onclick="carregarEtapas()">Confirmar</button>
-
-<table id="tabelaResumo" style="display:none;">
-	<thead>
-	<tr>
-		<th>Etapa</th>
-		<th>Perigo</th>
-		<th>Resultado</th>
-		<th>Ações</th>
-	</tr>
-	</thead>
-	<tbody id="corpoTabelaResumo"></tbody>
-</table>
+<!-- Modal do Formulário I -->
+<div class="modal" id="modalFormularioI">
+	<div class="modal-content">
+		<span class="close" onclick="fecharModal()">&times;</span>
+		<h3>Formulário I – Preencher Dados do PCC</h3>
+		
+		<div class="form-group">
+			<strong>Etapa:</strong> <span id="infoEtapa"></span><br>
+			<strong>Perigo:</strong> <span id="infoPerigo"></span><br>
+			<strong>Tipo:</strong> <span id="infoTipo"></span>
+		</div>
+		
+		<form id="formularioIForm">
+			<div class="form-group">
+				<label>Limite Crítico:</label>
+				<input name="limite_critico" type="text"/>
+			</div>
+			<fieldset>
+				<legend>Monitoramento</legend>
+				<label>O quê?</label><input name="monitoramento.oque" type="text"/>
+				<label>Como?</label><input name="monitoramento.como" type="text"/>
+				<label>Quando?</label><input name="monitoramento.quando" type="text"/>
+				<label>Quem?</label><input name="monitoramento.quem" type="text"/>
+			</fieldset>
+			<div class="form-group">
+				<label>Ação Corretiva:</label>
+				<input name="acao_corretiva" type="text"/>
+			</div>
+			<div class="form-group">
+				<label>Registro:</label>
+				<input name="registro" type="text"/>
+			</div>
+			<div class="form-group">
+				<label>Verificação:</label>
+				<input name="verificacao" type="text"/>
+			</div>
+			<button onclick="salvarFormularioI()" type="button">Salvar Formulário I</button>
+		</form>
+	</div>
+</div>
 
 <script>
-	async function carregarProdutos() {
-		const resposta = await fetch("/v1/produtos");
-		const produtos = await resposta.json();
-		
-		const select = document.getElementById("produtoSelect");
-		select.innerHTML = "<option value=''>Selecione...</option>";
-		produtos.forEach(p => {
-			const opt = document.createElement("option");
-			opt.value = p;
-			opt.textContent = p.charAt(0).toUpperCase() + p.slice(1);
-			select.appendChild(opt);
-		});
-	}
-	
-	async function carregarEtapas() {
-		const produto = document.getElementById("produtoSelect").value;
-		if (!produto) {
-			alert("Selecione um produto primeiro.");
-			return;
-		}
-		
-		const resposta = await fetch(`/v1/avaliacoes/etapas?produto=${encodeURIComponent(produto)}`);
-		const etapas = await resposta.json();
-		
-		const tabela = document.getElementById("tabelaResumo");
-		const corpo = document.getElementById("corpoTabelaResumo");
-		corpo.innerHTML = "";
-		tabela.style.display = "table";
-		
-		etapas.forEach((registro, i) => {
-			const perigo = registro.resumo[0];
-			const tr = document.createElement("tr");
-			
-			const isPCC = perigo.significativo && perigo.resultado === "É um PCC";
-			
-			tr.innerHTML = `
-        <td>${registro.etapa}</td>
-        <td>${perigo.descricao}</td>
-        <td>${perigo.resultado || ""}</td>
-        <td>
-          <button onclick="editarPerigo('${registro.arquivo}', 0)">Editar</button>
-          <button onclick="reclassificarPerigo('${registro.arquivo}', 0)">Reclassificar</button>
-          <button ${isPCC ? "" : "disabled title='Apenas para PCCs'"} title="Formulário I"
-                  onclick="gerarFormularioI('${registro.arquivo}', 0)">Relatório</button>
-        </td>
-      `;
-			
-			corpo.appendChild(tr);
-		});
-	}
-	
-	function editarPerigo(arquivo, indice) {
-		alert(`Editar perigo #${indice + 1} do arquivo:\n${arquivo}`);
-	}
-	
-	function reclassificarPerigo(arquivo, indice) {
-		alert(`Reclassificar perigo #${indice + 1} do arquivo:\n${arquivo}`);
-	}
-	
-	function gerarFormularioI(arquivo, indice) {
-		alert(`Gerar relatório (Formulário I) para o perigo #${indice + 1} do arquivo:\n${arquivo}`);
-	}
-	
-	carregarProdutos();
+	fetch("/partials/menu.html")
+			.then(res => res.text())
+			.then(html => document.getElementById("menu").innerHTML = html);
 </script>
-
+<script src="js/avaliacoes.js"></script>
 </body>
 </html>

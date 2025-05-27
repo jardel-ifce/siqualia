@@ -19,7 +19,7 @@ if not JSON_PATH.exists():
     with open(JSON_PATH, "w", encoding="utf-8") as f:
         json.dump([], f)
 
-MODEL_NAME = "all-MiniLM-L6-v2"
+MODEL_NAME = "intfloat/e5-base-v2"
 
 model = SentenceTransformer(MODEL_NAME)
 

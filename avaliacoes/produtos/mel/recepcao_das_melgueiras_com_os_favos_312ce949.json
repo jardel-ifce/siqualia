@@ -1,0 +1,41 @@
+{
+  "produto": "mel",
+  "etapa": "Recepção das melgueiras com os favos",
+  "formulario_g": [
+    {
+      "tipo": "Q",
+      "perigo": "Fármacos e defensivos agrícolas",
+      "justificativa": "Presença de resíduos de produtos químicos utilizados no apiário ou por contaminação nas áreas de coleta.",
+      "probabilidade": "Baixa",
+      "severidade": "Média",
+      "risco": "Baixo",
+      "medida": "BPF: programa de seleção de fornecedores com exigência de declaração de garantia.",
+      "perigo_significativo": "Sim",
+      "origem": "appcc"
+    }
+  ],
+  "formulario_h": [
+    {
+      "questao_1": "Sim",
+      "questao_1a": "",
+      "questao_2": "Não",
+      "questao_3": "Sim",
+      "questao_4": "Não",
+      "resultado": "É um PCC"
+    }
+  ],
+  "formulario_i": [
+    {
+      "limite_critico": "",
+      "monitoramento": {
+        "oque": "",
+        "como": "",
+        "quando": "",
+        "quem": ""
+      },
+      "acao_corretiva": "",
+      "registro": "",
+      "verificacao": ""
+    }
+  ]
+}

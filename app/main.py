@@ -17,12 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Primeiro registre as rotas da API
 app.include_router(produtos.router)
 app.include_router(etapas.router)
 app.include_router(avaliacoes.router)
 
 app.include_router(formulario_i.router)
 
-# ✅ Só depois monte os arquivos estáticos
 app.mount("/", StaticFiles(directory="app/static", html=True), name="static")

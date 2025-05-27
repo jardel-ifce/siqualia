@@ -1,0 +1,41 @@
+{
+  "produto": "mel",
+  "etapa": "Recepção das melgueiras com os favos",
+  "formulario_g": [
+    {
+      "tipo": "B",
+      "perigo": "Umidade elevada",
+      "justificativa": "Ambiente de recepção úmido/molhado em função do processo de limpeza.",
+      "probabilidade": "",
+      "severidade": "Alta",
+      "risco": "Baixo",
+      "medida": "BPF: evitar exposição das melgueiras em áreas molhadas.",
+      "perigo_significativo": "Sim",
+      "origem": "appcc"
+    }
+  ],
+  "formulario_h": [
+    {
+      "questao_1": "",
+      "questao_1a": "",
+      "questao_2": "",
+      "questao_3": "",
+      "questao_4": "",
+      "resultado": ""
+    }
+  ],
+  "formulario_i": [
+    {
+      "limite_critico": "",
+      "monitoramento": {
+        "oque": "",
+        "como": "",
+        "quando": "",
+        "quem": ""
+      },
+      "acao_corretiva": "",
+      "registro": "",
+      "verificacao": ""
+    }
+  ]
+}

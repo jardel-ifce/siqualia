@@ -5,7 +5,7 @@ venv/
 *.pyd
 __pycache__/
 
-tests/
+testes/
 app_old/
 
 # Ignorar arquivos de configuração do editor (exemplo: VSCode)
