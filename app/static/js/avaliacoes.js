@@ -45,8 +45,9 @@ async function carregarEtapas() {
           <button ${isPCC ? "" : "disabled title='Apenas para PCCs'"}
 			  onclick="editarFormI('${registro.produto}', '${registro.etapa}', '${form.tipo}', '${form.perigo}', '${form.justificativa}', '${form.medida}')">
 			  I</button>
-          <button ${isPCC ? "" : "disabled title='Apenas para PCCs'"}
-                  onclick="gerarRelatorio('${registro.arquivo}', 0)">Relatório</button>
+          <button ${isPCC ? "" : "disabled title='Apenas para PCCs'"} 
+              onclick="gerarRelatorio('${registro.arquivo}', 0)">Relatório
+              </button>
         </td>
       `;
         corpo.appendChild(tr);
@@ -97,7 +98,8 @@ async function editarFormI(produto, etapa, tipo, perigo, justificativa, medida) 
 }
 
 function gerarRelatorio(arquivo, indice) {
-    alert(`Gerar relatório (Monitoramento do PCC - Formulário I) para o perigo #${indice + 1} do arquivo:\n${arquivo}`);
+    const url = `/relatorio.html?arquivo=${encodeURIComponent(arquivo)}&indice=${indice}`;
+    window.open(url, "_blank");
 }
 
 let arquivoAtual = "";

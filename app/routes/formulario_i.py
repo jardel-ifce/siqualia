@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Query
+from fastapi.responses import JSONResponse
 from pathlib import Path
 import json
 from pydantic import BaseModel
@@ -73,3 +74,26 @@ def salvar_formulario_i(req: AtualizarFormularioIRequest):
                 return {"mensagem": "Formulário I salvo com sucesso."}
 
     return {"erro": "Registro não encontrado para a etapa, tipo e perigo especificados."}
+
+@router.get("/relatorio")
+def gerar_relatorio(arquivo: str = Query(...), indice: int = Query(...)):
+    caminho = Path(arquivo)
+    if not caminho.exists():
+        return JSONResponse(status_code=404, content={"erro": "Arquivo não encontrado"})
+
+    with open(caminho, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    g = dados["formulario_g"][indice]
+    i = dados.get("formulario_i", [{}])[indice] or {}
+
+    return {
+        "produto": dados.get("produto"),
+        "etapa": dados.get("etapa"),
+        "tipo": g["tipo"],
+        "perigo": g["perigo"],
+        "justificativa": g.get("justificativa", ""),
+        "medida": g.get("medida", ""),
+        "formulario_i": i
+    }
+
