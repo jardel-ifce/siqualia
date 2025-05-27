@@ -81,7 +81,7 @@ async function carregarEtapas() {
         <td>${registro.etapa}</td>
         <td>${perigo.descricao}</td>
         <td>${perigo.resultado || ""}</td>
-        <td>
+        <td style="white-space: nowrap;">
           <button onclick="editarFormG('${registro.arquivo}', 0)" title="Formulário G">G</button>
           <button onclick="editarFormH('${registro.arquivo}', 0)" title="Formulário H">H</button>
           ${botaoFormI}
