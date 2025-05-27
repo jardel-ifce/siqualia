@@ -1,146 +1,71 @@
-# Siqualia - Sistema Inteligente de Qualidade em Alimentos
+# SIQUALIA – Formulário I e Geração do Relatório APPCC
 
-Este repositório contém a API e o frontend do projeto **Siqualia**, um sistema para consulta e análise de perigos em diferentes etapas de processos produtivos na indústria de alimentos. A API é construída com **FastAPI** e utiliza embeddings para identificação semântica de etapas. O frontend é uma interface HTML+JavaScript para interação com os dados.
+## 🧩 Visão Geral da Implementação
 
----
+Esta versão do sistema SIQUALIA implementa o preenchimento semiautomático do **Formulário I** (Plano de Monitoramento de PCC) e a geração do **Relatório Final APPCC** para produtos alimentícios.
 
-## Tecnologias Utilizadas
+Atualmente, o fluxo está disponível para o produto **mel**, com base nos perigos classificados como **Pontos Críticos de Controle (PCC)** no Formulário H.
 
-- **Backend**: FastAPI
-- **Frontend**: HTML + JavaScript
-- **Modelo de Embeddings**: `sentence-transformers` (`all-MiniLM-L6-v2`)
-- **Servidor de desenvolvimento**: Uvicorn
+## 🧪 Preenchimento do Formulário I
 
----
+O preenchimento do Formulário I segue a lógica:
 
-## Funcionalidades
+- O botão **“I”** é exibido sempre que a etapa conter um perigo classificado como **PCC**.
+- Ao clicar no botão “I”, o sistema:
+  - Verifica se já há sugestão salva em `sessionStorage` para evitar repetição de chamada ao backend.
+  - Caso **não haja sugestão anterior**, o sistema consulta o endpoint `/v1/formulario-i/sugerir`.
+  - Este endpoint utiliza **busca semântica com FAISS + SentenceTransformer** para sugerir o preenchimento com base em documentos do produto.
 
-### 🔍 Consulta de Etapas
-- O usuário informa uma etapa do processo.
-- A API encontra a etapa mais similar na base de dados do produto selecionado, com base em embeddings.
-- São exibidos os perigos (biológico, químico e físico) e suas respectivas medidas de controle.
+> ⚠️ Importante: **A edição direta dos dados do Formulário I ainda não está implementada.** Apenas a exibição da sugestão gerada é possível nesta etapa do projeto.
 
-### 📋 Questionário de PCC
-- Após a consulta, o usuário responde a um questionário para cada tipo de perigo identificado.
-- A lógica implementa uma árvore de decisão baseada no Codex Alimentarius para determinar se a etapa é um Ponto Crítico de Controle (PCC).
-- O sistema exibe uma tabela com a decisão final para cada perigo (PCC ou não).
+## 📄 Geração do Relatório Final APPCC
 
-### 📁 Suporte a múltiplos produtos
-- Os dados são separados por produto em arquivos JSON (ex: `mel.json`, `queijo.json`).
-- O usuário seleciona o produto via `<select>` no frontend.
-- A API carrega dinamicamente os dados do produto no momento da requisição.
+- O botão **“Relatório”** é exibido apenas quando:
+  - O perigo da etapa foi classificado como **PCC** no Formulário H;
+  - O Formulário I está **preenchido** (todos os campos obrigatórios).
+- O relatório consolida dados dos Formulários G, H e I, compondo o plano final de controle para a etapa.
 
-### 🌐 Interface Web
-- Interface simples com campos para seleção de produto e entrada da etapa.
-- Resultado exibido com tabela de perigos e questionário dinâmico.
+## ⚠️ Limitações atuais
 
----
+- A base de dados para sugestão automática do Formulário I está restrita ao produto **mel**.
+- Ainda não há controle contra arquivos duplicados, inválidos ou incompletos.
+- A verificação de integridade entre Formulários G, H e I será aprimorada em etapas futuras.
+- O Formulário I **não pode ser editado** no frontend ainda — apenas visualizado e salvo (atualizando o json presente).
 
-## Estrutura do Projeto
+## 🛠 Melhorias planejadas
 
-```
-siqualia/
-├── app/
-│   ├── main.py                # Inicialização da aplicação FastAPI
-│   ├── routes/               # Endpoints (etapa, questionario, avaliar, produtos)
-│   ├── utils/dados.py        # Funções de carregamento e busca de etapas
-│   └── static/               # Arquivos HTML e CSS
-│       ├── index.html
-│       └── style.css
-├── data/                     # Arquivos JSON por produto (mel.json, queijo.json...)
-├── requirements.txt
-└── README.md
-```
+- Implementar edição interativa e salvamento do Formulário I via frontend.
+- Expandir suporte para outros produtos além do mel (ex: queijo).
+- Adicionar filtros de validação ao carregar arquivos e preencher formulários.
+- Aprimorar a estrutura e layout do relatório final APPCC.
 
----
+## ▶️ Como executar
 
-## Como Usar
+1. Instale as dependências:
 
-### 🔧 Backend (API FastAPI)
-
-#### 1. Instale as dependências:
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-#### 2. Execute a API com Uvicorn:
+2. Execute o backend com FastAPI
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
+```
+3. Acesse a aplicação no navegador:
+```bash
+http://localhost:8000
 ```
 
-A API ficará disponível em `http://127.0.0.1:8000`
-
-### 🌍 Frontend (Interface Web)
-
-Acesse `http://127.0.0.1:8000/` diretamente após iniciar o backend. O arquivo `index.html` é servido automaticamente pela API.
-
----
-
-## Endpoints da API
-
-### `GET /produtos`
-Retorna a lista de produtos disponíveis (com base nos arquivos `.json` na pasta `data/`).
-
-### `POST /etapa/pesquisar`
-Consulta uma etapa com base no produto e retorna a mais similar, incluindo perigos e medidas de controle.
-```json
-{
-  "produto": "mel",
-  "etapa": "armazenamento do produto"
-}
+## 📂 Estrutura relevante de arquivos
+```pgsql
+avaliacoes/
+├── produtos/
+    └── mel/
+        └── [etapa_abc123.json]
+indexes/
+├── mel/
+    ├── pac.index
+    └── pac.pkl
 ```
-
-### `POST /etapa/questionario`
-Retorna as perguntas do fluxograma de decisão para uma etapa válida.
-
-### `POST /etapa/avaliar`
-Recebe as respostas do questionário e retorna a decisão para cada perigo.
-```json
-{
-  "produto": "mel",
-  "etapa": "armazenamento do produto",
-  "respostas": {
-    "B": { "Q1": "Sim", "Q2": "Não", "Q3": "Sim", "Q4": "Não" },
-    "Q": { "Q1": "Não", "Q1a": "Não" },
-    "F": { "Q1": "Sim", "Q2": "Sim" }
-  }
-}
-```
-
----
-
-## Exemplo de Arquivo de Dados (mel.json)
-
-```json
-[
-  {
-    "id": 1,
-    "etapa": "Recepção",
-    "perigo": {
-      "biologico": "Presença de esporos de fungos e bactérias",
-      "quimico": "Resíduos de defensivos agrícolas",
-      "fisico": "Partículas de sujeira e detritos"
-    },
-    "medida_controle": {
-      "biologico": "Lavagem e desinfecção das melgueiras",
-      "quimico": "Controle de fornecedores e análise de resíduos de defensivos",
-      "fisico": "Inspeção visual e remoção de sujidades"
-    }
-  },
-  ...
-]
-```
-
----
-
-## Notas
-
-- O sistema não utiliza banco de dados; os dados estão organizados em arquivos JSON por produto.
-- A lógica de identificação de PCCs segue o fluxograma oficial da metodologia APPCC.
-- O frontend reinicializa os campos dinamicamente para garantir que apenas respostas visíveis sejam consideradas.
-
----
-
-## Futuras Expansões
-- Classificação da probabilidade e da severidade
-- Geração automática do plano APPCC final

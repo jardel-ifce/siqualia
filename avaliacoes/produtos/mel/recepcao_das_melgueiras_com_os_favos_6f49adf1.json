@@ -26,7 +26,7 @@
   ],
   "formulario_i": [
     {
-      "limite_critico": "Presença dos dizeres no rótulo",
+      "limite_critico": "Presença dos dizeres no rótulo RECEBIDO POR IA",
       "monitoramento": {
         "oque": "Dizeres no rótulo",
         "como": "Inspeção visual",

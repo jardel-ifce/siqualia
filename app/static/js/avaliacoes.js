@@ -13,6 +13,28 @@ async function carregarProdutos() {
     });
 }
 
+function isFormularioIVazio(formulario_i) {
+    if (!formulario_i) return true;
+
+    const camposSimples = [
+        formulario_i.limite_critico,
+        formulario_i.acao_corretiva,
+        formulario_i.registro,
+        formulario_i.verificacao
+    ];
+
+    const monitoramento = formulario_i.monitoramento || {};
+    const camposMonitoramento = [
+        monitoramento.oque,
+        monitoramento.como,
+        monitoramento.quando,
+        monitoramento.quem
+    ];
+
+    const todosCampos = [...camposSimples, ...camposMonitoramento];
+    return todosCampos.every(campo => campo === "");
+}
+
 async function carregarEtapas() {
     const produto = document.getElementById("produtoSelect").value;
     if (!produto) {
@@ -22,7 +44,6 @@ async function carregarEtapas() {
 
     const resposta = await fetch(`/v1/avaliacoes/etapas?produto=${encodeURIComponent(produto)}`);
     const etapas = await resposta.json();
-
     const tabela = document.getElementById("tabelaResumo");
     const corpo = document.getElementById("corpoTabelaResumo");
     corpo.innerHTML = "";
@@ -31,9 +52,30 @@ async function carregarEtapas() {
     etapas.forEach((registro, i) => {
         const form = registro.formulario_g[0];
         const perigo = registro.resumo[0];
-        const tr = document.createElement("tr");
+        const formI = perigo.formulario_i;
 
+        const tr = document.createElement("tr");
         const isPCC = perigo.significativo && perigo.resultado === "É um PCC";
+        const isFormIPreenchido = !isFormularioIVazio(formI);
+
+        // Botão Formulário I: exibido sempre se for PCC
+        const botaoFormI = isPCC ? `
+            <button 
+                onclick="editarFormI('${registro.produto}', '${registro.etapa}', '${form.tipo}', '${form.perigo}', '${form.justificativa}', '${form.medida}')">
+                I
+            </button>` : `
+            <button disabled title='Apenas para PCCs'>
+                I
+            </button>`;
+
+        // Botão Relatório: apenas se for PCC e formulário I estiver completo
+        const botaoRelatorio = isPCC && isFormIPreenchido ? `
+            <button onclick="gerarRelatorio('${registro.arquivo}', 0)">
+                Relatório
+            </button>` : `
+            <button disabled title='Preencha o Formulário I primeiro'>
+                Relatório
+            </button>`;
 
         tr.innerHTML = `
         <td>${registro.etapa}</td>
@@ -42,14 +84,10 @@ async function carregarEtapas() {
         <td>
           <button onclick="editarFormG('${registro.arquivo}', 0)" title="Formulário G">G</button>
           <button onclick="editarFormH('${registro.arquivo}', 0)" title="Formulário H">H</button>
-          <button ${isPCC ? "" : "disabled title='Apenas para PCCs'"}
-			  onclick="editarFormI('${registro.produto}', '${registro.etapa}', '${form.tipo}', '${form.perigo}', '${form.justificativa}', '${form.medida}')">
-			  I</button>
-          <button ${isPCC ? "" : "disabled title='Apenas para PCCs'"} 
-              onclick="gerarRelatorio('${registro.arquivo}', 0)">Relatório
-              </button>
+          ${botaoFormI}
+          ${botaoRelatorio}
         </td>
-      `;
+        `;
         corpo.appendChild(tr);
     });
 }

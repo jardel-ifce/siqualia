@@ -18,7 +18,6 @@ def normalizar_etapa(etapa: str) -> str:
     etapa = re.sub(r"[^a-z0-9_]+", "", etapa)  # remove outros caracteres especiais
     return etapa
 
-
 # Modelo da requisição
 class AvaliacaoRequest(BaseModel):
     produto: str
@@ -77,11 +76,26 @@ def salvar_avaliacoes(dados: AvaliacaoRequest):
 
 
 @router.get("/etapas")
+@router.get("/etapas")
 def listar_etapas_salvas(produto: str = Query(...)):
     pasta = Path("avaliacoes/produtos") / produto
     arquivos = list(pasta.glob("*.json"))
 
     etapas = []
+
+    def estrutura_formulario_i(dados=None):
+        return {
+            "limite_critico": dados.get("limite_critico", "") if dados else "",
+            "monitoramento": {
+                "oque": dados.get("monitoramento", {}).get("oque", "") if dados else "",
+                "como": dados.get("monitoramento", {}).get("como", "") if dados else "",
+                "quando": dados.get("monitoramento", {}).get("quando", "") if dados else "",
+                "quem": dados.get("monitoramento", {}).get("quem", "") if dados else ""
+            },
+            "acao_corretiva": dados.get("acao_corretiva", "") if dados else "",
+            "registro": dados.get("registro", "") if dados else "",
+            "verificacao": dados.get("verificacao", "") if dados else ""
+        }
 
     for arquivo in arquivos:
         try:
@@ -98,20 +112,24 @@ def listar_etapas_salvas(produto: str = Query(...)):
                 perigo = item.get("perigo", "").strip()
                 significativo = str(item.get("perigo_significativo", "")).strip().lower() == "sim"
                 resultado = formulario_h[i].get("resultado") if i < len(formulario_h) else None
+                i_dados = formulario_i[i] if i < len(formulario_i) else {}
+                i_completo = estrutura_formulario_i(i_dados)
 
                 perigos_resumo.append({
                     "descricao": f"({tipo}) {perigo}",
                     "significativo": significativo,
-                    "resultado": resultado
+                    "resultado": resultado,
+                    "formulario_i": i_completo  # incluído aqui para frontend verificar preenchimento
                 })
 
             etapas.append({
                 "produto": dados.get("produto"),
                 "etapa": dados.get("etapa"),
                 "arquivo": str(arquivo),
+                "resumo": perigos_resumo,
                 "formulario_g": formulario_g,
                 "formulario_h": formulario_h,
-                "resumo": perigos_resumo
+                "formulario_i": [estrutura_formulario_i(i) for i in formulario_i]  # opcional: incluir lista completa
             })
 
         except Exception as e:
@@ -119,3 +137,4 @@ def listar_etapas_salvas(produto: str = Query(...)):
             continue
 
     return etapas
+
