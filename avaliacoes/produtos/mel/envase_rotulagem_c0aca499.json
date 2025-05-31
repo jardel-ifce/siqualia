@@ -1,0 +1,41 @@
+{
+  "produto": "mel",
+  "etapa": "Envase / Rotulagem",
+  "formulario_g": [
+    {
+      "tipo": "B",
+      "perigo": "Clostridium botulinum (esporos)",
+      "justificativa": "Esporos provenientes de sujidades ou por larvas mortas contaminadas. Podem provocar botulismo infantil em crianças menores de um ano.",
+      "probabilidade": "Baixa",
+      "severidade": "Alta",
+      "risco": "Médio",
+      "medida": "Perigo não controlado no estabelecimento. Comunicação no rótulo: “PRODUTO NÃO RECOMENDADO PARA CONSUMO POR CRIANÇAS MENORES DE UM ANO DE IDADE”.",
+      "perigo_significativo": "Sim",
+      "origem": "appcc"
+    }
+  ],
+  "formulario_h": [
+    {
+      "questao_1": "",
+      "questao_1a": "",
+      "questao_2": "",
+      "questao_3": "",
+      "questao_4": "",
+      "resultado": ""
+    }
+  ],
+  "formulario_i": [
+    {
+      "limite_critico": "",
+      "monitoramento": {
+        "oque": "",
+        "como": "",
+        "quando": "",
+        "quem": ""
+      },
+      "acao_corretiva": "",
+      "registro": "",
+      "verificacao": ""
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "produto": "mel",
+  "etapa": "Armazenamento",
+  "formulario_g": [
+    {
+      "tipo": "QUAL",
+      "perigo": "Atividade enzimática baixa",
+      "justificativa": "Armazenamento em temperatura elevada e por tempo prolongado.",
+      "probabilidade": "Desprezível",
+      "severidade": "Alta",
+      "risco": "Baixo",
+      "medida": "Evitar o armazenamento do mel em temperaturas elevadas e por muito tempo.",
+      "perigo_significativo": "Sim",
+      "origem": "appcc"
+    }
+  ],
+  "formulario_h": [
+    {
+      "questao_1": "Sim",
+      "questao_1a": "",
+      "questao_2": "Sim",
+      "questao_3": "",
+      "questao_4": "",
+      "resultado": "É um PCC"
+    }
+  ],
+  "formulario_i": [
+    {
+      "limite_critico": "",
+      "monitoramento": {
+        "oque": "",
+        "como": "",
+        "quando": "",
+        "quem": ""
+      },
+      "acao_corretiva": "",
+      "registro": "",
+      "verificacao": ""
+    }
+  ]
+}
