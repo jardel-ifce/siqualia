@@ -1,5 +1,6 @@
 # Ignorar o diretório do ambiente virtual
 venv/
+.venv/
 *.pyc
 *.pyo
 *.pyd
@@ -7,6 +8,7 @@ __pycache__/
 
 testes/
 app_old/
+/requirements.dev
 
 # Ignorar arquivos de configuração do editor (exemplo: VSCode)
 .vscode/
@@ -19,4 +21,3 @@ app_old/
 
 # Ignorar arquivos de configuração específicos do PyCharm
 *.iml
-/requirements.dev

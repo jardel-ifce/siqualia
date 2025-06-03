@@ -1,25 +1,1308 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>SIQUALIA – Início</title>
-  <link href="/css/base.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>Assitente IA APPCC</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+	<style>
+		.tab-pane {
+			margin-top: 20px;
+		}
+		
+		textarea {
+			width: 100%;
+			min-height: 100px;
+		}
+		
+		.modal-dialog-scrollable .modal-body {
+			max-height: calc(100vh - 160px);
+			overflow-y: auto;
+		}
+	
+	</style>
 </head>
-<body>
+<body class="container py-4">
+<h2 class="mb-4">Consulta de Etapas e Perigos</h2>
 
-<div id="menu"></div>
-
-<div class="container">
-  <h1>Bem-vindo ao SIQUALIA</h1>
-  <p>Escolha uma das opções no menu acima para começar a usar o sistema.</p>
-  <a href="/assistente.html" class="btn">Ir para o Assistente APPCC</a>
+<div class="mb-3">
+	<label class="form-label" for="selectProduto">Selecione o produto:</label>
+	<select class="form-select" id="selectProduto" onchange="atualizarProduto()">
+		<option value="">-- Escolha um produto --</option>
+	</select>
 </div>
 
-<script>
-  fetch("/partials/menu.html")
-    .then(res => res.text())
-    .then(html => document.getElementById("menu").innerHTML = html);
-</script>
+<div class="mb-4" id="consultaEtapaContainer" style="display:none;">
+	<label class="form-label" for="inputEtapa">Digite a etapa:</label>
+	<input class="form-control mb-2" id="inputEtapa" placeholder="Ex: Envase" type="text">
+	<button class="btn btn-primary" onclick="consultarEtapa()">Consultar Etapas</button>
+</div>
 
+<div class="mb-4" id="selectContainer" style="display:none;">
+	<label class="form-label" for="selectEtapas">Etapas similares encontradas:</label>
+	<div class="input-group mb-2">
+		<select class="form-select" id="selectEtapas"></select>
+		<button class="btn btn-secondary" onclick="buscarEtapaSelecionada()" type="button">Buscar</button>
+	</div>
+	<button class="btn btn-success d-none" id="btnSalvarEtapa" onclick="salvarEtapa()">Salvar Etapa</button>
+</div>
+
+<div class="mt-4" id="tabelaPerigos"></div>
+
+<div class="mb-4" id="btnAnaliseContainer" style="display:none;">
+	<button class="btn btn-warning" onclick="iniciarAnalise()">Iniciar Análise de Perigos</button>
+	<button class="btn btn-primary" onclick="">Cadastrar Perigo</button>
+</div>
+
+<div class="mt-4" id="abasContainer" style="display:none;">
+	<ul class="nav nav-tabs" id="abasNav" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" data-bs-target="#tabpane-biologico" data-bs-toggle="tab" id="tab-biologico"
+			        role="tab" type="button">Biológico
+			</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" data-bs-target="#tabpane-fisico" data-bs-toggle="tab" id="tab-fisico" role="tab"
+			        type="button">Físico
+			</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" data-bs-target="#tabpane-quimico" data-bs-toggle="tab" id="tab-quimico"
+			        role="tab" type="button">Químico
+			</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" data-bs-target="#tabpane-qualidade" data-bs-toggle="tab" id="tab-qualidade"
+			        role="tab" type="button">Qualidade
+			</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" data-bs-target="#tabpane-alergenico" data-bs-toggle="tab" id="tab-alergenico"
+			        role="tab" type="button">Alergênico
+			</button>
+		</li>
+	</ul>
+	
+	<div class="tab-content border border-top-0 p-3" id="abasConteudo">
+		<div aria-labelledby="tab-biologico" class="tab-pane fade" id="tabpane-biologico" role="tabpanel"></div>
+		<div aria-labelledby="tab-fisico" class="tab-pane fade" id="tabpane-fisico" role="tabpanel"></div>
+		<div aria-labelledby="tab-quimico" class="tab-pane fade" id="tabpane-quimico" role="tabpanel"></div>
+		<div aria-labelledby="tab-qualidade" class="tab-pane fade" id="tabpane-qualidade" role="tabpanel"></div>
+		<div aria-labelledby="tab-alergenico" class="tab-pane fade" id="tabpane-alergenico" role="tabpanel"></div>
+	</div>
+</div>
+<!-- Modal Editar Perigo -->
+<div aria-hidden="true" aria-labelledby="modalEditarPerigoLabel" class="modal fade" id="modalEditarPerigo"
+     tabindex="-1">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<form class="d-flex flex-column h-100" id="formEditarPerigo"
+			      onsubmit="event.preventDefault(); salvarEdicaoPerigo();">
+				<div class="modal-header bg-warning flex-shrink-0 py-2 px-3">
+					<h5 class="modal-title mb-0" id="modalEditarPerigoLabel">Editar Perigo</h5>
+					<button aria-label="Fechar" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+				</div>
+				
+				<div class="modal-body p-3 flex-grow-1 overflow-auto">
+					<div class="container-fluid">
+						<div class="row g-3">
+							
+							<input name="id" type="hidden">
+							<input name="idx" type="hidden">
+							<input name="arquivo" type="hidden">
+							<input name="produto" type="hidden">
+							
+							<div class="col-12">
+								<label class="form-label">Etapa do Processo</label>
+								<input class="form-control bg-light" id="etapaAtualModal" name="etapa" readonly
+								       type="text">
+							</div>
+							
+							<div class="col-md-4">
+								<label class="form-label">Tipo</label>
+								<select class="form-select" name="tipo">
+									<option>B</option>
+									<option>F</option>
+									<option>Q</option>
+									<option>QUAL</option>
+									<option>A</option>
+								</select>
+							</div>
+							
+							<div class="col-md-8">
+								<label class="form-label">Perigo</label>
+								<input class="form-control" name="perigo" type="text">
+							</div>
+							
+							<div class="col-12">
+								<label class="form-label">Justificativa</label>
+								<textarea class="form-control" name="justificativa" rows="2"></textarea>
+							</div>
+							
+							<div class="col-md-4">
+								<label class="form-label">Probabilidade</label>
+								<select class="form-select" name="probabilidade">
+									<option>Desprezível</option>
+									<option>Baixa</option>
+									<option>Média</option>
+									<option>Alta</option>
+								</select>
+							</div>
+							
+							<div class="col-md-4">
+								<label class="form-label">Severidade</label>
+								<select class="form-select" name="severidade">
+									<option>Baixa</option>
+									<option>Média</option>
+									<option>Alta</option>
+								</select>
+							</div>
+							
+							<div class="col-md-4">
+								<label class="form-label">Risco</label>
+								<select class="form-select" name="risco">
+									<option>Desprezível</option>
+									<option>Baixa</option>
+									<option>Média</option>
+									<option>Alta</option>
+								</select>
+							</div>
+							
+							<div class="col-12">
+								<label class="form-label">Medida de Controle</label>
+								<textarea class="form-control" name="medida" rows="2"></textarea>
+							</div>
+							
+							<div class="col-md-6">
+								<label class="form-label">Perigo Significativo</label>
+								<select class="form-select" name="perigo_significativo">
+									<option></option>
+									<option>SIM</option>
+									<option>NÃO</option>
+								</select>
+							</div>
+							
+							<div class="col-md-6">
+								<label class="form-label">Origem</label>
+								<input class="form-control" name="origem" type="text">
+							</div>
+						
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal-footer flex-shrink-0 py-2 px-3">
+					<button class="btn btn-success" type="submit">Salvar Alterações</button>
+					<button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Editar Questionário -->
+<div aria-hidden="true" aria-labelledby="modalEditarQuestionarioLabel" class="modal fade" id="modalEditarQuestionario"
+     tabindex="-1">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<form class="d-flex flex-column h-100" id="formEditarQuestionario"
+			      onsubmit="event.preventDefault(); salvarEdicaoQuestionario(this)">
+				<div class="modal-header bg-primary text-white py-2 px-3 flex-shrink-0">
+					<h5 class="modal-title">Editar Questionário (Formulário H)</h5>
+					<button aria-label="Fechar" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+				</div>
+				
+				<div class="modal-body p-3 flex-grow-1 overflow-auto">
+					<input name="id" type="hidden">
+					<input name="produto" type="hidden">
+					<input name="etapa" type="hidden">
+					<input name="arquivo" type="hidden">
+					
+					<div class="form-group mt-2">
+						<label>1. Existem medidas preventivas?</label>
+						<select class="form-select" name="questao_1" onchange="questionarioModal(this)">
+							<option value="">Selecione</option>
+							<option value="Sim">Sim</option>
+							<option value="Não">Não</option>
+						</select>
+					</div>
+					
+					<div class="form-group mt-2" data-q="q1a" style="display: none;">
+						<label>1a. O controle desta fase é necessário à segurança?</label>
+						<select class="form-select" name="questao_1a" onchange="questionarioModal(this)">
+							<option value="">Selecione</option>
+							<option value="Sim">Sim</option>
+							<option value="Não">Não</option>
+						</select>
+					</div>
+					
+					<div class="form-group mt-2" data-q="q2" style="display: none;">
+						<label>2. A fase foi desenvolvida para eliminar ou reduzir o perigo?</label>
+						<select class="form-select" name="questao_2" onchange="questionarioModal(this)">
+							<option value="">Selecione</option>
+							<option value="Sim">Sim</option>
+							<option value="Não">Não</option>
+						</select>
+					</div>
+					
+					<div class="form-group mt-2" data-q="q3" style="display: none;">
+						<label>3. O perigo pode ocorrer em níveis inaceitáveis?</label>
+						<select class="form-select" name="questao_3" onchange="questionarioModal(this)">
+							<option value="">Selecione</option>
+							<option value="Sim">Sim</option>
+							<option value="Não">Não</option>
+						</select>
+					</div>
+					
+					<div class="form-group mt-2" data-q="q4" style="display: none;">
+						<label>4. Existe etapa posterior que possa eliminar ou reduzir?</label>
+						<select class="form-select" name="questao_4" onchange="questionarioModal(this)">
+							<option value="">Selecione</option>
+							<option value="Sim">Sim</option>
+							<option value="Não">Não</option>
+						</select>
+					</div>
+					
+					<div class="form-group mt-2">
+						<label>Resultado:</label>
+						<input class="form-control" name="resultado" type="text">
+					</div>
+				</div>
+				
+				<div class="modal-footer py-2 px-3 flex-shrink-0">
+					<button class="btn btn-primary" type="submit">Salvar Questionário</button>
+					<button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="modalEditarResumoLabel" class="modal fade" id="modalEditarResumo"
+     tabindex="-1">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<form class="d-flex flex-column h-100" id="formEditarResumo"
+			      onsubmit="event.preventDefault(); salvarEdicaoResumo();">
+				
+				<div class="modal-header bg-success text-white py-2 px-3 flex-shrink-0">
+					<h5 class="modal-title mb-0" id="modalEditarResumoLabel">Resumo do APPCC - Formulário I</h5>
+					<button aria-label="Fechar" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+				</div>
+				
+				<div class="modal-body p-3 overflow-auto flex-grow-1">
+					<div class="container-fluid">
+						<div class="mb-3">
+							<label class="form-label">Etapa</label>
+							<input class="form-control bg-light" name="etapa_visivel" readonly>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Perigo</label>
+							<input class="form-control bg-light" name="perigo" readonly>
+						</div>
+						
+						<div class="row g-3">
+							<input name="id" type="hidden">
+							<input name="produto" type="hidden">
+							<input name="etapa" type="hidden">
+							<input name="arquivo" type="hidden">
+							
+							<div class="col-12">
+								<label class="form-label">Limite Crítico</label>
+								<textarea class="form-control" name="limite_critico" rows="2"></textarea>
+							</div>
+							
+							<div class="col-md-6">
+								<label class="form-label">Monitoramento - O quê?</label>
+								<input class="form-control" name="monitoramento_oque" type="text">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Monitoramento - Como?</label>
+								<input class="form-control" name="monitoramento_como" type="text">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Monitoramento - Quando?</label>
+								<input class="form-control" name="monitoramento_quando" type="text">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Monitoramento - Quem?</label>
+								<input class="form-control" name="monitoramento_quem" type="text">
+							</div>
+							
+							<div class="col-12">
+								<label class="form-label">Ação Corretiva</label>
+								<textarea class="form-control" name="acao_corretiva" rows="2"></textarea>
+							</div>
+							
+							<div class="col-md-6">
+								<label class="form-label">Registro</label>
+								<input class="form-control" name="registro" type="text">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label">Verificação</label>
+								<input class="form-control" name="verificacao" type="text">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal-footer py-2 px-3 flex-shrink-0">
+					<button class="btn btn-success" onclick="salvarEdicaoResumo()" type="button">Salvar Resumo</button>
+					<button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script>
+	let produtoSelecionado = "";
+	let etapaSelecionada = "";
+	let perigosOrganizados = {};
+	
+	function mostrarMensagem(texto, tipo = "success") {
+		const msg = document.getElementById("mensagem");
+		msg.innerHTML = `<div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+        ${texto}
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+        </div>`;
+	}
+	
+	function limparMensagem() {
+		document.getElementById("mensagem").innerHTML = "";
+	}
+	
+	window.onload = async () => {
+		const res = await fetch("/crud/produtos");
+		const produtos = await res.json();
+		const select = document.getElementById("selectProduto");
+		produtos.forEach(p => {
+			const opt = document.createElement("option");
+			opt.value = p;
+			opt.textContent = p;
+			select.appendChild(opt);
+		});
+	};
+	
+	function abrirModalEditarResumo(perigoId, resumoData, perigoTexto) {
+		const form = document.getElementById("formEditarResumo");
+		
+		// Preenche campos ocultos obrigatórios
+		form.querySelector("[name='id']").value = perigoId;
+		form.querySelector("[name='produto']").value = produtoSelecionado;
+		form.querySelector("[name='arquivo']").value = arquivoEtapaSalvo;
+		form.querySelector("[name='etapa']").value = etapaSelecionada;
+		
+		// Preenche campo de exibição da etapa e do perigo
+		form.querySelector("[name='etapa_visivel']").value = etapaSelecionada;
+		form.querySelector("[name='perigo']").value = perigoTexto || "";
+		
+		// Limite crítico
+		form.querySelector("[name='limite_critico']").value = resumoData?.limite_critico ?? "";
+		
+		// Monitoramento
+		const mon = resumoData?.monitoramento ?? {};
+		form.querySelector("[name='monitoramento_oque']").value = mon.oque ?? "";
+		form.querySelector("[name='monitoramento_como']").value = mon.como ?? "";
+		form.querySelector("[name='monitoramento_quando']").value = mon.quando ?? "";
+		form.querySelector("[name='monitoramento_quem']").value = mon.quem ?? "";
+		
+		// Ação corretiva, registro, verificação
+		form.querySelector("[name='acao_corretiva']").value = resumoData?.acao_corretiva ?? "";
+		form.querySelector("[name='registro']").value = resumoData?.registro ?? "";
+		form.querySelector("[name='verificacao']").value = resumoData?.verificacao ?? "";
+		
+		// Exibe o modal
+		const modalEl = document.getElementById("modalEditarResumo");
+		if (modalEl) {
+			new bootstrap.Modal(modalEl).show();
+		} else {
+			console.error("Modal 'modalEditarResumo' não encontrado.");
+		}
+	}
+	
+	async function salvarEdicaoResumo() {
+		const form = document.getElementById("formEditarResumo");
+		const formData = new FormData(form);
+		const jsonData = Object.fromEntries(formData.entries());
+		
+		const payload = {
+			produto: jsonData.produto,
+			etapa: jsonData.etapa,
+			id_perigo: parseInt(jsonData.id),
+			limite_critico: jsonData.limite_critico || "",
+			monitoramento: {
+				oque: jsonData.monitoramento_oque || "",
+				como: jsonData.monitoramento_como || "",
+				quando: jsonData.monitoramento_quando || "",
+				quem: jsonData.monitoramento_quem || "",
+			},
+			acao_corretiva: jsonData.acao_corretiva || "",
+			registro: jsonData.registro || "",
+			verificacao: jsonData.verificacao || ""
+		};
+		
+		const response = await fetch("/crud/resumo/atualizar", {
+			method: "PUT",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(payload),
+		});
+		
+		if (response.ok) {
+			alert("Resumo atualizado com sucesso.");
+			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarResumo"));
+			modal.hide();
+			verificarEtapaJaSalva(payload.etapa); // atualiza a tabela
+		} else {
+			const erro = await response.json();
+			alert("Erro ao atualizar o resumo: " + JSON.stringify(erro.detail));
+		}
+	}
+	
+	function abrirModalEditarQuestionario(perigoId, questionarioData = {}) {
+		const form = document.getElementById("formEditarQuestionario");
+		
+		// Limpa e reseta todos os campos
+		form.reset();
+		form.querySelectorAll("[data-q]").forEach(el => el.style.display = "none");
+		
+		// Preenche campos ocultos
+		form.id.value = perigoId;
+		form.arquivo.value = arquivoEtapaSalvo;
+		form.produto.value = produtoSelecionado;
+		form.etapa.value = etapaSelecionada;
+		
+		// Preenche respostas salvas e dispara evento para simular progressão
+		const campos = ["questao_1", "questao_1a", "questao_2", "questao_3", "questao_4"];
+		campos.forEach(campo => {
+			const el = form.querySelector(`[name='${campo}']`);
+			if (el && questionarioData[campo]) {
+				el.value = questionarioData[campo];
+				el.dispatchEvent(new Event("change"));
+			}
+		});
+		
+		// Preenche o campo de resultado sem alterar o fluxo
+		const resultado = form.querySelector("[name='resultado']");
+		if (resultado) resultado.value = questionarioData.resultado || "";
+		
+		// Exibe a modal
+		const modal = new bootstrap.Modal(document.getElementById("modalEditarQuestionario"));
+		modal.show();
+	}
+	
+	function questionarioModal(elemento) {
+		const form = elemento.closest("form");
+		if (!form) {
+			console.error("Formulário da modal não encontrado.");
+			return;
+		}
+		
+		const resultado = form.querySelector("input[name='resultado']");
+		if (!resultado) {
+			console.error("Campo 'resultado' não encontrado.");
+			return;
+		}
+		
+		const limparAte = {
+			"questao_1": ["questao_1a", "questao_2", "questao_3", "questao_4"],
+			"questao_1a": [],
+			"questao_2": ["questao_3", "questao_4"],
+			"questao_3": ["questao_4"],
+			"questao_4": []
+		};
+		
+		const nome = elemento.name;
+		const val = elemento.value;
+		
+		// Oculta e limpa perguntas dependentes
+		limparAte[nome].forEach(q => {
+			const campo = form.querySelector(`[name='${q}']`);
+			if (campo) {
+				campo.value = "";
+				const grupo = campo.closest(".form-group");
+				if (grupo) grupo.style.display = "none";
+			}
+		});
+		
+		// Limpa resultado
+		resultado.value = "";
+		
+		// Fluxo condicional
+		if (nome === "questao_1") {
+			if (val === "Não") {
+				form.querySelector("[data-q='q1a']").style.display = "block";
+			} else if (val === "Sim") {
+				form.querySelector("[data-q='q2']").style.display = "block";
+			}
+			return;
+		}
+		
+		if (nome === "questao_1a") {
+			resultado.value = val === "Sim" ? "Modificar o processo" : "Não é um PCC";
+			return;
+		}
+		
+		if (nome === "questao_2") {
+			if (val === "Sim") {
+				resultado.value = "É um PCC";
+			} else if (val === "Não") {
+				form.querySelector("[data-q='q3']").style.display = "block";
+			}
+			return;
+		}
+		
+		if (nome === "questao_3") {
+			if (val === "Não") {
+				resultado.value = "Não é um PCC";
+			} else if (val === "Sim") {
+				form.querySelector("[data-q='q4']").style.display = "block";
+			}
+			return;
+		}
+		
+		if (nome === "questao_4") {
+			resultado.value = val === "Sim" ? "Não é um PCC" : "É um PCC";
+			return;
+		}
+	}
+	
+	async function salvarEdicaoQuestionario() {
+		const form = document.getElementById("formEditarQuestionario");
+		const formData = new FormData(form);
+		const data = Object.fromEntries(formData.entries());
+		
+		data.id = parseInt(data.id);
+		data.produto = produtoSelecionado;
+		data.etapa = etapaSelecionada;
+		data.arquivo = arquivoEtapaSalvo;
+		
+		const resp = await fetch("/crud/questionario/salvar", {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(data)
+		});
+		
+		const json = await resp.json();
+		
+		if (resp.ok) {
+			alert("Questionário atualizado com sucesso.");
+			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarQuestionario"));
+			modal.hide();
+			verificarEtapaJaSalva(data.etapa); // Recarrega a tabela com os dados atualizados
+		} else {
+			alert("Erro ao salvar questionário: " + json.detail);
+		}
+	}
+	
+	async function salvarEdicaoQuestionario() {
+		const form = document.getElementById("formEditarQuestionario");
+		const dados = new FormData(form);
+		const data = Object.fromEntries(dados.entries());
+		
+		data.id = parseInt(data.id);
+		data.produto = produtoSelecionado;
+		
+		const resp = await fetch("/crud/questionario/salvar", {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(data),
+		});
+		
+		const json = await resp.json();
+		if (resp.ok) {
+			alert("Questionário salvo com sucesso.");
+			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarQuestionario"));
+			modal.hide();
+			verificarEtapaJaSalva(data.etapa); // Recarrega a tabela de perigos
+		} else {
+			alert("Erro ao salvar questionário: " + json.detail);
+		}
+	}
+	
+	function abrirModalEditarPerigo(perigoJson, idx, etapa) {
+		const perigoData = typeof perigoJson === "string" ? JSON.parse(perigoJson) : perigoJson;
+		const p = perigoData.perigo?.[0] || {};
+		const form = document.getElementById("formEditarPerigo");
+		
+		form.id.value = perigoData.id || "";
+		form.idx.value = idx;
+		form.tipo.value = p.tipo || "";
+		form.perigo.value = p.perigo || "";
+		form.justificativa.value = p.justificativa || "";
+		form.probabilidade.value = p.probabilidade || "";
+		form.severidade.value = p.severidade || "";
+		form.risco.value = p.risco || "";
+		form.medida.value = p.medida || "";
+		form.perigo_significativo.value = p.perigo_significativo || "";
+		form.origem.value = p.origem || "";
+		
+		form.arquivo.value = arquivoEtapaSalvo;
+		form.produto.value = produtoSelecionado;
+		form.etapa.value = etapa || "";
+		
+		const modal = new bootstrap.Modal(document.getElementById("modalEditarPerigo"));
+		modal.show();
+	}
+	
+	async function salvarEdicaoPerigo() {
+		const form = document.getElementById("formEditarPerigo");
+		const dados = new FormData(form);
+		const jsonData = {};
+		
+		for (const [key, value] of dados.entries()) {
+			jsonData[key] = value;
+		}
+		
+		jsonData.id = parseInt(jsonData.id); // garantir tipo numérico
+		
+		const response = await fetch("/crud/perigos/atualizar", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(jsonData),
+		});
+		
+		if (response.ok) {
+			alert("Perigo atualizado com sucesso.");
+			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarPerigo"));
+			modal.hide();
+			verificarEtapaJaSalva(jsonData.etapa);
+		} else {
+			const erro = await response.json();
+			alert("Erro ao atualizar perigo: " + erro.detail);
+		}
+	}
+	
+	
+	function atualizarProduto() {
+		produtoSelecionado = document.getElementById("selectProduto").value;
+		document.getElementById("consultaEtapaContainer").style.display = produtoSelecionado ? "block" : "none";
+		document.getElementById("selectContainer").style.display = "none";
+		document.getElementById("btnAnaliseContainer").style.display = "none";
+		document.getElementById("abasContainer").style.display = "none";
+		document.getElementById("tabelaPerigos").innerHTML = "";
+		document.getElementById("inputEtapa").value = "";
+		document.getElementById("selectEtapas").innerHTML = "";
+		etapaSelecionada = "";
+		perigosOrganizados = {};
+	}
+	
+	async function consultarEtapa() {
+		document.getElementById("selectContainer").style.display = "none";
+		document.getElementById("btnAnaliseContainer").style.display = "none";
+		document.getElementById("abasContainer").style.display = "none";
+		document.getElementById("tabelaPerigos").innerHTML = "";
+		
+		const etapa = document.getElementById("inputEtapa").value.trim();
+		etapaSelecionada = etapa;
+		if (!etapa) {
+			alert("Digite o nome da etapa antes de consultar.");
+			return;
+		}
+		
+		const res = await fetch("/ia/etapas/similar", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({produto: produtoSelecionado, etapa})
+		});
+		const dados = await res.json();
+		const select = document.getElementById("selectEtapas");
+		select.innerHTML = "";
+		dados.forEach(e => {
+			const opt = document.createElement("option");
+			opt.value = e.etapa;
+			opt.textContent = `${e.etapa} (similaridade: ${e.similaridade})`;
+			select.appendChild(opt);
+		});
+		document.getElementById("selectContainer").style.display = "block";
+		await verificarEtapaJaSalva(etapa);
+	}
+	
+	async function buscarEtapaSelecionada() {
+		const etapa = document.getElementById("selectEtapas").value;
+		if (!etapa || !produtoSelecionado) return;
+		
+		const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
+		if (!res.ok) return;
+		
+		const etapasSalvas = await res.json();
+		const tabela = document.getElementById("tabelaPerigos");
+		const btnSalvar = document.getElementById("btnSalvarEtapa");
+		
+		if (etapasSalvas.includes(etapa)) {
+			await verificarEtapaJaSalva(etapa);
+			etapaSelecionada = etapa;
+			btnSalvar.classList.add("d-none");
+		} else {
+			tabela.innerHTML = "";
+			btnSalvar.classList.remove("d-none");
+			document.getElementById("btnAnaliseContainer").style.display = "none";
+		}
+	}
+	
+	function slugify(texto) {
+		return texto
+				.normalize("NFD")                  // decompõe caracteres acentuados
+				.replace(/[\u0300-\u036f]/g, "")   // remove marcas de acento
+				.toLowerCase()
+				.trim()
+				.replace(/\s+/g, "_")              // espaço para underscore
+				.replace(/\//g, "_")               // barra para underscore
+				.replace(/[^\w\-]+/g, "");         // remove outros caracteres especiais
+	}
+	
+	function emitirRelatorioPorIndice(arquivo, id) {
+		const url = new URL("/relatorio.html", window.location.origin);
+		url.searchParams.set("arquivo", arquivo);
+		url.searchParams.set("indice", id - 1); // pois o ID é 1-based, e o índice é 0-based
+		window.open(url.toString(), "_blank");
+	}
+	
+	
+	async function verificarEtapaJaSalva(etapaDigitada) {
+		const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
+		if (!res.ok) return;
+		
+		const etapasCadastradas = await res.json();
+		if (!etapasCadastradas.includes(etapaDigitada)) {
+			document.getElementById("tabelaPerigos").innerHTML = "";
+			document.getElementById("btnAnaliseContainer").style.display = "none";
+			return;
+		}
+		
+		const etapaSlug = slugify(etapaDigitada);
+		const hash = md5(etapaDigitada.trim());
+		const nomeArquivo = `${etapaSlug}_${hash}.json`;
+		arquivoEtapaSalvo = `avaliacoes/produtos/${produtoSelecionado}/${nomeArquivo}`;
+		
+		const timestamp = new Date().getTime();
+		const resp = await fetch(`/avaliacoes/produtos/${produtoSelecionado}/${nomeArquivo}?t=${timestamp}`);
+		
+		if (!resp.ok) return;
+		
+		const etapaJson = await resp.json();
+		const perigos = etapaJson.perigos || [];
+		const btnSalvar = document.getElementById("btnSalvarEtapa");
+		let linhas = perigos.map((p, idx) => {
+			const perigoItem = p.perigo?.[0] || {};
+			const perigoStr = encodeURIComponent(JSON.stringify(p));
+			return `
+			<tr>
+				<td>${etapaJson.etapa}</td>
+				<td>${perigoItem.tipo || "-"}</td>
+				<td>${perigoItem.perigo || "-"}</td>
+				<td>${perigoItem.justificativa || "-"}</td>
+				<td>
+				<div class="d-flex">
+					<button class="btn btn-warning btn-sm me-1" title="Formulário G"
+					  onclick='abrirModalEditarPerigo(${JSON.stringify(p)}, ${idx}, ${JSON.stringify(etapaJson.etapa)})'>
+					  <i class="bi bi-journal-text"></i>
+					</button>
+
+				    <button class="btn btn-sm btn-primary me-1" title="Formulário H"
+					  onclick='abrirModalEditarQuestionario(${p.id}, ${JSON.stringify(p.questionario?.[0] || {})})'>
+					  <i class="bi bi-journal-richtext"></i>
+					</button>
+
+				    <button class="btn btn-sm btn-success me-1" title="Formulário I"
+					  onclick='abrirModalEditarResumo(${p.id}, ${JSON.stringify(p.resumo?.[0] || {})}, "${p.perigo?.[0]?.perigo || ""}")'>
+					  <i class="bi bi-journal-check"></i>
+					</button>
+
+				    <button class="btn btn-sm btn-danger" title="Relatório"
+					        onclick="emitirRelatorioPorIndice('${arquivoEtapaSalvo}', ${p.id})">
+					  <i class="bi bi-file-earmark-pdf"></i>
+					</button>
+
+
+				  </div>
+				</td>
+			</tr>
+			`;
+		}).join("");
+		
+		document.getElementById("tabelaPerigos").innerHTML = `
+			<table class="table table-bordered table-sm">
+				<thead class="table-light">
+					<tr>
+						<th>Etapa</th>
+						<th>Tipo</th>
+						<th>Perigo</th>
+						<th>Justificativa</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody>${linhas}</tbody>
+			</table>
+		`;
+		arquivoEtapaSalvo = `avaliacoes/produtos/${produtoSelecionado}/${nomeArquivo}`;
+		btnSalvar.classList.add("d-none");
+		document.getElementById("btnAnaliseContainer").style.display = "block";
+	}
+	
+	
+	let arquivoEtapaSalvo = "";
+	
+	async function salvarEtapa() {
+		const etapa = document.getElementById("selectEtapas").value;
+		const res = await fetch("/crud/etapas/salvar", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({produto: produtoSelecionado, etapa})
+		});
+		const dados = await res.json();
+		etapaSelecionada = etapa;
+		arquivoEtapaSalvo = dados.arquivo;
+		document.getElementById("btnAnaliseContainer").style.display = "block";
+		alert("Etapa salva: " + dados.arquivo);
+	}
+	
+	async function iniciarAnalise() {
+		const res = await fetch(`/ia/perigos/sugerir?produto=${produtoSelecionado}&etapa=${etapaSelecionada}`);
+		const dados = await res.json();
+		perigosOrganizados = {};
+		const tipoMapeado = {
+			"B": "biologico",
+			"F": "fisico",
+			"Q": "quimico",
+			"QUAL": "qualidade",
+			"A": "alergenico"
+		};
+		
+		for (const perigo of dados.formulario_g) {
+			const tipo = tipoMapeado[perigo.tipo.toUpperCase()];
+			if (!tipo) continue;
+			if (!perigosOrganizados[tipo]) perigosOrganizados[tipo] = [];
+			perigosOrganizados[tipo].push(perigo);
+		}
+		
+		montarAbas();
+		document.getElementById("abasContainer").style.display = "block";
+		document.getElementById("btnSalvarEtapa").style.display = "none";
+		ativarComportamentoAbas();
+	}
+	
+	function montarAbas() {
+		const tipos = ["biologico", "fisico", "quimico", "qualidade", "alergenico"];
+		document.querySelectorAll('#abasNav .nav-link').forEach(btn => btn.classList.remove('active'));
+		document.querySelectorAll('#abasConteudo .tab-pane').forEach(pane => pane.classList.remove('active', 'show'));
+		
+		tipos.forEach(tipo => {
+			const pane = document.getElementById(`tabpane-${tipo}`);
+			pane.innerHTML = "";
+			const perigos = perigosOrganizados[tipo] || [];
+			
+			if (perigos.length > 0) {
+				document.getElementById(`tab-${tipo}`).style.display = "";
+				const blocoHtml = perigos.map((p, idx) => `
+				  <div class="border rounded p-3 mb-3" data-perigo-id="${idx}">
+				  <h3>Análise de Perigos - Formulário G</h3>
+				    <h5>Perigo ${idx + 1}</h5>
+					    <form class="row g-3" onsubmit="event.preventDefault(); salvarPerigo(this);">
+					      <input name="id" type="hidden" value="${p.id || idx}">
+					      <div class="col-md-4">
+					        <label class="form-label"><strong>Tipo:</strong></label>
+					        <select class="form-select" name="tipo">
+					          <option${p.tipo === 'B' ? ' selected' : ''}>B</option>
+					          <option${p.tipo === 'F' ? ' selected' : ''}>F</option>
+					          <option${p.tipo === 'Q' ? ' selected' : ''}>Q</option>
+					          <option${p.tipo === 'QUAL' ? ' selected' : ''}>QUAL</option>
+					          <option${p.tipo === 'A' ? ' selected' : ''}>A</option>
+					        </select>
+					      </div>
+					
+					      <div class="col-md-8">
+					        <label class="form-label"><strong>Perigo:</strong></label>
+					        <input class="form-control" name="perigo" type="text" value="${p.perigo}">
+					      </div>
+					
+					      <div class="col-12">
+					        <label class="form-label"><strong>Justificativa:</strong></label>
+					        <textarea class="form-control" name="justificativa">${p.justificativa}</textarea>
+					      </div>
+					
+					      <div class="col-md-4">
+					        <label class="form-label"><strong>Probabilidade:</strong></label>
+					        <select class="form-select" name="probabilidade">
+					          ${["Desprezível", "Baixa", "Média", "Alta"].map(op => `
+					            <option${p.probabilidade === op ? ' selected' : ''}>${op}</option>`).join("")}
+					        </select>
+					      </div>
+					
+					      <div class="col-md-4">
+					        <label class="form-label"><strong>Severidade:</strong></label>
+					        <select class="form-select" name="severidade">
+					          ${["Baixa", "Média", "Alta"].map(op => `
+					            <option${p.severidade === op ? ' selected' : ''}>${op}</option>`).join("")}
+					        </select>
+					      </div>
+					      <div class="col-md-4">
+					        <label class="form-label"><strong>Risco:</strong></label>
+					        <select class="form-select" name="risco">
+					          ${["Desprezível", "Baixa", "Média", "Alta"].map(op => `
+					            <option${p.risco === op ? ' selected' : ''}>${op}</option>`).join("")}
+					        </select>
+					      </div>
+					      <div class="col-12">
+					        <label class="form-label"><strong>Medida:</strong></label>
+					        <textarea class="form-control" name="medida">${p.medida}</textarea>
+					      </div>
+					      <div class="col-md-6">
+					        <label class="form-label"><strong>Perigo Significativo:</strong></label>
+					        <select class="form-select" name="perigo_significativo">
+					          ${["", "SIM", "NÃO"].map(op => `
+					            <option${p.perigo_significativo === op ? ' selected' : ''}>${op}</option>`).join("")}
+					        </select>
+					      </div>
+					      <div class="col-md-6">
+					        <label class="form-label"><strong>Origem:</strong></label>
+					        <input class="form-control" name="origem" type="text" value="${p.origem}">
+					      </div>
+					      <div class="col-12 text-end">
+					        <button class="btn btn-sm btn-primary" type="submit">Salvar Perigo</button>
+					        <button class="btn btn-sm btn-danger" idx idxidxonclick="removerPerigo(idx)"type="button"${idx}>Remover</button>
+					      </div>
+					    </form>
+				    <h3>Determinação PCC - Formulário H</h3>
+				    <details class="formulario-h" data-id="${p.id}" style="margin-top: 1rem;">
+				      <summary>Preencher Análise de PCC</summary>
+				      <hr>
+				      <form onsubmit="event.preventDefault(); salvarQuestionario(this)">
+					      <div class="form-group mt-2">
+					        <label>1. Existem medidas preventivas?</label>
+					        <select class="form-select" name="questao_1" onchange="questionario(this)">
+					          <option value="">Selecione</option>
+					          <option value="Sim">Sim</option>
+					          <option value="Não">Não</option>
+					        </select>
+					      </div>
+					      <div class="form-group mt-2" data-q="q1a" style="display: none;">
+					        <label>1a. O controle desta fase é necessário à segurança?</label>
+					        <select class="form-select" name="questao_1a" onchange="questionario(this)">
+					          <option value="">Selecione</option>
+					          <option value="Sim">Sim</option>
+					          <option value="Não">Não</option>
+					        </select>
+					      </div>
+					      <div class="form-group mt-2" data-q="q2" style="display: none;">
+					        <label>2. A fase foi desenvolvida para eliminar ou reduzir o perigo?</label>
+					        <select class="form-select" name="questao_2" onchange="questionario(this)">
+					          <option value="">Selecione</option>
+					          <option value="Sim">Sim</option>
+					          <option value="Não">Não</option>
+					        </select>
+					      </div>
+					      <div class="form-group mt-2" data-q="q3" style="display: none;">
+					        <label>3. O perigo pode ocorrer em níveis inaceitáveis?</label>
+					        <select class="form-select" name="questao_3" onchange="questionario(this)">
+					          <option value="">Selecione</option>
+					          <option value="Sim">Sim</option>
+					          <option value="Não">Não</option>
+					        </select>
+					      </div>
+					      <div class="form-group mt-2" data-q="q4" style="display: none;">
+					        <label>4. Existe etapa posterior que possa eliminar ou reduzir?</label>
+					        <select class="form-select" name="questao_4" onchange="questionario(this)">
+					          <option value="">Selecione</option>
+					          <option value="Sim">Sim</option>
+					          <option value="Não">Não</option>
+					        </select>
+					      </div>
+					      <div class="form-group mt-2">
+						  <label>Resultado:</label>
+						    <input class="form-control" name="resultado" readonly type="text">
+						  </div>
+						
+						  <div class="form-group mt-3 text-end">
+							<button class="btn btn-sm btn-primary" type="submit">Salvar Questionário</button>
+						  </div>
+				      </form>
+				      <hr>
+				    </details>
+				    
+				    <h3 class="mt-4">Resumo do APPCC - Formulário I</h3>
+					<details class="formulario-i mt-3">
+					  <summary class="mb-2">Preencher Resumo do APPCC</summary>
+					  <div class="p-3 border rounded bg-light">
+					    
+					    <button type="button" class="btn btn-outline-secondary btn-sm mb-3" onclick="sugerirResumo(this)">Sugerir com IA</button>
+					
+					    <div class="campo-resumo row g-3">
+					      <div class="col-12">
+					        <label class="form-label">Limite Crítico</label>
+					        <textarea class="form-control" name="limite_critico" rows="2"></textarea>
+					      </div>
+					
+					      <div class="col-md-6">
+					        <label class="form-label">Monitoramento - O quê?</label>
+					        <input class="form-control" name="monitoramento_oque" type="text">
+					      </div>
+					
+					      <div class="col-md-6">
+					        <label class="form-label">Monitoramento - Como?</label>
+					        <input class="form-control" name="monitoramento_como" type="text">
+					      </div>
+					
+					      <div class="col-md-6">
+					        <label class="form-label">Monitoramento - Quando?</label>
+					        <input class="form-control" name="monitoramento_quando" type="text">
+					      </div>
+					
+					      <div class="col-md-6">
+					        <label class="form-label">Monitoramento - Quem?</label>
+					        <input class="form-control" name="monitoramento_quem" type="text">
+					      </div>
+					
+					      <div class="col-12">
+					        <label class="form-label">Ação Corretiva</label>
+					        <textarea class="form-control" name="acao_corretiva" rows="2"></textarea>
+					      </div>
+					
+					      <div class="col-md-6">
+					        <label class="form-label">Registro</label>
+					        <input class="form-control" name="registro" type="text">
+					      </div>
+					
+					      <div class="col-md-6">
+					        <label class="form-label">Verificação</label>
+					        <input class="form-control" name="verificacao" type="text">
+					      </div>
+					    </div>
+					
+					    <div class="text-end mt-3">
+					      <button type="button" class="btn btn-success btn-sm" onclick="salvarResumo(this)">Salvar Resumo</button>
+					    </div>
+					  </div>
+					</details>
+
+				  </div>
+				`).join("");
+				
+				pane.innerHTML = blocoHtml;
+			} else {
+				document.getElementById(`tab-${tipo}`).style.display = "none";
+			}
+		});
+		
+		const primeiraAba = tipos.find(tipo => perigosOrganizados[tipo]?.length > 0);
+		if (primeiraAba) {
+			document.getElementById(`tab-${primeiraAba}`).classList.add("active");
+			document.getElementById(`tabpane-${primeiraAba}`).classList.add("active", "show");
+		}
+	}
+	
+	function ativarComportamentoAbas() {
+		const tabs = document.querySelectorAll('#abasNav button[data-bs-toggle="tab"]');
+		tabs.forEach(triggerEl => {
+			const tabTrigger = new bootstrap.Tab(triggerEl);
+			triggerEl.addEventListener('click', function (event) {
+				event.preventDefault();
+				tabTrigger.show();
+			});
+		});
+	}
+	
+	async function salvarPerigo(form) {
+		const formData = new FormData(form);
+		
+		formData.delete('id');
+		
+		const data = Object.fromEntries(formData.entries());
+		
+		data.produto = produtoSelecionado;
+		data.etapa = etapaSelecionada;
+		data.arquivo = arquivoEtapaSalvo;
+		
+		console.log("Payload final enviado para API (sem ID de entrada):", data);
+		
+		const resp = await fetch("/crud/perigos/salvar", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(data)
+		});
+		
+		const json = await resp.json();
+		if (resp.ok) {
+			alert("Perigo salvo com sucesso.");
+			
+			const inputId = form.querySelector("input[name='id']");
+			if (inputId) {
+				inputId.value = json.id; // Atualiza o input ID com o ID gerado pelo backend
+			}
+			
+			const details = form.closest("div").querySelector("details.formulario-h");
+			if (details) {
+				details.setAttribute("data-id", json.id); // Atribui o ID gerado ao elemento details
+			}
+			await verificarEtapaJaSalva(etapaSelecionada);
+		} else {
+			alert("Erro: " + json.detail);
+		}
+	}
+	
+	function removerPerigo(idx) {
+		const perigoDiv = document.querySelector(`[data-perigo-id="${idx}"]`);
+		if (perigoDiv) perigoDiv.remove();
+		console.log("Perigo removido visualmente:", idx);
+	}
+	
+	function questionario(elemento) {
+		const form = elemento.closest("details.formulario-h");
+		const resultado = form.querySelector("input[name='resultado']");
+		
+		const limparAte = {
+			"questao_1": ["questao_1a", "questao_2", "questao_3", "questao_4"],
+			"questao_1a": [],
+			"questao_2": ["questao_3", "questao_4"],
+			"questao_3": ["questao_4"],
+			"questao_4": []
+		};
+		
+		const nome = elemento.name;
+		const val = elemento.value;
+		
+		limparAte[nome].forEach(q => {
+			const campo = form.querySelector(`[name='${q}']`);
+			if (campo) {
+				campo.value = "";
+				campo.closest(".form-group").style.display = "none";
+			}
+		});
+		
+		resultado.value = "";
+		
+		if (nome === "questao_1") {
+			if (val === "Não") form.querySelector("[data-q='q1a']").style.display = "block";
+			else if (val === "Sim") form.querySelector("[data-q='q2']").style.display = "block";
+			return;
+		}
+		
+		if (nome === "questao_1a") {
+			resultado.value = val === "Sim" ? "Modificar o processo" : "Não é um PCC";
+			return;
+		}
+		
+		if (nome === "questao_2") {
+			if (val === "Sim") resultado.value = "É um PCC";
+			else if (val === "Não") form.querySelector("[data-q='q3']").style.display = "block";
+			return;
+		}
+		
+		if (nome === "questao_3") {
+			if (val === "Não") resultado.value = "Não é um PCC";
+			else if (val === "Sim") form.querySelector("[data-q='q4']").style.display = "block";
+			return;
+		}
+		
+		if (nome === "questao_4") {
+			resultado.value = val === "Sim" ? "Não é um PCC" : "É um PCC";
+			return;
+		}
+	}
+	
+	async function salvarQuestionario(form) {
+		const perigoId = parseInt(form.closest("details.formulario-h").dataset.id);
+		const formData = new FormData(form);
+		const data = Object.fromEntries(formData.entries());
+		data.produto = produtoSelecionado;
+		data.etapa = etapaSelecionada;
+		data.arquivo = arquivoEtapaSalvo;
+		data.id = perigoId;
+		
+		const resp = await fetch("/crud/questionario/salvar", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(data)
+		});
+		const json = await resp.json();
+		
+		if (resp.ok) {
+			alert("Questionário salvo com sucesso.");
+		} else {
+			alert("Erro: " + json.detail);
+		}
+	}
+	
+	async function sugerirResumo(botao) {
+		const bloco = botao.closest("[data-perigo-id]");
+		const perigoId = parseInt(bloco.querySelector("input[name='id']").value);
+		const tipo = bloco.querySelector("select[name='tipo']").value;
+		const perigo = bloco.querySelector("input[name='perigo']").value;
+		const justificativa = bloco.querySelector("textarea[name='justificativa']").value;
+		const medida = bloco.querySelector("textarea[name='medida']").value;
+		
+		const resp = await fetch("/crud/resumo/sugerir", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				produto: produtoSelecionado,
+				etapa: etapaSelecionada,
+				id_perigo: perigoId,
+				tipo,
+				perigo,
+				justificativa,
+				medida
+			})
+		});
+		
+		const json = await resp.json();
+		if (!resp.ok) return alert("Erro: " + json.detail);
+		
+		const dados = json.resumo;
+		
+		bloco.querySelector("textarea[name='limite_critico']").value = dados.limite_critico;
+		bloco.querySelector("input[name='monitoramento_oque']").value = dados.monitoramento.oque;
+		bloco.querySelector("input[name='monitoramento_como']").value = dados.monitoramento.como;
+		bloco.querySelector("input[name='monitoramento_quando']").value = dados.monitoramento.quando;
+		bloco.querySelector("input[name='monitoramento_quem']").value = dados.monitoramento.quem;
+		bloco.querySelector("textarea[name='acao_corretiva']").value = dados.acao_corretiva;
+		bloco.querySelector("input[name='registro']").value = dados.registro;
+		bloco.querySelector("input[name='verificacao']").value = dados.verificacao;
+	}
+	
+	async function salvarResumo(botao) {
+		const bloco = botao.closest("[data-perigo-id]");
+		const perigoId = parseInt(bloco.querySelector("input[name='id']").value);
+		
+		const dadosResumo = {
+			limite_critico: bloco.querySelector("textarea[name='limite_critico']").value,
+			monitoramento: {
+				oque: bloco.querySelector("input[name='monitoramento_oque']").value,
+				como: bloco.querySelector("input[name='monitoramento_como']").value,
+				quando: bloco.querySelector("input[name='monitoramento_quando']").value,
+				quem: bloco.querySelector("input[name='monitoramento_quem']").value
+			},
+			acao_corretiva: bloco.querySelector("textarea[name='acao_corretiva']").value,
+			registro: bloco.querySelector("input[name='registro']").value,
+			verificacao: bloco.querySelector("input[name='verificacao']").value
+		};
+		
+		const payload = {
+			produto: produtoSelecionado,
+			etapa: etapaSelecionada,
+			id_perigo: perigoId,
+			resumo: dadosResumo
+		};
+		
+		const resp = await fetch("/crud/resumo/salvar", {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(payload)
+		});
+		
+		const json = await resp.json();
+		if (resp.ok) {
+			alert("Resumo salvo com sucesso!");
+		} else {
+			alert("Erro ao salvar resumo: " + json.detail);
+		}
+	}
+
+</script>
 </body>
 </html>

@@ -1,0 +1,140 @@
+{
+  "produto": "mel",
+  "etapa": "Descristalização do mel",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Sujidades - (fragmentos de insetos)",
+          "justificativa": "Falha na limpeza do equipamento e/ou presença de abelhas no ambiente que podem cair no produto em processo.",
+          "probabilidade": "Média",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "BPF: treinamento de colaboradores na higienização e controle integrado de pragas.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "wqwq uuuuu",
+          "monitoramento": {
+            "oque": "wqwq xxxxx",
+            "como": "wqwq",
+            "quando": "wqwq",
+            "quem": "qwq"
+          },
+          "acao_corretiva": "wqwq",
+          "registro": "wqwq",
+          "verificacao": "wqwq"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Nenhum",
+          "justificativa": "(Não listado)",
+          "probabilidade": "Desprezível",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "(Não listado)",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Produtos químicos diversos",
+          "justificativa": "Presença de resíduos utilizados na higienização de equipamentos.",
+          "probabilidade": "Média",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "BPF: treinamento dos colaboradores na higienização dos equipamentos.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    },
+    {
+      "id": 4,
+      "perigo": [
+        {
+          "tipo": "QUAL",
+          "perigo": "HMF elevado",
+          "justificativa": "Não observação do binômio tempo/temperatura durante a descristalização.",
+          "probabilidade": "Desprezível",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Procedimentos de controle do binômio tempo/temperatura do tanque de descristalização.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "dfsfdfd cccccccc",
+          "monitoramento": {
+            "oque": "hghg",
+            "como": "hgfhg",
+            "quando": "jhjh",
+            "quem": "jhjk"
+          },
+          "acao_corretiva": "kjkj",
+          "registro": "kjkj",
+          "verificacao": "jkjk"
+        }
+      ]
+    }
+  ]
+}

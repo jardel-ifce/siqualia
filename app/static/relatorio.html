@@ -4,49 +4,24 @@
   <meta charset="UTF-8">
   <title>Plano de Monitoramento de PCC</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-    td {
-      padding: 8px;
-      border: 1px solid #000;
-      vertical-align: top;
-    }
-    .header {
-      font-weight: bold;
-      background-color: #e0f0ff;
-    }
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    h2 { text-align: center; margin-bottom: 30px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
+    td { padding: 8px; border: 1px solid #000; vertical-align: top; }
+    .header { font-weight: bold; background-color: #e0f0ff; }
     .section-title {
-      background-color: #d0e3f0;
-      font-weight: bold;
-      text-align: left;
-      padding: 10px;
-      border: 1px solid #000;
+      background-color: #d0e3f0; font-weight: bold;
+      text-align: left; padding: 10px; border: 1px solid #000;
     }
     .footer {
-      margin-top: 40px;
-      font-size: 12px;
-      text-align: center;
-      border-top: 1px solid #000;
-      padding-top: 10px;
+      margin-top: 40px; font-size: 12px;
+      text-align: center; border-top: 1px solid #000; padding-top: 10px;
     }
   </style>
 </head>
 <body>
 
 <div class="section-title">APPCC – Plano de Monitoramento de Ponto Crítico de Controle (PCC)</div>
-
 <table id="tabelaPrincipal"></table>
 
 <div class="section-title">Monitoramento</div>
@@ -70,62 +45,39 @@
       return;
     }
 
-    const resposta = await fetch(`/v1/formulario-i/relatorio?arquivo=${encodeURIComponent(arquivo)}&indice=${indice}`);
-    const dados = await resposta.json();
-
-    const info = dados || {};
+    const resposta = await fetch(`/crud/resumo/relatorio?arquivo=${encodeURIComponent(arquivo)}&indice=${indice}`);
+	
+    const info = await resposta.json();
+	console.log(info);
 
     document.getElementById("tabelaPrincipal").innerHTML = `
+      <tr><td class="header" style="width: 20%">Produto</td><td colspan="5">${info.produto || "-"}</td></tr>
       <tr>
-        <td class="header" style="width: 20%">Produto</td>
-        <td colspan="5">${info.produto || "-"}</td>
+        <td><strong>Nº do PCC</strong></td><td>${indice + 1}</td>
+        <td><strong>Tipo de perigo</strong></td><td>${info.tipo || "-"}</td>
+        <td><strong>Etapa</strong></td><td>${info.etapa || "-"}</td>
       </tr>
-      <tr>
-        <td><strong>Nº do PCC</strong></td>
-        <td>${indice + 1}</td>
-        <td><strong>Tipo de perigo</strong></td>
-        <td>${info.tipo || "-"}</td>
-        <td><strong>Etapa</strong></td>
-        <td>${info.etapa || "-"}</td>
-      </tr>
-      <tr>
-        <td><strong>Perigo</strong></td>
-        <td colspan="5">${info.perigo || "-"}</td>
-      </tr>
-      <tr>
-        <td><strong>Medida de Controle</strong></td>
-        <td colspan="5">${info.medida || "-"}</td>
-      </tr>
+      <tr><td><strong>Perigo</strong></td><td colspan="5">${info.perigo || "-"}</td></tr>
+      <tr><td><strong>Medida de Controle</strong></td><td colspan="5">${info.medida || "-"}</td></tr>
     `;
+
+    const i = info.formulario_i || {};
+    const mon = i.monitoramento || {};
 
     document.getElementById("tabelaMonitoramento").innerHTML = `
       <tr>
-        <td style="width: 50%;"><strong>Limite crítico</strong><br>${info.formulario_i?.limite_critico || "-"}</td>
+        <td style="width: 50%;"><strong>Limite crítico</strong><br>${i.limite_critico || "-"}</td>
         <td style="width: 50%;"><strong>Justificativa</strong><br>${info.justificativa || "-"}</td>
       </tr>
-      <tr>
-        <td><strong>O quê?</strong><br>${info.formulario_i?.monitoramento?.oque || "-"}</td>
-        <td><strong>Onde?</strong><br>${info.etapa || "-"}</td>
-      </tr>
-      <tr>
-        <td><strong>Como?</strong><br>${info.formulario_i?.monitoramento?.como || "-"}</td>
-        <td><strong>Quando?</strong><br>${info.formulario_i?.monitoramento?.quando || "-"}</td>
-      </tr>
-      <tr>
-        <td colspan="2"><strong>Quem?</strong><br>${info.formulario_i?.monitoramento?.quem || "-"}</td>
-      </tr>
-      <tr>
-        <td colspan="2"><strong>Ações corretivas</strong><br>${info.formulario_i?.acao_corretiva || "-"}</td>
-      </tr>
-      <tr>
-        <td colspan="2"><strong>Registro</strong><br>${info.formulario_i?.registro || "-"}</td>
-      </tr>
+      <tr><td><strong>O quê?</strong><br>${mon.oque || "-"}</td><td><strong>Onde?</strong><br>${info.etapa || "-"}</td></tr>
+      <tr><td><strong>Como?</strong><br>${mon.como || "-"}</td><td><strong>Quando?</strong><br>${mon.quando || "-"}</td></tr>
+      <tr><td colspan="2"><strong>Quem?</strong><br>${mon.quem || "-"}</td></tr>
+      <tr><td colspan="2"><strong>Ações corretivas</strong><br>${i.acao_corretiva || "-"}</td></tr>
+      <tr><td colspan="2"><strong>Registro</strong><br>${i.registro || "-"}</td></tr>
     `;
 
     document.getElementById("tabelaVerificacao").innerHTML = `
-      <tr>
-        <td colspan="2"><strong>Verificação</strong><br>${info.formulario_i?.verificacao || "-"}</td>
-      </tr>
+      <tr><td colspan="2"><strong>Verificação</strong><br>${i.verificacao || "-"}</td></tr>
     `;
   }
 
