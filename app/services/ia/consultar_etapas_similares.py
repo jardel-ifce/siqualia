@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 import spacy
 
 model = SentenceTransformer("intfloat/e5-base-v2")
-nlp = spacy.load("pt_core_news_sm")
+nlp = spacy.load("pt_core_news_md")
 
 def lematizar(texto: str) -> str:
     doc = nlp(texto)
