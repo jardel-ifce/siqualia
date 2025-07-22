@@ -1,26 +1,33 @@
 # app/services/consultar_etapas_similares.py
+
 import faiss
 import pickle
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 import spacy
 
-model = SentenceTransformer("intfloat/e5-base-v2")
-nlp = spacy.load("pt_core_news_md")
+model = SentenceTransformer("msmarco-distilbert-base-v4")
 
-def lematizar(texto: str) -> str:
-    doc = nlp(texto)
-    return " ".join([t.lemma_ for t in doc if not t.is_stop and t.is_alpha])
+def consultar_etapas_similares(produto: str, etapa_digitada: str, top_n: int = 3, tipo_consulta: str = "etapa"):
+    """
+    Consulta etapas similares usando índices separados para etapas ou contexto completo.
 
-def consultar_etapas_similares(produto: str, etapa_digitada: str, top_n: int = 3):
+    :param produto: Nome do produto (pasta do índice)
+    :param etapa_digitada: Texto de entrada do usuário
+    :param top_n: Número de resultados a retornar
+    :param tipo_consulta: 'etapa' para nome da etapa ou 'contexto' para a linha completa
+    :return: Lista dos resultados com similaridade
+    """
+    if tipo_consulta not in ["etapa", "contexto"]:
+        raise ValueError("tipo_consulta deve ser 'etapa' ou 'contexto'.")
+
     indexes_dir = Path("indexes") / produto
-    etapa_emb = model.encode([lematizar(etapa_digitada)], convert_to_numpy=True, normalize_embeddings=True)
-
+    etapa_emb = model.encode([etapa_digitada], convert_to_numpy=True, normalize_embeddings=True)
     resultados = []
 
     for tipo in ["appcc", "pac", "bpf"]:
-        index_path = indexes_dir / f"{tipo}.index"
-        meta_path = indexes_dir / f"{tipo}.pkl"
+        index_path = indexes_dir / f"{tipo}_{tipo_consulta}.index"
+        meta_path = indexes_dir / f"{tipo}_{tipo_consulta}.pkl"
 
         if not index_path.exists() or not meta_path.exists():
             continue
@@ -29,7 +36,7 @@ def consultar_etapas_similares(produto: str, etapa_digitada: str, top_n: int = 3
         with open(meta_path, "rb") as f:
             metadados = pickle.load(f)
 
-        scores, ids = index.search(etapa_emb, 10)
+        scores, ids = index.search(etapa_emb, 20)  # Busca top 15 para garantir resultados variados
 
         for score, idx in zip(scores[0], ids[0]):
             if idx < 0 or idx >= len(metadados):
@@ -45,11 +52,12 @@ def consultar_etapas_similares(produto: str, etapa_digitada: str, top_n: int = 3
     if not resultados:
         return []
 
-    # Agrupa por etapa (mantendo maior similaridade)
+    # Agrupa por etapa (mantendo maior similaridade por etapa)
     etapa_unicas = {}
     for r in resultados:
         chave = r["etapa"].lower()
         if chave not in etapa_unicas or r["similaridade"] > etapa_unicas[chave]["similaridade"]:
             etapa_unicas[chave] = r
 
+    # Retorna top N resultados ordenados
     return sorted(etapa_unicas.values(), key=lambda r: r["similaridade"], reverse=True)[:top_n]

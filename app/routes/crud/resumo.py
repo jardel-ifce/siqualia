@@ -88,14 +88,30 @@ def atualizar_resumo(req: ResumoExistente):
     return {"mensagem": "Resumo atualizado com sucesso."}
 
 
+router = APIRouter(prefix="/crud/resumo", tags=["CRUD - Resumo"])
+
 @router.get("/relatorio")
 def gerar_relatorio(arquivo: str = Query(...), indice: int = Query(...)):
-    caminho = Path(arquivo)
-    if not caminho.exists():
-        return JSONResponse(status_code=404, content={"erro": "Arquivo não encontrado"})
+    """
+    Gera o relatório do Formulário I com base no arquivo e ID do perigo.
+    O parâmetro 'arquivo' deve ser um caminho relativo iniciando com 'avaliacoes/produtos/...'.
+    """
+    base_dir = Path("avaliacoes")
 
-    with open(caminho, "r", encoding="utf-8") as f:
-        dados = json.load(f)
+    try:
+        # Garante que o caminho esteja dentro de 'avaliacoes' (evita path traversal)
+        caminho = base_dir / Path(arquivo).relative_to("avaliacoes")
+    except Exception:
+        return JSONResponse(status_code=400, content={"erro": "Caminho de arquivo inválido."})
+
+    if not caminho.exists():
+        return JSONResponse(status_code=404, content={"erro": "Arquivo não encontrado."})
+
+    try:
+        with open(caminho, "r", encoding="utf-8") as f:
+            dados = json.load(f)
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"erro": f"Erro ao ler o arquivo: {str(e)}"})
 
     perigos = dados.get("perigos", [])
     perigo = next((p for p in perigos if p.get("id") == indice), None)

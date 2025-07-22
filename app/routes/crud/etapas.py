@@ -31,7 +31,8 @@ def salvar_etapa(dados: EtapaModel):
 def listar_etapas(produto: str):
     pasta = Path("avaliacoes") / "produtos" / produto
     if not pasta.exists():
-        raise HTTPException(status_code=404, detail="Produto não encontrado.")
+        # raise HTTPException(status_code=404, detail="Produto não encontrado.")
+        return []
 
     etapas = set()
     for arquivo in pasta.glob("*.json"):

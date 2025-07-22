@@ -1,1 +1,42 @@
-[]
+[
+    {
+        "produto": "mel",
+        "arquivo": "appcc_mel.csv",
+        "caminho": "mel/appcc_mel.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-07-04T11:32:49.050692"
+    },
+    {
+        "produto": "mel",
+        "arquivo": "formulario_i_mel.csv",
+        "caminho": "mel/formulario_i_mel.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-07-04T11:32:49.100576"
+    },
+    {
+        "produto": "queijo",
+        "arquivo": "appcc_queijo.csv",
+        "caminho": "queijo/appcc_queijo.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-07-04T11:32:49.298799"
+    },
+    {
+        "produto": "alface",
+        "arquivo": "formulario_i_alface.csv",
+        "caminho": "alface/formulario_i_alface.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-07-04T11:32:49.682366"
+    },
+    {
+        "produto": "alface",
+        "arquivo": "appcc_alface.csv",
+        "caminho": "alface/appcc_alface.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-07-04T11:32:50.054626"
+    }
+]

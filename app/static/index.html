@@ -42,7 +42,7 @@
 	<label class="form-label" for="selectEtapas">Etapas similares encontradas:</label>
 	<div class="input-group mb-2">
 		<select class="form-select" id="selectEtapas"></select>
-		<button class="btn btn-secondary" onclick="buscarEtapaSelecionada()" type="button">Buscar</button>
+		<button class="btn btn-secondary" onclick="buscarEtapaSelecionada()" type="button">Continuar</button>
 	</div>
 	<button class="btn btn-success d-none" id="btnSalvarEtapa" onclick="salvarEtapa()">Salvar Etapa</button>
 </div>
@@ -757,93 +757,98 @@
 	}
 	
 	function emitirRelatorioPorIndice(arquivo, id) {
-		const url = new URL("/relatorio.html", window.location.origin);
+		const url = new URL("/static/relatorio.html", window.location.origin);
 		url.searchParams.set("arquivo", arquivo);
-		url.searchParams.set("indice", id - 1); // pois o ID é 1-based, e o índice é 0-based
+		url.searchParams.set("indice", id); // pois o ID é 1-based, e o índice é 0-based
 		window.open(url.toString(), "_blank");
+		console.log(arquivo, id)
 	}
 	
 	
 	async function verificarEtapaJaSalva(etapaDigitada) {
 		const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
 		if (!res.ok) return;
-		
+
 		const etapasCadastradas = await res.json();
 		if (!etapasCadastradas.includes(etapaDigitada)) {
 			document.getElementById("tabelaPerigos").innerHTML = "";
 			document.getElementById("btnAnaliseContainer").style.display = "none";
 			return;
 		}
-		
+
 		const etapaSlug = slugify(etapaDigitada);
 		const hash = md5(etapaDigitada.trim());
 		const nomeArquivo = `${etapaSlug}_${hash}.json`;
 		arquivoEtapaSalvo = `avaliacoes/produtos/${produtoSelecionado}/${nomeArquivo}`;
-		
+
 		const timestamp = new Date().getTime();
 		const resp = await fetch(`/avaliacoes/produtos/${produtoSelecionado}/${nomeArquivo}?t=${timestamp}`);
-		
+
 		if (!resp.ok) return;
-		
+
 		const etapaJson = await resp.json();
 		const perigos = etapaJson.perigos || [];
 		const btnSalvar = document.getElementById("btnSalvarEtapa");
-		let linhas = perigos.map((p, idx) => {
-			const perigoItem = p.perigo?.[0] || {};
-			const perigoStr = encodeURIComponent(JSON.stringify(p));
-			return `
-			<tr>
-				<td>${etapaJson.etapa}</td>
-				<td>${perigoItem.tipo || "-"}</td>
-				<td>${perigoItem.perigo || "-"}</td>
-				<td>${perigoItem.justificativa || "-"}</td>
-				<td>
-				<div class="d-flex">
-					<button class="btn btn-warning btn-sm me-1" title="Formulário G"
-					  onclick='abrirModalEditarPerigo(${JSON.stringify(p)}, ${idx}, ${JSON.stringify(etapaJson.etapa)})'>
-					  <i class="bi bi-journal-text"></i>
-					</button>
 
-				    <button class="btn btn-sm btn-primary me-1" title="Formulário H"
-					  onclick='abrirModalEditarQuestionario(${p.id}, ${JSON.stringify(p.questionario?.[0] || {})})'>
-					  <i class="bi bi-journal-richtext"></i>
-					</button>
-
-				    <button class="btn btn-sm btn-success me-1" title="Formulário I"
-					  onclick='abrirModalEditarResumo(${p.id}, ${JSON.stringify(p.resumo?.[0] || {})}, "${p.perigo?.[0]?.perigo || ""}")'>
-					  <i class="bi bi-journal-check"></i>
-					</button>
-
-				    <button class="btn btn-sm btn-danger" title="Relatório"
-					        onclick="emitirRelatorioPorIndice('${arquivoEtapaSalvo}', ${p.id})">
-					  <i class="bi bi-file-earmark-pdf"></i>
-					</button>
-
-
-				  </div>
-				</td>
-			</tr>
+		if (perigos.length === 0) {
+			document.getElementById("tabelaPerigos").innerHTML = `
+				<div class="alert alert-warning mt-3">
+					Nenhum perigo cadastrado ainda para esta etapa.
+				</div>
 			`;
-		}).join("");
-		
-		document.getElementById("tabelaPerigos").innerHTML = `
-			<table class="table table-bordered table-sm">
-				<thead class="table-light">
-					<tr>
-						<th>Etapa</th>
-						<th>Tipo</th>
-						<th>Perigo</th>
-						<th>Justificativa</th>
-						<th>Ações</th>
-					</tr>
-				</thead>
-				<tbody>${linhas}</tbody>
-			</table>
-		`;
-		arquivoEtapaSalvo = `avaliacoes/produtos/${produtoSelecionado}/${nomeArquivo}`;
+		} else {
+			const linhas = perigos.map((p, idx) => {
+				const perigoItem = p.perigo?.[0] || {};
+				const perigoStr = encodeURIComponent(JSON.stringify(p));
+				return `
+				<tr>
+					<td>${etapaJson.etapa}</td>
+					<td>${perigoItem.tipo || "-"}</td>
+					<td>${perigoItem.perigo || "-"}</td>
+					<td>${perigoItem.justificativa || "-"}</td>
+					<td>
+						<div class="d-flex">
+							<button class="btn btn-warning btn-sm me-1" title="Formulário G"
+								onclick='abrirModalEditarPerigo(${JSON.stringify(p)}, ${idx}, ${JSON.stringify(etapaJson.etapa)})'>
+								<i class="bi bi-journal-text"></i>
+							</button>
+							<button class="btn btn-sm btn-primary me-1" title="Formulário H"
+								onclick='abrirModalEditarQuestionario(${p.id}, ${JSON.stringify(p.questionario?.[0] || {})})'>
+								<i class="bi bi-journal-richtext"></i>
+							</button>
+							<button class="btn btn-sm btn-success me-1" title="Formulário I"
+								onclick='abrirModalEditarResumo(${p.id}, ${JSON.stringify(p.resumo?.[0] || {})}, "${p.perigo?.[0]?.perigo || ""}")'>
+								<i class="bi bi-journal-check"></i>
+							</button>
+							<button class="btn btn-sm btn-danger" title="Relatório"
+								onclick="emitirRelatorioPorIndice('${arquivoEtapaSalvo}', ${p.id})">
+								<i class="bi bi-file-earmark-pdf"></i>
+							</button>
+						</div>
+					</td>
+				</tr>`;
+			}).join("");
+
+			document.getElementById("tabelaPerigos").innerHTML = `
+				<table class="table table-bordered table-sm mt-3">
+					<thead class="table-light">
+						<tr>
+							<th>Etapa</th>
+							<th>Tipo</th>
+							<th>Perigo</th>
+							<th>Justificativa</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>${linhas}</tbody>
+				</table>
+			`;
+		}
+
 		btnSalvar.classList.add("d-none");
 		document.getElementById("btnAnaliseContainer").style.display = "block";
 	}
+
 	
 	
 	let arquivoEtapaSalvo = "";

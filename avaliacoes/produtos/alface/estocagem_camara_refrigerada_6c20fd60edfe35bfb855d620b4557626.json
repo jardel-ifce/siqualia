@@ -1,0 +1,46 @@
+{
+  "produto": "alface",
+  "etapa": "Estocagem (câmara refrigerada)",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Multiplicação de patógenos",
+          "justificativa": "A estocagem em câmara refrigerada, apesar de ser um controle, ainda pode permitir a multiplicação de patógenos se a temperatura ou umidade não forem mantidas adequadamente. Microrganismos não eliminados em etapas anteriores podem proliferar, especialmente se houver flutuações de temperatura ou pontos quentes na câmara. [cite: 1754]",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Manter a temperatura da câmara de refrigeração rigorosamente dentro da faixa ideal para alface (0°C a 5°C), e a umidade relativa entre 95-100%[cite: 532, 723, 737];\nMonitorar continuamente a temperatura e umidade da câmara[cite: 538];\nAssegurar a limpeza e sanitização regular da câmara para evitar acúmulo de contaminação ambiental[cite: 535];\nGarantir a ventilação adequada para evitar pontos quentes e acúmulo de etileno[cite: 544, 784];\nNão sobrecarregar a câmara, permitindo a circulação de ar[cite: 536];\nRealizar sanitização eficaz nas etapas anteriores para reduzir a carga inicial de microrganismos. [cite: 966]",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Temperatura da câmara de refrigeração: entre 0°C e 5°C. A temperatura nunca deve ser inferior a -0,2°C;\nUmidade relativa: 95-100%;\nAlface estocada: Ausência de crescimento microbiano visível ou odores estranhos. [simulação].",
+          "monitoramento": {
+            "oque": "Temperatura e umidade da câmara : para garantir que estejam dentro dos limites ideais para a alface (0°C a 5°C para temperatura e 95-100% de umidade relativa ) e evitar a proliferação microbiana. A temperatura nunca deve ser inferior a -0,2°C (ponto de congelamento da alface) para evitar injúria por frio e subsequente deterioração;Inspeção visual da alface estocada: para verificar a ausência de crescimento microbiano visível ou odores estranhos;Testes microbiológicos periódicos da alface estocada [simulação].",
+            "como": "Temperatura e umidade da câmara;Inspeção visual da alface estocada;Testes microbiológicos periódicos da alface estocada [simulação].",
+            "quando": "Temperatura/umidade: Contínuo (automático) ou a cada 2-4 horas (manual) [simulação];Inspeção visual: Diária ou a cada entrada/saída de lote [simulação];Testes microbiológicos: Semanalmente ou conforme plano de amostragem [simulação].",
+            "quem": "Funcionário responsável pela câmara;Responsável pelo controle de qualidade [simulação]."
+          },
+          "acao_corretiva": "Ajustar temperatura/umidade da câmara imediatamente [simulação];\nVerificar o funcionamento do sistema de refrigeração e manutenção [simulação];\nIsolar e inspecionar lotes afetados: se houver deterioração ou crescimento microbiano, descartar o lote [simulação];\nReforçar treinamento sobre estocagem e monitoramento.",
+          "registro": "Planilhas de monitoramento de temperatura e umidade da câmara;Registros de inspeção visual da alface;Laudos de análises microbiológicas;Registros de não conformidades e ações corretivas.",
+          "verificacao": "Revisão diária/semanal dos registros de monitoramento;Auditorias internas da câmara (limpeza, organização, manutenção);Análise de dados de perdas por deterioração na estocagem;Calibração periódica dos instrumentos de monitoramento."
+        }
+      ]
+    }
+  ]
+}
