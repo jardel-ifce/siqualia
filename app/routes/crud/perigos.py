@@ -1,13 +1,19 @@
+# 📁 app/routes/crud/perigos.py
+
+# 📦 Importações padrão
+import json
+from pathlib import Path
+from typing import Literal, Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import Literal, Optional
-from pathlib import Path
-import json
+
+# 📁 Serviços internos
 from app.utils.utils import proximo_id_perigo
 
-router = APIRouter(prefix="/crud", tags=["Perigos"])
+# 🔧 Configuração do roteador
+router = APIRouter(prefix="/crud", tags=["CRUD - Perigos"])
 
-
+# 📦 Modelos de Dados
 class PerigoForm(BaseModel):
     produto: str
     etapa: str
@@ -28,8 +34,13 @@ class PerigoNovo(PerigoForm):
 class PerigoExistente(PerigoForm):
     id: int
 
+# 📌 Endpoints
+
 @router.post("/perigos/salvar")
 def salvar_perigo(perigo_data: PerigoNovo):
+    """
+    Salva um novo perigo associado a uma etapa.
+    """
     path = Path(perigo_data.arquivo)
 
     if not path.exists():
@@ -39,14 +50,12 @@ def salvar_perigo(perigo_data: PerigoNovo):
         with open(path, "r", encoding="utf-8") as f:
             dados = json.load(f)
     except json.JSONDecodeError:
-        # Se o arquivo estiver vazio ou corrompido, inicializa com uma estrutura básica.
         dados = {"perigos": []}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao ler o arquivo: {str(e)}")
 
     perigos_lista = dados.setdefault("perigos", [])
 
-    # Prepara o dicionário do perigo com os dados recebidos do formulário.
     novo_perigo_obj_detalhes = {
         "tipo": perigo_data.tipo,
         "perigo": perigo_data.perigo,
@@ -59,13 +68,11 @@ def salvar_perigo(perigo_data: PerigoNovo):
         "origem": perigo_data.origem
     }
 
-    # Gera o próximo ID disponível. Esta é a única lógica de ID neste endpoint.
     novo_id = proximo_id_perigo(perigos_lista)
 
-    # Adiciona o novo registro completo à lista 'perigos'.
     perigos_lista.append({
         "id": novo_id,
-        "perigo": [novo_perigo_obj_detalhes],  # O campo 'perigo' é uma lista contendo os detalhes.
+        "perigo": [novo_perigo_obj_detalhes],
         "questionario": [],
         "resumo": []
     })
@@ -78,8 +85,12 @@ def salvar_perigo(perigo_data: PerigoNovo):
 
     return {"mensagem": "Perigo salvo com sucesso.", "id": novo_id, "arquivo": str(path)}
 
+
 @router.put("/perigos/atualizar")
 def atualizar_perigo(perigo: PerigoExistente):
+    """
+    Atualiza os dados de um perigo existente.
+    """
     path = Path(perigo.arquivo)
     if not path.exists():
         raise HTTPException(status_code=404, detail="Arquivo não encontrado.")

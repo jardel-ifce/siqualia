@@ -1,10 +1,15 @@
+# 📁 app/services/ia/consultar_resumo.py
+
+# 📦 Importações padrão
 import faiss
 import pickle
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
+# 🤖 Modelo de embeddings
 model = SentenceTransformer("msmarco-distilbert-base-v4")
 
+# ❓ Perguntas do Formulário I
 PERGUNTAS_FORMULARIO_I = {
     "limite_critico": "Qual o limite crítico necessário para garantir que esse perigo esteja sob controle?",
     "monitoramento.oque": "O que deve ser monitorado para garantir o controle desse perigo?",
@@ -16,6 +21,7 @@ PERGUNTAS_FORMULARIO_I = {
     "verificacao": "Como verificar se o controle do perigo está sendo efetivo?"
 }
 
+# 🧠 Geração de prompt para consulta vetorial
 def gerar_prompt(contexto, pergunta):
     return (
         f"query: Produto: {contexto['produto']}. Etapa: {contexto['etapa']}. "
@@ -23,6 +29,7 @@ def gerar_prompt(contexto, pergunta):
         f"Medida preventiva: {contexto['medida']}. Justificativa: {contexto['justificativa']}. {pergunta}"
     )
 
+# 🔍 Função principal de sugestão de respostas do Formulário I
 def sugerir_resumo_dados(produto, etapa, tipo, perigo, medida, justificativa, origem="formulario_i"):
     base_path = Path("indexes") / produto
     index_path = base_path / f"{origem}_contexto.index"
@@ -96,6 +103,7 @@ def sugerir_resumo_dados(produto, etapa, tipo, perigo, medida, justificativa, or
         "verificacao": buscar_resposta("verificacao", "verificacao")
     }
 
+# 🔄 Estrutura de resposta vazia padrão
 def resposta_vazia():
     return {
         "limite_critico": "",

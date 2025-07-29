@@ -51,7 +51,7 @@
 
 <div class="mb-4" id="btnAnaliseContainer" style="display:none;">
 	<button class="btn btn-warning" onclick="iniciarAnalise()">Iniciar Análise de Perigos</button>
-	<button class="btn btn-primary" onclick="">Cadastrar Perigo</button>
+	<button class="btn btn-primary" onclick="" disabled>Cadastrar Perigo</button>
 </div>
 
 <div class="mt-4" id="abasContainer" style="display:none;">
@@ -427,38 +427,41 @@
 	async function salvarEdicaoResumo() {
 		const form = document.getElementById("formEditarResumo");
 		const formData = new FormData(form);
-		const jsonData = Object.fromEntries(formData.entries());
-		
+		const data = Object.fromEntries(formData.entries());
+
 		const payload = {
-			produto: jsonData.produto,
-			etapa: jsonData.etapa,
-			id_perigo: parseInt(jsonData.id),
-			limite_critico: jsonData.limite_critico || "",
+			produto: produtoSelecionado,
+			etapa: etapaSelecionada,
+			id_perigo: parseInt(data.id),
+			limite_critico: data.limite_critico || "",
 			monitoramento: {
-				oque: jsonData.monitoramento_oque || "",
-				como: jsonData.monitoramento_como || "",
-				quando: jsonData.monitoramento_quando || "",
-				quem: jsonData.monitoramento_quem || "",
+				oque: data.monitoramento_oque || "",
+				como: data.monitoramento_como || "",
+				quando: data.monitoramento_quando || "",
+				quem: data.monitoramento_quem || "",
 			},
-			acao_corretiva: jsonData.acao_corretiva || "",
-			registro: jsonData.registro || "",
-			verificacao: jsonData.verificacao || ""
+			acao_corretiva: data.acao_corretiva || "",
+			registro: data.registro || "",
+			verificacao: data.verificacao || ""
 		};
-		
+
 		const response = await fetch("/crud/resumo/atualizar", {
 			method: "PUT",
-			headers: {"Content-Type": "application/json"},
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify(payload),
 		});
-		
+
+		const json = await response.json();
+
 		if (response.ok) {
 			alert("Resumo atualizado com sucesso.");
 			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarResumo"));
 			modal.hide();
-			verificarEtapaJaSalva(payload.etapa); // atualiza a tabela
+			await verificarEtapaJaSalva(payload.etapa);
 		} else {
-			const erro = await response.json();
-			alert("Erro ao atualizar o resumo: " + JSON.stringify(erro.detail));
+			alert("Erro ao atualizar o resumo: " + json.detail);
 		}
 	}
 	
@@ -574,50 +577,25 @@
 		const form = document.getElementById("formEditarQuestionario");
 		const formData = new FormData(form);
 		const data = Object.fromEntries(formData.entries());
-		
+
 		data.id = parseInt(data.id);
 		data.produto = produtoSelecionado;
 		data.etapa = etapaSelecionada;
 		data.arquivo = arquivoEtapaSalvo;
-		
+
 		const resp = await fetch("/crud/questionario/salvar", {
 			method: "POST",
-			headers: {"Content-Type": "application/json"},
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(data)
 		});
-		
+
 		const json = await resp.json();
-		
-		if (resp.ok) {
-			alert("Questionário atualizado com sucesso.");
-			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarQuestionario"));
-			modal.hide();
-			verificarEtapaJaSalva(data.etapa); // Recarrega a tabela com os dados atualizados
-		} else {
-			alert("Erro ao salvar questionário: " + json.detail);
-		}
-	}
-	
-	async function salvarEdicaoQuestionario() {
-		const form = document.getElementById("formEditarQuestionario");
-		const dados = new FormData(form);
-		const data = Object.fromEntries(dados.entries());
-		
-		data.id = parseInt(data.id);
-		data.produto = produtoSelecionado;
-		
-		const resp = await fetch("/crud/questionario/salvar", {
-			method: "POST",
-			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify(data),
-		});
-		
-		const json = await resp.json();
+
 		if (resp.ok) {
 			alert("Questionário salvo com sucesso.");
 			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarQuestionario"));
 			modal.hide();
-			verificarEtapaJaSalva(data.etapa); // Recarrega a tabela de perigos
+			await verificarEtapaJaSalva(data.etapa); // com await
 		} else {
 			alert("Erro ao salvar questionário: " + json.detail);
 		}
@@ -650,34 +628,32 @@
 	
 	async function salvarEdicaoPerigo() {
 		const form = document.getElementById("formEditarPerigo");
-		const dados = new FormData(form);
-		const jsonData = {};
-		
-		for (const [key, value] of dados.entries()) {
-			jsonData[key] = value;
-		}
-		
-		jsonData.id = parseInt(jsonData.id); // garantir tipo numérico
-		
+		const formData = new FormData(form);
+		const data = Object.fromEntries(formData.entries());
+
+		data.id = parseInt(data.id);
+		data.produto = produtoSelecionado;
+		data.arquivo = arquivoEtapaSalvo;
+
 		const response = await fetch("/crud/perigos/atualizar", {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(jsonData),
+			body: JSON.stringify(data),
 		});
-		
+
+		const json = await response.json();
+
 		if (response.ok) {
 			alert("Perigo atualizado com sucesso.");
 			const modal = bootstrap.Modal.getInstance(document.getElementById("modalEditarPerigo"));
 			modal.hide();
-			verificarEtapaJaSalva(jsonData.etapa);
+			await verificarEtapaJaSalva(data.etapa); // Recarrega a tabela atualizada
 		} else {
-			const erro = await response.json();
-			alert("Erro ao atualizar perigo: " + erro.detail);
+			alert("Erro ao atualizar perigo: " + json.detail);
 		}
 	}
-	
 	
 	function atualizarProduto() {
 		produtoSelecionado = document.getElementById("selectProduto").value;

@@ -1,12 +1,19 @@
-# app/routes/crud/produtos.py
+# 📁 app/routes/crud/produtos.py
 
-from fastapi import APIRouter
+# 📦 Importações padrão
 from pathlib import Path
+from fastapi import APIRouter
 
+# 🔧 Configuração do roteador
 router = APIRouter(prefix="/crud", tags=["CRUD - Produtos"])
+
+# 📌 Endpoints
 
 @router.get("/produtos")
 def listar_produtos():
+    """
+    Lista os produtos disponíveis com base nas pastas dentro do diretório 'produtos'.
+    """
     produtos_dir = Path("produtos")
     if not produtos_dir.exists():
         return []

@@ -1,7 +1,12 @@
-import pickle
+# 📁 app/services/ia/consultar_perigos_por_etapa.py
+
+# 📦 Importações padrão
 import math
+import pickle
 from pathlib import Path
 
+
+# 🧼 Função auxiliar para limpeza de NaN
 def limpar_nan(obj):
     if isinstance(obj, dict):
         return {k: limpar_nan(v) for k, v in obj.items()}
@@ -11,9 +16,16 @@ def limpar_nan(obj):
         return None
     return obj
 
+
+# 🔍 Consulta de perigos por etapa confirmada
 def consultar_perigos_por_etapa(produto: str, etapa_confirmada: str):
+    """
+    Consulta os perigos associados a uma etapa de produção com base nos metadados vetorizados.
+
+    Retorna dados estruturados no formato do formulário G.
+    """
     indexes_dir = Path("indexes") / produto
-    tipos = ["appcc", "pac", "bpf", "resumo"]  # adiciona se for consultar por etapa com dados do resumo
+    tipos = ["appcc", "pac", "bpf", "resumo"]  # inclui 'resumo' para complementar dados
 
     formulario_g = []
 
