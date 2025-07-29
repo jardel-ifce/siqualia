@@ -1,71 +1,96 @@
-# SIQUALIA – Formulário I e Geração do Relatório APPCC
+# SIQUALIA – Assitente para Geração de Relatório APPCC
 
 ## 🧩 Visão Geral da Implementação
 
-Esta versão do sistema SIQUALIA implementa o preenchimento semiautomático do **Formulário I** (Plano de Monitoramento de PCC) e a geração do **Relatório Final APPCC** para produtos alimentícios.
+Esta versão do sistema **SIQUALIA** implementa o preenchimento semiautomático do **Formulário I** (Plano de Monitoramento de PCC) e a geração do **Relatório Final APPCC** para produtos alimentícios, com base nos dados dos Formulários G e H.
 
-Atualmente, o fluxo está disponível para o produto **mel**, com base nos perigos classificados como **Pontos Críticos de Controle (PCC)** no Formulário H.
+O sistema utiliza **busca semântica baseada em vetores FAISS + SentenceTransformer** para sugerir o preenchimento do Formulário I, além de permitir **edição manual, salvamento e geração de relatório**.
 
 ## 🧪 Preenchimento do Formulário I
 
-O preenchimento do Formulário I segue a lógica:
+* O botão **“I”** é exibido quando a etapa contém um perigo classificado como **PCC** (via Formulário H).
+* Ao clicar no botão, o sistema:
 
-- O botão **“I”** é exibido sempre que a etapa conter um perigo classificado como **PCC**.
-- Ao clicar no botão “I”, o sistema:
-  - Verifica se já há sugestão salva em `sessionStorage` para evitar repetição de chamada ao backend.
-  - Caso **não haja sugestão anterior**, o sistema consulta o endpoint `/v1/formulario-i/sugerir`.
-  - Este endpoint utiliza **busca semântica com FAISS + SentenceTransformer** para sugerir o preenchimento com base em documentos do produto.
+  * Verifica se há sugestão armazenada localmente para evitar redundância.
+  * Caso não haja, consulta o endpoint `/crud/resumo/sugerir`.
+  * O backend utiliza embeddings vetoriais FAISS para sugerir o conteúdo do Formulário I.
 
-> ⚠️ Importante: **A edição direta dos dados do Formulário I ainda não está implementada.** Apenas a exibição da sugestão gerada é possível nesta etapa do projeto.
+## ✏️ Edição e Salvamento
+
+* A sugestão gerada pode ser **editada diretamente pelo usuário** em um modal.
+* O conteúdo editado é salvo via `PUT` no endpoint `/crud/resumo/atualizar`, atualizando o JSON da etapa.
 
 ## 📄 Geração do Relatório Final APPCC
 
-- O botão **“Relatório”** é exibido apenas quando:
-  - O perigo da etapa foi classificado como **PCC** no Formulário H;
-  - O Formulário I está **preenchido** (todos os campos obrigatórios).
-- O relatório consolida dados dos Formulários G, H e I, compondo o plano final de controle para a etapa.
+* O botão **“Relatório”** é exibido apenas se:
+
+  * O perigo foi classificado como **PCC**;
+  * O Formulário I está **preenchido**.
+* O relatório exibe dados consolidados dos Formulários G, H e I.
+
+## ✅ Funcionalidades Implementadas
+
+* Sugestão automática do Formulário I baseada em embeddings vetoriais.
+* Edição completa e salvamento do Formulário I no frontend.
+* Relatório final consolidado por etapa e perigo.
+* Estrutura de arquivos organizada por produto e etapa com hash.
 
 ## ⚠️ Limitações atuais
 
-- A base de dados para sugestão automática do Formulário I está restrita ao produto **mel**.
-- Ainda não há controle contra arquivos duplicados, inválidos ou incompletos.
-- A verificação de integridade entre Formulários G, H e I será aprimorada em etapas futuras.
-- O Formulário I **não pode ser editado** no frontend ainda — apenas visualizado e salvo (atualizando o json presente).
+* O sistema ainda está em fase de testes com o produto **mel**.
+* A verificação entre formulários G, H e I ainda é parcial.
+* Não há tratamento de erros para arquivos JSON inconsistentes.
 
 ## 🛠 Melhorias planejadas
 
-- Implementar edição interativa e salvamento do Formulário I via frontend.
-- Expandir suporte para outros produtos além do mel (ex: queijo).
-- Adicionar filtros de validação ao carregar arquivos e preencher formulários.
-- Aprimorar a estrutura e layout do relatório final APPCC.
+* Suporte a múltiplos produtos com base vetorial própria.
+* Detecção automática de campos não preenchidos nos formulários.
+* Exportação do relatório APPCC em formato PDF.
+* Validação e backup das edições realizadas.
+
+---
 
 ## ▶️ Como executar
 
-1. Instale as dependências:
+1. Crie e ative o ambiente virtual:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+```
+
+2. Instale as dependências:
+
+```bash
 pip install -r requirements.txt
 ```
 
-2. Execute o backend com FastAPI
+3. Execute o backend com FastAPI:
+
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
-3. Acesse a aplicação no navegador:
-```bash
+
+4. Acesse a aplicação no navegador:
+
+```
 http://localhost:8000
 ```
 
+---
+
 ## 📂 Estrutura relevante de arquivos
-```pgsql
+
+```
 avaliacoes/
-├── produtos/
+└── produtos/
     └── mel/
-        └── [etapa_abc123.json]
+        └── [etapa_nome_hash.json]
+
 indexes/
-├── mel/
-    ├── pac.index
-    └── pac.pkl
+└── mel/
+    ├── pac_contexto.index
+    ├── pac_contexto.pkl
+    ├── bpf_etapa.index
+    └── bpf_etapa.pkl
 ```

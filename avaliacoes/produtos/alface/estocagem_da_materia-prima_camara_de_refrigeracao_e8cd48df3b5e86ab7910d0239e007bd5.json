@@ -55,6 +55,46 @@
         }
       ],
       "resumo": []
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Resíduos de defensivos agrícolas",
+          "justificativa": "A presença de resíduos de defensivos agrícolas acima dos limites permitidos na alface representa um perigo químico à saúde do consumidor. Embora a estocagem em si não cause a formação de resíduos, ela é a etapa final antes do transporte/distribuição onde o produto pode estar comprometido se as boas práticas agrícolas não foram seguidas na produção primária. Portanto, é fundamental garantir que a matéria-prima que entra na estocagem esteja em conformidade com a legislação vigente em relação aos níveis de agrotóxicos.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Baixa",
+          "medida": "Controle na Origem: Exigir do fornecedor da matéria-prima o cumprimento das boas práticas agrícolas (BPA) na produção da alface;\nCertificação/Rastreabilidade: Adquirir alface de fornecedores certificados ou com programas de rastreabilidade que comprovem o uso correto e dentro dos limites dos defensivos agrícolas;\nAnálise de Lotes: Realizar análises laboratoriais periódicas em amostras da alface recebida para verificar a presença e os níveis de resíduos de defensivos agrícolas [simulação];\nEspecificação de Compra: Ter uma especificação clara de compra que inclua os requisitos de conformidade com os limites máximos de resíduos (LMRs) estabelecidos pela legislação brasileira.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Níveis de resíduos de defensivos agrícolas: devem estar em conformidade com os Limites Máximos de Resíduos (LMRs) estabelecidos pela Agência Nacional de Vigilância Sanitária (ANVISA) e pelo Ministério da Agricultura e Pecuária e Abastecimento (MAPA) no Brasil.",
+          "monitoramento": {
+            "oque": "Documentação de origem (certificados, registros de aplicação), resultados de análises laboratoriais de resíduos de defensivos agrícolas.",
+            "como": "Verificação documental na recepção de cada lote (certificados de análise, declarações do produtor sobre as práticas e defensivos utilizados);Coleta de amostras e envio a laboratório credenciado para análise de resíduos (frequência baseada em análise de risco do fornecedor e histórico de conformidade) [simulação].",
+            "quando": "Na recepção de cada lote de matéria-prima (documentação); periodicamente, conforme plano de amostragem definido (análises laboratoriais) [simulação].",
+            "quem": "Responsável pelo recebimento da matéria-prima ou controle de qualidade [simulação]."
+          },
+          "acao_corretiva": "Retenção e Descarte: Reter o lote de alface que apresentar resíduos de defensivos agrícolas acima dos limites permitidos. Este lote deve ser descartado ou devolvido ao fornecedor, conforme contrato e legislação [simulação];\nInvestigação do Fornecedor: Comunicar o fornecedor e exigir uma investigação da causa do problema. Avaliar a continuidade do fornecimento com base nos resultados da investigação e nas ações corretivas do fornecedor [simulação];\nAumento da Frequência de Análises: Aumentar a frequência de análises para lotes futuros do mesmo fornecedor até que a conformidade seja comprovada [simulação];\nNotificação: Notificar os órgãos competentes, se exigido pela legislação [simulação].",
+          "registro": "Registros de recebimento da matéria-prima, incluindo dados do fornecedor e certificações;Laudos de análises laboratoriais de resíduos de defensivos agrícolas;Registros de não conformidades (lotes reprovados);Registros de ações corretivas tomadas (descarte, devolução, comunicação ao fornecedor).",
+          "verificacao": "Revisão periódica dos laudos de análises e registros de não conformidades;Auditorias nos fornecedores para verificar a implementação das boas práticas agrícolas;Revisão anual ou bienal do plano APPCC para garantir a eficácia das medidas de controle do perigo de resíduos de defensivos agrícolas [simulação];Análise de tendências de conformidade dos fornecedores [simulação]."
+        }
+      ]
     }
   ]
 }
