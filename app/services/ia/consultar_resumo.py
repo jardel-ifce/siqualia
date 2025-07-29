@@ -1,10 +1,9 @@
-# app/services/sugerir_formulario_i.py
 import faiss
 import pickle
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("msmarco-distilbert-base-v4")
 
 PERGUNTAS_FORMULARIO_I = {
     "limite_critico": "Qual o limite crítico necessário para garantir que esse perigo esteja sob controle?",
@@ -24,19 +23,23 @@ def gerar_prompt(contexto, pergunta):
         f"Medida preventiva: {contexto['medida']}. Justificativa: {contexto['justificativa']}. {pergunta}"
     )
 
-def sugerir_formulario_i_dados(produto, etapa, tipo, perigo, medida, justificativa, origem="formulario_i"):
+def sugerir_resumo_dados(produto, etapa, tipo, perigo, medida, justificativa, origem="formulario_i"):
     base_path = Path("indexes") / produto
-    index_path = base_path / f"{origem}.index"
-    meta_path = base_path / f"{origem}.pkl"
+    index_path = base_path / f"{origem}_contexto.index"
+    meta_path = base_path / f"{origem}_contexto.pkl"
 
     if not index_path.exists() or not meta_path.exists():
-        return None
+        print(f"[AVISO] Índices não encontrados para {produto}/{origem}")
+        return resposta_vazia()
 
-    index = faiss.read_index(str(index_path))
-    with open(meta_path, "rb") as f:
-        metadados = pickle.load(f)
+    try:
+        index = faiss.read_index(str(index_path))
+        with open(meta_path, "rb") as f:
+            metadados = pickle.load(f)
+    except Exception as e:
+        print(f"[ERRO] Falha ao carregar índice ou metadados: {e}")
+        return resposta_vazia()
 
-    # Filtro por etapa + perigo + tipo
     etapa_f = etapa.strip().lower()
     perigo_f = perigo.strip().lower()
     tipo_f = tipo.strip().upper()
@@ -49,7 +52,8 @@ def sugerir_formulario_i_dados(produto, etapa, tipo, perigo, medida, justificati
     ]
 
     if not candidatos:
-        return None
+        print(f"[AVISO] Nenhum candidato compatível encontrado para etapa/perigo/tipo.")
+        return resposta_vazia()
 
     sentencas = [
         " - ".join(str(v) for v in m.values() if str(v).strip()) for _, m in candidatos
@@ -71,6 +75,7 @@ def sugerir_formulario_i_dados(produto, etapa, tipo, perigo, medida, justificati
         prompt = gerar_prompt(contexto, PERGUNTAS_FORMULARIO_I[chave])
         query_emb = model.encode([prompt], convert_to_numpy=True, normalize_embeddings=True)
         scores, ids = sub_index.search(query_emb, 3)
+
         for idx in ids[0]:
             i_real, meta = candidatos[idx]
             valor = meta.get(campo_csv, "").strip()
@@ -91,3 +96,16 @@ def sugerir_formulario_i_dados(produto, etapa, tipo, perigo, medida, justificati
         "verificacao": buscar_resposta("verificacao", "verificacao")
     }
 
+def resposta_vazia():
+    return {
+        "limite_critico": "",
+        "monitoramento": {
+            "oque": "",
+            "como": "",
+            "quando": "",
+            "quem": ""
+        },
+        "acao_corretiva": "",
+        "registro": "",
+        "verificacao": ""
+    }

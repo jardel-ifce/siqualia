@@ -1,0 +1,46 @@
+{
+  "produto": "mel",
+  "etapa": "Manejo de Colméias",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Clostridium botulinum (esporos)",
+          "justificativa": "Inerentes ao campo devido à exposição dos favos a poeira e ao contato com o solo e possibilidade de desenvolvimento de C. botulinum em larvas mortas de abelhas. Mel contaminado com esporos pode provocar botulismo infantil quando ingeridos por crianças menores de 1 ano de idade.",
+          "probabilidade": "Baixa",
+          "severidade": "Alta",
+          "risco": "Baixa",
+          "medida": "BP Apícolas na sanidade (controle de doenças nas crias) e evitar contato dos favos com o solo. Essas medidas diminuem o risco, mas não eliminam a possibilidade de ocorrência de esporos no mel. PERIGO NÃO CONTROLADO NO ESTABELECIMENTO.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Presença dos dizeres no rótulo",
+          "monitoramento": {
+            "oque": "Dizeres no rótulo",
+            "como": "Inspeção visual",
+            "quando": "A cada lote de rotulagem",
+            "quem": "Responsável pela rotulagem"
+          },
+          "acao_corretiva": "Substituir o rótulo com ausência dos dizeres",
+          "registro": "Planilha de controle de rotulagem",
+          "verificacao": "Supervisão da operação e verificação documental"
+        }
+      ]
+    }
+  ]
+}

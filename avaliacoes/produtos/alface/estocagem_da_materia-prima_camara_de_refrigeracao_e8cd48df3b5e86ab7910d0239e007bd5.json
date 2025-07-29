@@ -1,0 +1,60 @@
+{
+  "produto": "alface",
+  "etapa": "Estocagem da matéria-prima (câmara de refrigeração)",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Multiplicação de microrganismos por temperatura inadequada",
+          "justificativa": "A alface é altamente perecível e sensível à temperatura. O aumento da temperatura acelera a proliferação de microrganismos, a transpiração e a respiração, causando rápida deterioração. O controle rigoroso da temperatura é essencial para preservar a qualidade e reduzir as perdas pós-colheita.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Somente alfaces sadias e de alta qualidade devem ser armazenadas, pois a baixa temperatura não destrói os patógenos, apenas diminui sua atividade;\nA temperatura da alface deve ser reduzida logo após a colheita (pré-resfriamento) para diminuir a atividade metabólica e a transpiração;\nManter a temperatura de armazenamento entre 0°C e 5°C , com umidade relativa entre 95-100%;\nAs câmaras de refrigeração devem ser limpas regularmente;\nMonitorar e manter a ventilação adequada nas câmaras para evitar o acúmulo de etileno e calor;\nNão exceder a capacidade da câmara, mantendo corredores livres para circulação de ar;\nEvitar armazenar a alface com frutos climatéricos (como tomate, melancia, banana) que liberam etileno, pois este gás pode causar manchas escuras e acelerar o amadurecimento e deterioração da alface;",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Fragmentos de gelo",
+          "justificativa": "A presença de fragmentos físicos na alface pode representar um risco de corpo estranho, causando lesões ao consumidor (cortes na boca, engasgos) e resultando em não conformidade do produto, impactando a segurança alimentar e a reputação da marca. Embora a refrigeração seja essencial, a formação excessiva de gelo na câmara (devido a falhas no equipamento, alta umidade ou temperatura muito baixa) pode levar à quebra e desprendimento de fragmentos que podem contaminar a alface. Além disso, o congelamento da alface pode causar deterioração do tecido e liberar \"água livre\", que ao recongelar, pode formar fragmentos.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Monitorar rigorosamente a temperatura da câmara para evitar que fique abaixo do ponto de congelamento da alface (0,2°C);\nControlar a umidade relativa dentro da faixa recomendada (95-100%) para evitar a formação excessiva de gelo no ambiente da câmara;\nRealizar ciclos de degelo programados e manutenção preventiva regular dos equipamentos de refrigeração para evitar acúmulo de gelo nas serpentinas e outras superfícies [simulação];\nInspecionar as superfícies internas da câmara quanto à presença de gelo excessivo antes e durante a estocagem [simulação].",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
+}

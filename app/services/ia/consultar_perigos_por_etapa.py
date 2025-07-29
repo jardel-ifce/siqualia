@@ -1,4 +1,3 @@
-# app/services/consultar_perigos_por_etapa.py
 import pickle
 import math
 from pathlib import Path
@@ -14,12 +13,12 @@ def limpar_nan(obj):
 
 def consultar_perigos_por_etapa(produto: str, etapa_confirmada: str):
     indexes_dir = Path("indexes") / produto
-    tipos = ["appcc", "pac", "bpf"]
+    tipos = ["appcc", "pac", "bpf", "resumo"]  # adiciona se for consultar por etapa com dados do resumo
 
     formulario_g = []
 
     for tipo in tipos:
-        meta_path = indexes_dir / f"{tipo}.pkl"
+        meta_path = indexes_dir / f"{tipo}_etapa.pkl"
         if not meta_path.exists():
             continue
 
@@ -42,7 +41,7 @@ def consultar_perigos_por_etapa(produto: str, etapa_confirmada: str):
                 })
 
     if not formulario_g:
-        return {"erro": f"Nenhum perigo encontrado para etapa: {etapa_confirmada}"}
+        return {"INFO": f"Nenhum perigo encontrado para etapa: {etapa_confirmada}"}
 
     return limpar_nan({
         "produto": produto,

@@ -1,0 +1,33 @@
+{
+  "produto": "queijo",
+  "etapa": "Recepção de Ingredientes",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Ferrocianeto de sódio",
+          "justificativa": "Falhas no processo de fabricação do sal",
+          "probabilidade": "Desprezível",
+          "severidade": "Média",
+          "risco": "Baixa",
+          "medida": "Seleção de fornecedores / laudo de análises.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
+}

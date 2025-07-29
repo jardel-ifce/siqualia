@@ -755,15 +755,36 @@
 				.replace(/\//g, "_")               // barra para underscore
 				.replace(/[^\w\-]+/g, "");         // remove outros caracteres especiais
 	}
-	
-	function emitirRelatorioPorIndice(arquivo, id) {
+
+	function emitirRelatorioPorIndice(produto, etapa, id_perigo) {
+		const etapaStr = String(etapa || "");  // garante que seja string
+		const hash = md5(etapaStr.trim());
+		const etapaFormatada = etapaStr.trim().toLowerCase().replace(/\s+/g, "_").replace(/[^\w_]/g, "");
+		const arquivo = `avaliacoes/produtos/${produto}/${etapaFormatada}_${hash}.json`;
+
 		const url = new URL("/static/relatorio.html", window.location.origin);
 		url.searchParams.set("arquivo", arquivo);
-		url.searchParams.set("indice", id); // pois o ID é 1-based, e o índice é 0-based
+		url.searchParams.set("indice", id_perigo);
+
+		console.log("Abrindo relatório para:", arquivo, "ID:", id_perigo);
 		window.open(url.toString(), "_blank");
-		console.log(arquivo, id)
 	}
-	
+
+	function emitirRelatorioPorArquivo(arquivo, id_perigo) {
+		if (!arquivo || typeof id_perigo === "undefined") {
+			console.error("Dados inválidos:", { arquivo, id_perigo });
+			return;
+		}
+
+		const url = new URL("/static/relatorio.html", window.location.origin);
+		url.searchParams.set("arquivo", arquivo);
+		url.searchParams.set("indice", id_perigo);
+
+		console.log("Abrindo relatório para:", arquivo, "ID:", id_perigo);
+		window.open(url.toString(), "_blank");
+	}
+
+
 	
 	async function verificarEtapaJaSalva(etapaDigitada) {
 		const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
@@ -821,7 +842,7 @@
 								<i class="bi bi-journal-check"></i>
 							</button>
 							<button class="btn btn-sm btn-danger" title="Relatório"
-								onclick="emitirRelatorioPorIndice('${arquivoEtapaSalvo}', ${p.id})">
+								onclick="emitirRelatorioPorArquivo('${arquivoEtapaSalvo}', ${p.id})">
 								<i class="bi bi-file-earmark-pdf"></i>
 							</button>
 						</div>
@@ -1239,7 +1260,7 @@
 		const justificativa = bloco.querySelector("textarea[name='justificativa']").value;
 		const medida = bloco.querySelector("textarea[name='medida']").value;
 		
-		const resp = await fetch("/crud/resumo/sugerir", {
+		const resp = await fetch("/ia/resumo/sugerir", {
 			method: "POST",
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({

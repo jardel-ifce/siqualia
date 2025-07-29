@@ -1,0 +1,86 @@
+{
+  "produto": "alface",
+  "etapa": "Lavagem 1 (água corrente)",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Água contaminada",
+          "justificativa": "A água é um veículo potencial para microrganismos patogênicos. Se a água utilizada na Lavagem 1 não for potável ou estiver contaminada, ela pode transferir bactérias, vírus e parasitas para a alface, comprometendo a segurança do produto final. [cite: 955]",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Utilizar somente água potável, em conformidade com a legislação vigente;\nRealizar análises microbiológicas e parasitológicas da água regularmente;\nFazer limpeza e manutenção de todo o sistema de bombeamento da água de lavagem;\nEvitar o acesso de animais domésticos próximos à fonte de água;\nEvitar o armazenamento de esterco orgânico próximo às fontes de água;\nOs tanques de lavagem devem ser limpos e sanitizados regularmente;\nA área de lavagem deve ser projetada de forma a evitar contaminação cruzada (ex: separação entre área suja e limpa).",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Água de lavagem: Potável, ausente de coliformes termotolerantes e outros patógenos, e com cloro residual livre dentro dos padrões estabelecidos (se clorada).",
+          "monitoramento": {
+            "oque": "Qualidade microbiológica e físico-química da água (cloro residual livre pH).",
+            "como": "Análise microbiológica da água (semanalmente/mensalmente) [simulação];Medição diária do cloro residual livre e pH da água (se for tratada com cloro) [simulação];Inspeção visual da limpeza dos tanques e utensílios de lavagem [simulação].",
+            "quando": "Semanalmente/Mensalmente (microbiológica da água) [simulação];Diariamente (cloro residual livre, pH da água) [simulação];Antes do início de cada turno e durante a operação (limpeza de utensílios) [simulação].",
+            "quem": "Responsável pelo controle de qualidade [simulação];Operador da linha de lavagem ou funcionário da higiene [simulação]."
+          },
+          "acao_corretiva": "Interromper imediatamente o uso da água contaminada [simulação];\nIdentificar a fonte e implementar medidas corretivas (ex: filtração, cloração, manutenção do sistema de abastecimento) [simulação];\nReter e descartar o lote de alface processado com água contaminada, ou reprocessar se a segurança permitir [simulação];\nLimpar e sanitizar os tanques e utensílios [simulação].",
+          "registro": "Laudos de análises microbiológicas e físico-químicas da água;Registros de monitoramento de cloro residual livre e pH;Fichas de limpeza e sanitização dos tanques;Registros de não conformidades e ações corretivas.",
+          "verificacao": "Revisão dos laudos de análise da água [simulação];Auditorias internas sobre a rotina de limpeza e controle da água [simulação];Verificação da calibração dos equipamentos de medição. Análise de reclamações de clientes relacionadas a doenças transmitidas por alimentos."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Fragmentos de vegetais ou pequenos corpos estranhos",
+          "justificativa": "Durante a lavagem, fragmentos de alface (folhas quebradas, pedaços de talo) ou pequenos corpos estranhos (restos de solo, insetos minúsculos que não foram removidos na seleção ou pré-lavagem) podem permanecer no produto. A presença desses fragmentos compromete a qualidade visual e sensorial da alface e pode representar um risco físico ao consumidor (ainda que de baixa severidade para pequenos fragmentos orgânicos).",
+          "probabilidade": "Média",
+          "severidade": "Média",
+          "risco": "Média",
+          "medida": "Garantir que a pré-lavagem e seleção manual tenham sido eficazes na remoção de detritos maiores;\nManter os tanques e ralos limpos, removendo acúmulo de matéria orgânica que pode recircular;\nUtilizar telas ou grades nas saídas dos tanques para reter fragmentos maiores [simulação];\nRealizar inspeção visual da alface durante e após a lavagem para identificar e remover corpos estranhos. [simulação]",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Alface após lavagem: Ausência de fragmentos de vegetais deteriorados ou corpos estranhos visíveis (sujidade, insetos, etc.).",
+          "monitoramento": {
+            "oque": "Inspeção visual da alface após a lavagem.",
+            "como": "Observação visual contínua da alface em esteiras ou cestos de drenagem após a lavagem. [simulação]",
+            "quando": "A cada lote ou a cada 30 minutos de operação [simulação].",
+            "quem": "Operador da linha de lavagem;Responsável pelo controle de qualidade [simulação]."
+          },
+          "acao_corretiva": "Remover manualmente os fragmentos e corpos estranhos encontrados [simulação];\nSe a quantidade de fragmentos for excessiva, reprocessar o lote (se possível sem comprometer a qualidade) ou ajustar os procedimentos das etapas anteriores (pré-lavagem/seleção) [simulação];\nLimpar e inspecionar mais frequentemente os tanques e telas de drenagem. [simulação]",
+          "registro": "Registros de inspeção visual;Registros de não conformidades e ações corretivas.",
+          "verificacao": "Revisão semanal dos registros de inspeção e ações corretivas [simulação];Análise de reclamações de clientes relacionadas a corpos estranhos;Auditorias internas para verificar a eficácia da remoção de detritos."
+        }
+      ]
+    }
+  ]
+}

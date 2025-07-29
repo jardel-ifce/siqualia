@@ -1,52 +1,33 @@
-# app/routes/crud/resumo.py
-from fastapi import APIRouter, HTTPException, Query
-from pydantic import BaseModel
-from typing import Dict
-from fastapi.responses import JSONResponse
+# 📁 app/routes/crud/resumo.py
+
+# 📦 Importações padrão
 from pathlib import Path
 import json
+from typing import Dict
+from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 
+# 📁 Serviços internos
 from app.utils.utils import atualizar_resumo_do_perigo, substituir_resumo_do_perigo
-from app.services.ia.consultar_resumo import sugerir_formulario_i_dados
-
-router = APIRouter(prefix="/crud", tags=["CRUD - Formulário I"])
-
-# MODELO PARA SUGESTÃO (mantido)
-class ResumoRequest(BaseModel):
-    produto: str
-    etapa: str
-    id_perigo: int
-    tipo: str
-    perigo: str
-    justificativa: str
-    medida: str
 
 
-@router.post("/resumo/sugerir")
-def sugerir_resumo(req: ResumoRequest):
-    dados = sugerir_formulario_i_dados(
-        req.produto, req.etapa, req.tipo,
-        req.perigo, req.medida, req.justificativa
-    )
-    if not dados:
-        raise HTTPException(status_code=404, detail="Não foi possível sugerir os dados do Formulário I.")
-    return {"mensagem": "Sugestão gerada com sucesso", "resumo": dados}
+# 🔧 Configuração do roteador
+router = APIRouter(prefix="/crud/resumo", tags=["CRUD - Resumo"])
 
 
-# MODELOS ANINHADOS
+# 📦 Modelos de Dados
 class Monitoramento(BaseModel):
     oque: str
     como: str
     quando: str
     quem: str
 
-
 class ResumoBase(BaseModel):
     produto: str
     etapa: str
     id_perigo: int
     resumo: dict
-
 
 class ResumoExistente(BaseModel):
     produto: str
@@ -58,22 +39,25 @@ class ResumoExistente(BaseModel):
     registro: str
     verificacao: str
 
-class SalvarResumoRequest(BaseModel):
-    produto: str
-    etapa: str
-    id_perigo: int
-    resumo: dict
 
-@router.post("/resumo/salvar")
+# 📌 Endpoints
+
+@router.post("/salvar")
 def salvar_resumo(req: ResumoBase):
+    """
+    Salva um novo conjunto de dados do Formulário I (resumo) para o perigo informado.
+    """
     sucesso = atualizar_resumo_do_perigo(req.produto, req.etapa, req.id_perigo, req.resumo)
     if not sucesso:
         raise HTTPException(status_code=500, detail="Erro ao salvar o resumo informado.")
     return {"mensagem": "Resumo salvo com sucesso."}
 
 
-@router.put("/resumo/atualizar")
+@router.put("/atualizar")
 def atualizar_resumo(req: ResumoExistente):
+    """
+    Atualiza os dados do resumo (Formulário I) para um perigo já existente.
+    """
     resumo = {
         "limite_critico": req.limite_critico,
         "monitoramento": req.monitoramento,
@@ -88,24 +72,20 @@ def atualizar_resumo(req: ResumoExistente):
     return {"mensagem": "Resumo atualizado com sucesso."}
 
 
-router = APIRouter(prefix="/crud/resumo", tags=["CRUD - Resumo"])
-
 @router.get("/relatorio")
 def gerar_relatorio(arquivo: str = Query(...), indice: int = Query(...)):
     """
-    Gera o relatório do Formulário I com base no arquivo e ID do perigo.
-    O parâmetro 'arquivo' deve ser um caminho relativo iniciando com 'avaliacoes/produtos/...'.
+    Gera o relatório do Formulário I com base no arquivo salvo e ID do perigo.
     """
     base_dir = Path("avaliacoes")
 
     try:
-        # Garante que o caminho esteja dentro de 'avaliacoes' (evita path traversal)
         caminho = base_dir / Path(arquivo).relative_to("avaliacoes")
     except Exception:
         return JSONResponse(status_code=400, content={"erro": "Caminho de arquivo inválido."})
 
     if not caminho.exists():
-        return JSONResponse(status_code=404, content={"erro": "Arquivo não encontrado."})
+        return JSONResponse(status_code=404, content={"erro": f"Arquivo não encontrado: {arquivo}"})
 
     try:
         with open(caminho, "r", encoding="utf-8") as f:
@@ -114,13 +94,17 @@ def gerar_relatorio(arquivo: str = Query(...), indice: int = Query(...)):
         return JSONResponse(status_code=500, content={"erro": f"Erro ao ler o arquivo: {str(e)}"})
 
     perigos = dados.get("perigos", [])
-    perigo = next((p for p in perigos if p.get("id") == indice), None)
+    perigo = next((p for p in perigos if str(p.get("id")) == str(indice)), None)
 
     if not perigo:
-        return JSONResponse(status_code=404, content={"erro": f"Perigo com id {indice} não encontrado."})
+        ids_disponiveis = [p.get("id") for p in perigos]
+        return JSONResponse(
+            status_code=404,
+            content={"erro": f"Perigo com id {indice} não encontrado.", "ids_disponiveis": ids_disponiveis}
+        )
 
-    perigo_detalhe = perigo.get("perigo", [{}])[0]
-    resumo = perigo.get("resumo", [{}])[0] or {}
+    perigo_detalhe = perigo.get("perigo", [{}])[0] if perigo.get("perigo") else {}
+    resumo = perigo.get("resumo", [{}])[0] if perigo.get("resumo") else {}
 
     return {
         "produto": dados.get("produto"),
@@ -131,4 +115,3 @@ def gerar_relatorio(arquivo: str = Query(...), indice: int = Query(...)):
         "medida": perigo_detalhe.get("medida", ""),
         "formulario_i": resumo
     }
-

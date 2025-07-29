@@ -1,10 +1,20 @@
-from pathlib import Path
-import faiss
-import pickle
+# app/routes/ia/resumo.py
+
+# 📦 Bibliotecas externas
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+# 📁 Serviços internos
+from app.services.ia.consultar_resumo import sugerir_resumo_dados
 
+# 🔧 Inicialização do modelo de embeddings
+model = SentenceTransformer("msmarco-distilbert-base-v4")
+
+# 🔧 Configuração da rota
+router = APIRouter(prefix="/ia", tags=["IA - Resumo"])
+
+# 📋 Perguntas do Formulário I
 PERGUNTAS_FORM_I = {
     "limite_critico": "Qual o limite crítico necessário para garantir que esse perigo esteja sob controle?",
     "monitoramento.oque": "O que deve ser monitorado para garantir o controle desse perigo?",
@@ -16,6 +26,17 @@ PERGUNTAS_FORM_I = {
     "verificacao": "Como verificar se o controle do perigo está sendo efetivo?"
 }
 
+# 📦 Modelo de entrada para sugestão
+class ResumoRequest(BaseModel):
+    produto: str
+    etapa: str
+    id_perigo: int
+    tipo: str
+    perigo: str
+    justificativa: str
+    medida: str
+
+# 🧠 Função de geração de prompt contextualizado
 def gerar_prompt(ctx, pergunta):
     return (
         f"query: Produto: {ctx['produto']}. Etapa: {ctx['etapa']}. "
@@ -23,58 +44,13 @@ def gerar_prompt(ctx, pergunta):
         f"Medida preventiva: {ctx['medida']}. Justificativa: {ctx['justificativa']}. {pergunta}"
     )
 
-def sugerir_resumo(produto, etapa, tipo, perigo, medida, justificativa, origem="formulario_i"):
-    base = Path("indexes") / produto
-    index_path = base / f"{origem}.index"
-    meta_path = base / f"{origem}.pkl"
-
-    if not index_path.exists() or not meta_path.exists():
-        return None
-
-    index = faiss.read_index(str(index_path))
-    with open(meta_path, "rb") as f:
-        metadados = pickle.load(f)
-
-    etapa_f = etapa.lower().strip()
-    perigo_f = perigo.lower().strip()
-    tipo_f = tipo.upper().strip()
-
-    candidatos = [
-        (i, m) for i, m in enumerate(metadados)
-        if m.get("etapa", "").lower() == etapa_f and
-           m.get("perigo", "").lower() == perigo_f and
-           m.get("tipo", "").upper() == tipo_f
-    ]
-    if not candidatos:
-        return None
-
-    sentencas = [" - ".join(str(v) for v in m.values() if str(v).strip()) for _, m in candidatos]
-    sub_emb = model.encode(sentencas, convert_to_numpy=True, normalize_embeddings=True)
-    sub_index = faiss.IndexFlatIP(sub_emb.shape[1])
-    sub_index.add(sub_emb)
-
-    contexto = {"produto": produto, "etapa": etapa, "tipo": tipo, "perigo": perigo, "medida": medida, "justificativa": justificativa}
-
-    def buscar(chave, campo):
-        prompt = gerar_prompt(contexto, PERGUNTAS_FORM_I[chave])
-        query_emb = model.encode([prompt], convert_to_numpy=True, normalize_embeddings=True)
-        scores, ids = sub_index.search(query_emb, 3)
-        for idx in ids[0]:
-            _, meta = candidatos[idx]
-            valor = meta.get(campo, "").strip()
-            if valor:
-                return valor
-        return ""
-
-    return {
-        "limite_critico": buscar("limite_critico", "limite_critico"),
-        "monitoramento": {
-            "oque": buscar("monitoramento.oque", "monitoramento_oque"),
-            "como": buscar("monitoramento.como", "monitoramento_como"),
-            "quando": buscar("monitoramento.quando", "monitoramento_quando"),
-            "quem": buscar("monitoramento.quem", "monitoramento_quem")
-        },
-        "acao_corretiva": buscar("acao_corretiva", "acao_corretiva"),
-        "registro": buscar("registro", "registro"),
-        "verificacao": buscar("verificacao", "verificacao")
-    }
+# 🔍 Rota de sugestão de dados para o Formulário I
+@router.post("/resumo/sugerir")
+def sugerir_resumo(req: ResumoRequest):
+    dados = sugerir_resumo_dados(
+        req.produto, req.etapa, req.tipo,
+        req.perigo, req.medida, req.justificativa
+    )
+    if not dados:
+        raise HTTPException(status_code=404, detail="Não foi possível sugerir os dados do Formulário I.")
+    return {"mensagem": "Sugestão gerada com sucesso", "resumo": dados}
