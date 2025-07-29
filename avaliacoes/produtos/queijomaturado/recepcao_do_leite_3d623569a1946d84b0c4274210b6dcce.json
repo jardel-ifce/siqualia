@@ -1,0 +1,33 @@
+{
+  "produto": "queijomaturado",
+  "etapa": "Recepção do leite",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Salmonella, Listeria monocytogenes, Brucella spp.",
+          "justificativa": "Microrganismos patogênicos comuns no leite cru, com potencial de causar doenças graves.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Média",
+          "medida": "Recebimento de leite de fornecedores certificados, com laudos e refrigeração adequada.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
+}

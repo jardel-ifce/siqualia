@@ -41,6 +41,33 @@
           "verificacao": "Revisão diária/semanal dos registros de monitoramento;Auditorias internas da câmara (limpeza, organização, manutenção);Análise de dados de perdas por deterioração na estocagem;Calibração periódica dos instrumentos de monitoramento."
         }
       ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Multiplicação de patógenos",
+          "justificativa": "A estocagem em câmara refrigerada, apesar de ser um controle, ainda pode permitir a multiplicação de patógenos se a temperatura ou umidade não forem mantidas adequadamente. Microrganismos não eliminados em etapas anteriores podem proliferar, especialmente se houver flutuações de temperatura ou pontos quentes na câmara. [cite: 1754]",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Média",
+          "medida": "Manter a temperatura da câmara de refrigeração rigorosamente dentro da faixa ideal para alface (0°C a 5°C), e a umidade relativa entre 95-100%[cite: 532, 723, 737];\nMonitorar continuamente a temperatura e umidade da câmara[cite: 538];\nAssegurar a limpeza e sanitização regular da câmara para evitar acúmulo de contaminação ambiental[cite: 535];\nGarantir a ventilação adequada para evitar pontos quentes e acúmulo de etileno[cite: 544, 784];\nNão sobrecarregar a câmara, permitindo a circulação de ar[cite: 536];\nRealizar sanitização eficaz nas etapas anteriores para reduzir a carga inicial de microrganismos. [cite: 966]",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
     }
   ]
 }

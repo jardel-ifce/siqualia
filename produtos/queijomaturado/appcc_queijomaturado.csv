@@ -1,0 +1,31 @@
+etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
+Recepção do leite,B,"Salmonella, Listeria monocytogenes, Brucella spp.","Microrganismos patogênicos comuns no leite cru, com potencial de causar doenças graves.",Alta,Alta,Alto,"Recebimento de leite de fornecedores certificados, com laudos e refrigeração adequada.",SIM
+Recepção do leite,F,"Fragmentos de palha, terra, pedras",Sujidades físicas do transporte e ordenha manual.,Média,Média,Moderado,Filtragem imediata e inspeção visual na chegada.,NÃO
+Recepção do leite,Q,Resíduos de medicamentos veterinários,Uso de antibióticos e antiparasitários em vacas leiteiras pode contaminar o leite.,Média,Alta,Alto,Controle de carência de medicamentos e testes de resíduos no leite.,SIM
+Filtragem e medição do leite,B,Contaminação por coliformes,Condições higiênicas inadequadas podem permitir multiplicação microbiana antes da pasteurização.,Média,Média,Moderado,Higienização de utensílios e agilidade no início do processamento.,NÃO
+Filtragem e medição do leite,F,Fragmentos de filtro danificado,Filtros danificados ou mal instalados podem liberar fragmentos no leite.,Baixa,Baixa,Baixo,Inspeção visual diária e troca preventiva dos filtros.,NÃO
+Filtragem e medição do leite,Q,Contaminação cruzada por detergentes,Resíduos de limpeza inadequadamente enxaguados nos tanques e medidores.,Baixa,Alta,Moderado,Enxágue completo dos utensílios antes do uso com leite.,NÃO
+Pasteurização,B,Microrganismos termorresistentes (ex: Coxiella burnetii),Aquecimento insuficiente pode não eliminar todos os patógenos.,Média,Alta,Alto,Controle e verificação automática de tempo e temperatura de pasteurização.,SIM
+Pasteurização,F,Partículas metálicas da serpentina,Desgaste ou corrosão interna de equipamentos aquecedores.,Baixa,Média,Moderado,Manutenção preventiva dos equipamentos de pasteurização.,NÃO
+Pasteurização,Q,Contaminação por óleo térmico,Vazamentos internos do sistema podem contaminar o leite.,Baixa,Alta,Moderado,Equipamento selado com material atóxico e inspeções técnicas periódicas.,NÃO
+Adição de culturas e coalho,B,Contaminação microbiana dos insumos,Culturas ou coalho contaminados podem introduzir patógenos.,Baixa,Alta,Moderado,Compra de insumos certificados e armazenamento em temperatura adequada.,NÃO
+Adição de culturas e coalho,F,Fragmentos de embalagem de cultura,Embalagens mal abertas ou rompidas manualmente.,Baixa,Baixa,Baixo,Abertura cuidadosa e inspeção do conteúdo antes da aplicação.,NÃO
+Adição de culturas e coalho,Q,Contaminação por resíduos químicos dos utensílios,Uso de utensílios recém-lavados sem enxágue completo.,Média,Alta,Alto,Procedimento padrão de enxágue e verificação antes do uso.,SIM
+Dessoragem e moldagem,B,Contaminação por Staphylococcus aureus,Manipulação manual ou com superfícies mal higienizadas.,Média,Alta,Alto,Higienização adequada das mãos e equipamentos; uso de luvas.,SIM
+Dessoragem e moldagem,F,Fragmentos de pano de dessoragem,Rasgos no tecido de dessoragem podem soltar fibras.,Baixa,Baixa,Baixo,"Uso de panos próprios para alimentos, inspecionados antes do uso.",NÃO
+Dessoragem e moldagem,Q,Detergente residual do tanque,Restos de produto de limpeza após lavagem.,Baixa,Alta,Moderado,Enxágue com água potável após higienização dos equipamentos.,NÃO
+Prensagem,B,Crescimento de microrganismos na massa,Tempo prolongado ou ambiente quente favorece proliferação.,Média,Alta,Alto,"Controle de tempo, temperatura e higiene do ambiente.",SIM
+Prensagem,F,Quebra de molas ou peças da prensa,Partes soltas podem cair na massa.,Baixa,Média,Baixo,Manutenção periódica e inspeção após montagem.,NÃO
+Prensagem,Q,Lubrificante industrial na prensa,Uso incorreto de óleo não alimentar nos rolamentos.,Baixa,Alta,Moderado,Uso de lubrificantes alimentícios certificados.,NÃO
+Salga,B,Clostridium spp. na salmoura reutilizada,Ambiente salino pode abrigar esporos resistentes.,Média,Alta,Alto,Troca periódica da salmoura e monitoramento microbiológico.,SIM
+Salga,F,Cristais ou grânulos duros no sal,Fragmentos que não se dissolvem podem estar presentes.,Baixa,Baixa,Baixo,Dissolução completa do sal e filtração da salmoura.,NÃO
+Salga,Q,Uso de sal iodado ou contaminado,Alguns sais inadequados podem conter resíduos ou aditivos não permitidos.,Baixa,Alta,Moderado,Aquisição de sal alimentar certificado.,NÃO
+Maturação,B,"Listeria monocytogenes, fungos indesejáveis",Condições inadequadas favorecem crescimento de patógenos durante semanas.,Alta,Alta,Alto,"Controle contínuo de umidade, temperatura e ventilação.",SIM
+Maturação,F,Queda de fragmentos da prateleira ou armário,Prateleiras enferrujadas ou desgastadas podem liberar partículas.,Baixa,Média,Baixo,Revestimento adequado e inspeções periódicas dos locais de maturação.,NÃO
+Maturação,Q,Gás desinfetante residual na câmara,Câmaras higienizadas com agentes químicos podem reter vapores.,Baixa,Alta,Moderado,Aeração completa da câmara antes da reintrodução dos queijos.,NÃO
+Embalagem e rotulagem,B,Contaminação cruzada por manipulação inadequada,Manuseio de queijo sem higienização das mãos ou troca de luvas.,Média,Alta,Alto,Higienização pessoal e treinamento dos manipuladores.,SIM
+Embalagem e rotulagem,F,Fragmentos de plástico ou papel colante do rótulo,Etapa final pode deixar fragmentos na embalagem.,Baixa,Baixa,Baixo,Inspeção visual e uso de materiais de qualidade.,NÃO
+Embalagem e rotulagem,Q,Tinta tóxica na rotulagem,Rótulos impressos com tinta não alimentícia.,Baixa,Alta,Moderado,Compra de rótulos certificados e de fornecedores homologados.,NÃO
+Armazenamento do produto,B,Crescimento de Listeria monocytogenes,Queijos mal refrigerados continuam permitindo crescimento microbiano.,Média,Alta,Alto,Controle de temperatura e rastreabilidade do lote.,SIM
+Armazenamento do produto,F,Quebra de bandeja ou caixa plástica,Contaminação física por fragmentos de embalagem durante empilhamento.,Baixa,Média,Baixo,Verificação das condições das embalagens antes da armazenagem.,NÃO
+Armazenamento do produto,Q,Vapores de produtos de limpeza utilizados no ambiente,Produtos mal armazenados próximos ao queijo podem evaporar e contaminar o alimento.,Baixa,Alta,Moderado,Isolamento dos produtos químicos e ventilação adequada.,NÃO
