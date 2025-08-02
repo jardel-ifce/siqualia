@@ -1,0 +1,22 @@
+etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
+Coleta da própolis,B,Contaminação por microrganismos presentes no ambiente ou nas mãos dos manipuladores,"Coleta realizada em campo aberto, sem controle sanitário rígido",Média,Média,Média,"Uso de EPIs, lavagem das mãos, capacitação de manipuladores",Sim
+Coleta da própolis,Q,Resíduos de defensivos agrícolas na superfície da colmeia,Contaminação da própolis devido ao contato com superfícies expostas a pesticidas,Baixa,Alta,Média,"Controle da origem da matéria-prima, avaliação do entorno das colmeias",Sim
+Coleta da própolis,F,Fragmentos de madeira ou resíduos da colmeia,Uso de ferramentas ou coletores danificados,Média,Baixa,Média,"Inspeção dos coletores e ferramentas, manutenção periódica",Sim
+Limpeza inicial,B,Proliferação de bolores em própolis úmida,Própolis armazenada sem ventilação adequada antes da secagem,Alta,Média,Alta,"Secagem imediata após coleta, controle de ventilação",Sim
+Limpeza inicial,Q,Resíduos de detergentes usados na limpeza dos utensílios,Uso inadequado ou enxágue insuficiente,Média,Alta,Alta,Uso controlado de produtos saneantes e enxágue adequado,Sim
+Limpeza inicial,F,Pelos ou cabelos,Falta de uso de toucas e uniformes,Média,Baixa,Média,Higiene pessoal e uso de barreiras físicas,Sim
+Trituração,B,Não identificado,,,,,,Não
+Trituração,Q,Contaminação por óleos industriais dos equipamentos,Lubrificação inadequada ou excesso de óleo,Média,Alta,Alta,Uso de lubrificantes alimentícios e manutenção periódica,Sim
+Trituração,F,Fragmentos metálicos do triturador,Desgaste do equipamento,Baixa,Alta,Média,Inspeção visual e filtros,Sim
+Extração alcoólica,B,Contaminação microbiológica por solvente contaminado,Uso de álcool fora dos padrões de pureza,Baixa,Alta,Média,Controle de fornecedores e análise de pureza,Sim
+Extração alcoólica,Q,Resíduos de solvente no produto final,Evaporação inadequada ou falha no controle do tempo/temperatura,Média,Alta,Alta,Controle rigoroso de processo de evaporação,Sim
+Extração alcoólica,F,Não identificado,,,,,,Não
+Filtragem,B,Não identificado,,,,,,Não
+Filtragem,Q,Resíduos de materiais filtrantes,Fragmentos do filtro rompido,Baixa,Média,Baixa,Inspeção periódica do material filtrante,Sim
+Filtragem,F,Partículas sólidas não removidas,Ineficiência do processo de filtração,Média,Baixa,Média,Uso de filtros com malha adequada,Sim
+Envase,B,Contaminação cruzada por contato com frascos não esterilizados,Falta de higienização dos recipientes,Alta,Alta,Alta,Esterilização dos frascos antes do envase,Sim
+Envase,Q,Resíduos de detergentes nas embalagens,Lavagem inadequada dos frascos reutilizáveis,Média,Alta,Alta,Verificação de enxágue e controle de qualidade,Sim
+Envase,F,Presença de fragmentos de vidro,Quebra dos frascos no manuseio,Baixa,Alta,Média,Manuseio cuidadoso e inspeção visual,Sim
+Armazenamento final,B,Proliferação de bolores,Umidade elevada no local de armazenamento,Alta,Média,Alta,Controle de umidade e temperatura,Sim
+Armazenamento final,Q,Não identificado,,,,,,Não
+Armazenamento final,F,Contaminação por poeira,Estocagem em ambiente aberto ou sujo,Média,Baixa,Média,"Estocagem em ambiente fechado, limpo e protegido",Sim

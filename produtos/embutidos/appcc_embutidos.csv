@@ -1,0 +1,25 @@
+etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
+Recebimento de matéria-prima (carne),B,"Contaminação por E. coli, Salmonella ou outros patógenos","A carne crua pode ser fonte de patógenos. A contaminação pode ocorrer por contato com superfícies sujas, pessoal ou equipamentos contaminados.",Média,Alta,Alto,"Boas práticas de recebimento, inspeção visual, controle da temperatura de recebimento da carne.",Sim
+Recebimento de matéria-prima (carne),Q,Resíduos de antibióticos ou hormônios,"Uso inadequado de medicamentos veterinários no gado, com desrespeito ao tempo de carência.",Baixa,Alta,Médio,"Verificação da documentação do gado, controle de fornecedores, rastreabilidade.",Sim
+Recebimento de matéria-prima (carne),F,Fragmentos de metal ou osso,"Desgaste de lâminas de corte, facas ou ossos pequenos na matéria-prima.",Baixa,Média,Baixo,"Inspeção visual da carne, controle de fornecedores, uso de detector de metais.",Não
+Moagem da carne,B,Proliferação de microrganismos,"O calor gerado pela moagem pode elevar a temperatura da carne, permitindo a proliferação bacteriana se o processo for lento.",Média,Média,Médio,"Controle da temperatura da carne antes da moagem e da temperatura do ambiente, tempo de processo limitado.",Sim
+Moagem da carne,Q,Contaminação por lubrificantes e óleos,Vazamento de óleo ou graxa dos rolamentos e engrenagens do moedor.,Baixa,Média,Baixo,"Uso de lubrificantes de grau alimentício, manutenção preventiva do equipamento, inspeção visual do moedor.",Não
+Moagem da carne,F,Fragmentos de metal ou plástico,Desgaste do moedor ou quebra de peças plásticas.,Média,Alta,Alto,"Manutenção preventiva do equipamento, inspeção visual, uso de detector de metais após a moagem.",Sim
+Mistura e tempero,B,Proliferação de microrganismos,Tempo e temperatura inadequados durante a mistura podem permitir o crescimento de patógenos.,Média,Alta,Alto,"Controle de temperatura da massa e do ambiente, limites de tempo de exposição da massa.",Sim
+Mistura e tempero,Q,Dosagem incorreta de nitrito ou nitrato,Excesso de agentes de cura pode ser tóxico ao consumidor.,Baixa,Alta,Alto,"Calibração de balanças, controle rigoroso da pesagem dos ingredientes, treinamento de pessoal.",Sim
+Mistura e tempero,F,Fragmentos de plástico ou outros objetos estranhos,"Presença em aditivos, especiarias ou quebra de utensílios na etapa de mistura.",Baixa,Média,Baixo,"Inspeção de ingredientes e embalagens, controle de fornecedores, inspeção visual.",Não
+Embutimento (enchimento),B,Contaminação da tripa,Tripas naturais ou artificiais podem ser fonte de microrganismos.,Média,Média,Médio,"Controle de fornecedores das tripas, armazenamento adequado, inspeção visual, uso de tripa estéril.",Sim
+Embutimento (enchimento),Q,Não identificado,,,,,,
+Embutimento (enchimento),F,"Fragmentos de metal, plástico ou borracha",Desgaste da máquina embutidora ou de anéis de vedação.,Baixa,Alta,Médio,"Manutenção preventiva do equipamento, inspeção visual da massa, detector de metais.",Sim
+Cozimento / Defumação (tratamento térmico),B,Sobrevivência de microrganismos patogênicos,Tratamento térmico insuficiente para eliminar patógenos como Clostridium perfringens.,Alta,Alta,Alto,Monitoramento contínuo da temperatura interna do produto e do tempo de cozimento.,Sim
+Cozimento / Defumação (tratamento térmico),Q,Contaminação por resíduos de fumaça,"Em defumação, a queima incompleta de madeira pode gerar substâncias cancerígenas.",Baixa,Alta,Médio,"Uso de madeira adequada para defumação, controle de temperatura e fluxo de ar na câmara.",Sim
+Cozimento / Defumação (tratamento térmico),F,Não identificado,,,,,,
+Resfriamento (pós-cozimento),B,Proliferação de microrganismos,Resfriamento inadequado (lento) permite o crescimento de microrganismos termorresistentes.,Alta,Alta,Alto,"Resfriamento rápido após o tratamento térmico, monitoramento da temperatura e do tempo.",Sim
+Resfriamento (pós-cozimento),Q,Não identificado,,,,,,
+Resfriamento (pós-cozimento),F,Não identificado,,,,,,
+Embalagem,B,Contaminação por pessoal ou ambiente,Higiene inadequada do manipulador ou contaminação do ambiente.,Média,Média,Médio,"Controle rigoroso da higiene pessoal, uso de EPI, limpeza e sanitização do ambiente de embalagem.",Sim
+Embalagem,Q,Não identificado,,,,,,
+Embalagem,F,Fragmentos de embalagem ou metal,Quebra de embalagens ou desgaste de equipamentos de selagem.,Baixa,Média,Baixo,"Inspeção das embalagens, manutenção preventiva do equipamento, inspeção visual do produto.",Não
+Expedição e Transporte,B,Proliferação de microrganismos,Falha na manutenção da cadeia de frio durante o transporte.,Média,Alta,Alto,"Monitoramento da temperatura da unidade de transporte, registro das temperaturas.",Sim
+Expedição e Transporte,Q,Contaminação por combustível ou óleos,Vazamento de combustível ou óleo dos veículos de transporte para o produto.,Baixa,Média,Baixo,"Manutenção preventiva dos veículos, inspeção visual, segregação de produtos e materiais.",Não
+Expedição e Transporte,F,Não identificado,,,,,,

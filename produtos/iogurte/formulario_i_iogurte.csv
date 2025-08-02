@@ -1,0 +1,22 @@
+etapa,perigos,codigo,limite_critico,monitoramento_oque,monitoramento_como,monitoramento_quando,monitoramento_quem,acao_corretiva,registro,verificacao
+Recepção do leite,Resíduo de antibiótico,Q,Ausência,Teste de detecção de resíduos,Teste de detecção de antibiótico em todos os tanques,A cada tanque,Responsável técnico,Descarte do leite e comunicação aos fornecedores,Planilhas de controle,Verificação da técnica e observação da validade dos kits
+Recepção do leite,Microrganismo patogênico,B,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável
+Recepção do leite,Não identificado,F,,,,,,,,
+2ª Filtração,Corpo estranho,F,Ausência de danos e obstruções,Filtro em boas condições,Inspeção visual,A cada turno,Operador,Troca do filtro,Registro de inspeção,Supervisão
+2ª Filtração,Não identificado,B,,,,,,,,
+2ª Filtração,Não identificado,Q,,,,,,,,
+Pasteurização,Sobrevivência de microrganismos patogênicos,B,72 a 75°C por 15 a 20 segundos,Binômio: tempo e temperatura,Inspeção do marcador de temperatura e tempo de retenção,"Continuamente, durante o processo",Operador,Ajuste de tempo e temperatura,Registro de tempo e temperatura,Aferição de equipamentos e instrumentos; pesquisa de peroxidase e fosfatase
+Pasteurização,Não identificado,Q,,,,,,,,
+Pasteurização,Não identificado,F,,,,,,,,
+Aquecimento a 95°C,Sobrevivência de microrganismos patogênicos,B,95°C por 5 minutos,Tempo e temperatura,Inspeção do marcador de temperatura e tempo de retenção,"Continuamente, durante o processo",Operador,Ajuste de tempo e temperatura,Registro de controle,Aferição de equipamento
+Aquecimento a 95°C,Não identificado,Q,,,,,,,,
+Aquecimento a 95°C,Não identificado,F,,,,,,,,
+"Adição de fermento, lactase, polpa e etc.",Adição de microrganismos patogênicos,B,Ausência,Fichas técnicas apresentando padrões microbiológicos,Inspeção de fichas técnicas,A cada lote de ingredientes,Responsável técnico,Trocar o fabricante ou descarte,Registro de controle de matéria-prima,Supervisão e auditoria
+"Adição de fermento, lactase, polpa e etc.",Contaminação por agrotóxicos,Q,Ausência,Fichas técnicas apresentando aspectos sobre agrotóxicos,Inspeção de fichas técnicas,A cada lote de ingredientes,Responsável técnico,Trocar o fabricante ou descarte,Registro de controle de matéria-prima,Supervisão e auditoria
+"Adição de fermento, lactase, polpa e etc.",Corpo estranho,F,Ausência,"Inspeção visual, uso de peneiras",Inspeção visual e uso de peneiras,A cada lote de ingredientes,Operador,Remoção do corpo estranho e/ou descarte do lote,Registro de inspeção,Supervisão
+Envase,Fragmentos de metais e/ou vidros,F,Ausência de fragmentos,Integridade das embalagens,Inspeção visual,"Continuamente, durante o envase",Operador da linha de envase,Rejeitar embalagens com fragmentos,Registro de inspeção visual,Supervisão e auditoria
+Envase,Não identificado,B,,,,,,,,
+Envase,Não identificado,Q,,,,,,,,
+Resfriamento e Estocagem do produto final,Proliferação de micro-organismos,B,Temperatura menor que 10°C,Temperatura de armazenamento,Termo-registrador ou termômetro,Continuamente ou periodicamente,Responsável pelo armazenamento,Ajuste do sistema de refrigeração,Registro de controle de temperatura,Aferição de termômetros e auditoria dos registros
+Resfriamento e Estocagem do produto final,Não identificado,Q,,,,,,,,
+Resfriamento e Estocagem do produto final,Não identificado,F,,,,,,,,

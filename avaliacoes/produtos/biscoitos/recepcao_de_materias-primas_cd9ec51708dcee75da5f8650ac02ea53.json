@@ -1,0 +1,46 @@
+{
+  "produto": "biscoitos",
+  "etapa": "Recepção de Matérias-Primas",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por pragas (insetos, fungos, roedores)",
+          "justificativa": "A farinha deve ser estocada em local adequado para evitar a infestação de insetos, fungos e roedores.",
+          "probabilidade": "Média",
+          "severidade": "Média",
+          "risco": "Desprezível",
+          "medida": "A farinha deve ser passada por peneira de 30 mesh antes da mistura para verificar a presença de partículas estranhas.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de microrganismos patogênicos (ex. Salmonella, E. coli) e pragas",
+          "monitoramento": {
+            "oque": "Condições higiênico-sanitárias da matéria-prima e do ambiente",
+            "como": "Inspeção visual e verificação de laudos de qualidade",
+            "quando": "No recebimento de cada lote",
+            "quem": "Funcionário responsável pelo recebimento"
+          },
+          "acao_corretiva": "Rejeição do lote não-conforme",
+          "registro": "Planilha de controle de recebimento",
+          "verificacao": "Revisão periódica dos registros e laudos."
+        }
+      ]
+    }
+  ]
+}

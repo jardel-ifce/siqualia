@@ -1,0 +1,16 @@
+etapa,perigos,codigo,limite_critico,monitoramento_oque,monitoramento_como,monitoramento_quando,monitoramento_quem,acao_corretiva,registro,verificacao
+Recepção do Leite Cru,"Micro-organismos patogênicos, psicrotróficos e de toxinas",B,Temperatura maior que 7°C,Temperatura e carga microbiana,Medida com termômetro e análises laboratoriais,A cada tanque recebido na plataforma,Responsável técnico e operador,Descarte do leite ou ajuste do processo e comunicação aos fornecedores,Planilhas de controle e resultados de análises,"Auditoria, calibração de equipamentos e supervisão"
+Recepção do Leite Cru,Resíduos de antibióticos,Q,Ausência,Resíduos de antibióticos,Teste de detecção de antibiótico,Em todos os tanques,Responsável técnico,Descarte do leite e comunicação aos fornecedores,Planilhas de controle,Verificação da técnica e validade dos kits
+Recepção do Leite Cru,Não identificado,F,,,,,,,,
+Armazenamento sob Refrigeração,Proliferação de micro-organismos,B,Temperatura maior que 7°C ou tempo superior a 2 horas,Temperatura e tempo,Medida com termômetro e controle de tempo,Durante o período de armazenamento,Responsável pela estocagem,"Ajuste do processo, busca das causas e re-resfriamento",Planilha de controle de temperatura,Verificação dos dados do termômetro
+Armazenamento sob Refrigeração,Não identificado,Q,,,,,,,,
+Armazenamento sob Refrigeração,Não identificado,F,,,,,,,,
+Pasteurização,Sobrevivência de microrganismos patogênicos,B,72°C a 75°C durante 15 a 20 segundos,Binômio: tempo e temperatura,Termo-registrador ou microprocessador,"Continuamente, durante o processo",Operador do pasteurizador,"Ajuste de tempo e temperatura, ou realizar novamente a pasteurização",Registro de tempo e temperatura,"Pesquisa de peroxidase e fosfatase, aferição de equipamentos"
+Pasteurização,Não identificado,Q,,,,,,,,
+Pasteurização,Não identificado,F,,,,,,,,
+Envase,Recontaminação por micro-organismos,B,Condições assépticas,Integridade do envase,"Inspeção visual, controle de qualidade",Durante todo o processo,Operador da linha de envase,Remoção e descarte de produtos fora de especificação,Registro de produção,Auditoria de processo
+Envase,Não identificado,Q,,,,,,,,
+Envase,Não identificado,F,,,,,,,,
+Resfriamento e Estocagem do produto final,Proliferação de micro-organismos,B,Temperatura menor que 10°C para leite pasteurizado,Temperatura de armazenamento,Termo-registrador ou termômetro,Continuamente ou periodicamente,Responsável pelo armazenamento,Ajuste do sistema de refrigeração,Registro de controle de temperatura,Aferição de termômetros e auditoria dos registros
+Resfriamento e Estocagem do produto final,Não identificado,Q,,,,,,,,
+Resfriamento e Estocagem do produto final,Não identificado,F,,,,,,,,
