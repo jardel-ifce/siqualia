@@ -1,0 +1,60 @@
+{
+  "produto": "iogurte",
+  "etapa": "Resfriamento/Estocagem",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Multiplicação de microrganismos patogênicos",
+          "justificativa": "O perigo é a multiplicação de microrganismos patogênicos e toxinas.",
+          "probabilidade": "Alta",
+          "severidade": "Média",
+          "risco": "Desprezível",
+          "medida": "Pasteurização em etapa subsequente",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Toxinas",
+          "justificativa": "O perigo é a produção de toxinas por microrganismos.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Controle de temperatura para inibir o crescimento microbiano",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
+}

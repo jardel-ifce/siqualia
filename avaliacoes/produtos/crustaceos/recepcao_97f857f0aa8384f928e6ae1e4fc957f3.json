@@ -1,0 +1,99 @@
+{
+  "produto": "crustaceos",
+  "etapa": "Recepção",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por microrganismos patógenos (Vibrio sp.)",
+          "justificativa": "Cadeia de frio quebrada. Pescado proveniente de águas contaminadas.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Receber matéria-prima com temperatura interna abaixo de 4°C. Análise microbiológica da água de origem.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Temperatura interna abaixo de 4°C. Ausência de patógenos no produto.",
+          "monitoramento": {
+            "oque": "Temperatura do produto e análise microbiológica",
+            "como": "Medição com termômetro e análise laboratorial",
+            "quando": "No recebimento de cada lote",
+            "quem": "Recebedor de mercadoria/Técnico"
+          },
+          "acao_corretiva": "Rejeitar o lote. Notificar o fornecedor e investigar a causa.",
+          "registro": "Ficha de Recepção e Inspeção",
+          "verificacao": "Revisão dos registros e resultados de análise"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Objetos estranhos (metal, plástico)",
+          "justificativa": "Contaminação na captura e transporte por objetos estranhos ou desgaste de equipamentos.",
+          "probabilidade": "Média",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "Inspeção visual rigorosa da matéria-prima no recebimento.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de objetos estranhos",
+          "monitoramento": {
+            "oque": "Presença de objetos estranhos",
+            "como": "Inspeção visual",
+            "quando": "No recebimento de cada lote",
+            "quem": "Recebedor de mercadoria"
+          },
+          "acao_corretiva": "Remover o objeto estranho, inspecionar o restante do lote",
+          "registro": "Ficha de Inspeção de Matéria-Prima",
+          "verificacao": "Treinamento dos operadores"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Biotoxinas marinhas ou contaminantes químicos",
+          "justificativa": "Bioacumulação de biotoxinas e poluentes na cadeia trófica. Contaminação por combustíveis durante a captura.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Análise de laudos de biotoxinas e contaminantes da área de origem. Inspeção visual do pescado e odor.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Valores de poluentes/toxinas abaixo dos limites legais",
+          "monitoramento": {
+            "oque": "Nível de biotoxinas e contaminantes",
+            "como": "Análise laboratorial de amostras",
+            "quando": "Por lote ou periodicamente, conforme legislação",
+            "quem": "Técnico de laboratório"
+          },
+          "acao_corretiva": "Rejeitar o lote, notificar o fornecedor e autoridades competentes",
+          "registro": "Laudo de Análise de Biotoxinas",
+          "verificacao": "Revisão dos relatórios de análise"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "produto": "moluscos",
+  "etapa": "Recepção e Depuração",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por microrganismos (Vibrio sp., vírus)",
+          "justificativa": "Moluscos de áreas de cultivo ou pesca contaminadas, moluscos bivalves são filtradores e concentram microrganismos da água.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Monitoramento microbiológico da água de origem. Processo de depuração em estação própria com água tratada e em temperatura controlada.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Valores microbiológicos dentro dos limites legais após depuração",
+          "monitoramento": {
+            "oque": "Eficácia do processo de depuração",
+            "como": "Análise laboratorial da água e do produto",
+            "quando": "Por lote e continuamente",
+            "quem": "Técnico de laboratório/Operador"
+          },
+          "acao_corretiva": "Aumentar o tempo de depuração. Suspender a captação se a água de origem estiver contaminada.",
+          "registro": "Ficha de Monitoramento da Depuração",
+          "verificacao": "Revisão dos registros e resultados de análise"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Objetos estranhos (pedras, areia)",
+          "justificativa": "Mistura de objetos estranhos nas conchas durante a coleta e transporte.",
+          "probabilidade": "Baixa",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "Inspeção visual da matéria-prima no recebimento e lavagem das conchas.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": []
+    }
+  ]
+}

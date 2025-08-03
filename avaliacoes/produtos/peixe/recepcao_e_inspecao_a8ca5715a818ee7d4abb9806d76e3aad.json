@@ -1,0 +1,33 @@
+{
+  "produto": "peixe",
+  "etapa": "Recepção e Inspeção",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por microrganismos patógenos (E. coli, Salmonella)",
+          "justificativa": "Uso de pescado de origem desconhecida ou em condições higiênicas inadequadas. Transporte em temperatura incorreta.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Alta",
+          "medida": "Monitoramento constante da temperatura da matéria-prima e do ambiente. Inspeção da origem e do transporte.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
+}

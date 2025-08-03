@@ -1,4 +1,4 @@
-etapa,perigos,codigo,limite_critico,monitoramento_oque,monitoramento_como,monitoramento_quando,monitoramento_quem,acao_corretiva,registro,verificacao
+etapa,perigos,tipo,limite_critico,monitoramento_oque,monitoramento_como,monitoramento_quando,monitoramento_quem,acao_corretiva,registro,verificacao
 Recepção do leite,Resíduo de antibiótico,Q,Ausência,Teste de detecção de resíduos,Teste de detecção de antibiótico em todos os tanques,A cada tanque,Responsável técnico,Descarte do leite e comunicação aos fornecedores,Planilhas de controle,Verificação da técnica e observação da validade dos kits
 Recepção do leite,Microrganismo patogênico,B,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável
 Recepção do leite,Não identificado,F,,,,,,,,

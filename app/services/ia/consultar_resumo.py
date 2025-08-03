@@ -1,8 +1,9 @@
 # 📁 app/services/ia/consultar_resumo.py
 
-# 📦 Importações padrão
+# 📦 Bibliotecas padrão
 import faiss
 import pickle
+import numpy as np
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
@@ -21,7 +22,7 @@ PERGUNTAS_FORMULARIO_I = {
     "verificacao": "Como verificar se o controle do perigo está sendo efetivo?"
 }
 
-# 🧠 Geração de prompt para consulta vetorial
+# 🧰 Função auxiliar: prompt de consulta baseado no contexto
 def gerar_prompt(contexto, pergunta):
     return (
         f"query: Produto: {contexto['produto']}. Etapa: {contexto['etapa']}. "
@@ -29,12 +30,28 @@ def gerar_prompt(contexto, pergunta):
         f"Medida preventiva: {contexto['medida']}. Justificativa: {contexto['justificativa']}. {pergunta}"
     )
 
-# 🔍 Função principal de sugestão de respostas do Formulário I
+# 🧰 Função auxiliar: estrutura padrão de retorno vazio
+def resposta_vazia():
+    return {
+        "limite_critico": "",
+        "monitoramento": {
+            "oque": "",
+            "como": "",
+            "quando": "",
+            "quem": ""
+        },
+        "acao_corretiva": "",
+        "registro": "",
+        "verificacao": ""
+    }
+
+# 🔍 Função principal: sugestão de respostas do Formulário I
 def sugerir_resumo_dados(produto, etapa, tipo, perigo, medida, justificativa, origem="formulario_i"):
     base_path = Path("indexes") / produto
     index_path = base_path / f"{origem}_contexto.index"
     meta_path = base_path / f"{origem}_contexto.pkl"
 
+    # Verifica se os arquivos existem
     if not index_path.exists() or not meta_path.exists():
         print(f"[AVISO] Índices não encontrados para {produto}/{origem}")
         return resposta_vazia()
@@ -47,21 +64,54 @@ def sugerir_resumo_dados(produto, etapa, tipo, perigo, medida, justificativa, or
         print(f"[ERRO] Falha ao carregar índice ou metadados: {e}")
         return resposta_vazia()
 
-    etapa_f = etapa.strip().lower()
-    perigo_f = perigo.strip().lower()
-    tipo_f = tipo.strip().upper()
+    # 🔎 Busca vetorial inicial baseada em etapa + tipo + perigo
+    query_texto = f"{etapa.strip().lower()} - {tipo.strip().upper()} - {perigo.strip().lower()}"
+    query_vector = model.encode(query_texto, convert_to_numpy=True, normalize_embeddings=True)
 
-    candidatos = [
-        (i, m) for i, m in enumerate(metadados)
-        if m.get("etapa", "").strip().lower() == etapa_f
-        and m.get("perigo", "").strip().lower() == perigo_f
-        and m.get("tipo", "").strip().upper() == tipo_f
-    ]
+    vetores_meta = []
+    indices_validos = []
+    textos_candidatos = []
 
-    if not candidatos:
-        print(f"[AVISO] Nenhum candidato compatível encontrado para etapa/perigo/tipo.")
+    for i, m in enumerate(metadados):
+        etapa_m = m.get("etapa", "").strip().lower()
+        tipo_m = m.get("tipo", "").strip().upper()
+        perigo_m = m.get("perigo", "").strip().lower()
+
+        if not etapa_m or not tipo_m or not perigo_m:
+            continue
+
+        texto_candidato = f"{etapa_m} - {tipo_m} - {perigo_m}"
+        emb = model.encode(texto_candidato, convert_to_numpy=True, normalize_embeddings=True)
+        vetores_meta.append(emb)
+        textos_candidatos.append(texto_candidato)
+        indices_validos.append(i)
+
+    if not vetores_meta:
+        print("[AVISO] Nenhum vetor de metadado válido encontrado.")
         return resposta_vazia()
 
+    temp_index = faiss.IndexFlatIP(vetores_meta[0].shape[0])
+    temp_index.add(np.array(vetores_meta))
+
+    scores, idxs = temp_index.search(np.array([query_vector]), k=5)
+
+    print(f"\n[DEBUG] Consulta: {query_texto}")
+    for rank, idx in enumerate(idxs[0]):
+        score = scores[0][rank]
+        texto = textos_candidatos[idx]
+        print(f" Rank {rank + 1}: Score={score:.4f} | Etapa-Tipo-Perigo: {texto}")
+
+    candidatos = []
+    for rank, i in enumerate(idxs[0]):
+        score = scores[0][rank]
+        if score > 0.7:
+            candidatos.append((indices_validos[i], metadados[indices_validos[i]]))
+
+    if not candidatos:
+        print("[AVISO] Nenhum candidato suficientemente semelhante encontrado.")
+        return resposta_vazia()
+
+    # Cria subíndice vetorial só com os candidatos relevantes
     sentencas = [
         " - ".join(str(v) for v in m.values() if str(v).strip()) for _, m in candidatos
     ]
@@ -101,19 +151,4 @@ def sugerir_resumo_dados(produto, etapa, tipo, perigo, medida, justificativa, or
         "acao_corretiva": buscar_resposta("acao_corretiva", "acao_corretiva"),
         "registro": buscar_resposta("registro", "registro"),
         "verificacao": buscar_resposta("verificacao", "verificacao")
-    }
-
-# 🔄 Estrutura de resposta vazia padrão
-def resposta_vazia():
-    return {
-        "limite_critico": "",
-        "monitoramento": {
-            "oque": "",
-            "como": "",
-            "quando": "",
-            "quem": ""
-        },
-        "acao_corretiva": "",
-        "registro": "",
-        "verificacao": ""
     }

@@ -1,4 +1,4 @@
-"etapa","perigos","codigo","limite_critico","monitoramento_oque","monitoramento_como","monitoramento_quando","monitoramento_quem","acao_corretiva","registro","verificacao"
+"etapa","perigos",tipo,"limite_critico","monitoramento_oque","monitoramento_como","monitoramento_quando","monitoramento_quem","acao_corretiva","registro","verificacao"
 "Recepção e descanso do gado","Resíduos de antibióticos ou hormônios","Q","Uso exclusivo de produtos de grau alimentício","Uso e dosagem de produtos químicos","Inspeção visual e verificação de rótulos","A cada uso e recebimento","Responsável da qualidade","Ajustar a dosagem, segregar o lote contaminado","Ficha de Controle de Produtos Químicos","Análise laboratorial de resíduos químicos"
 "Recepção e descanso do gado","Não identificado","F","","","","","","","",""
 "Recepção e descanso do gado","Contaminação por E. coli, Salmonella ou outros patógenos","B","Temperatura da carne ≤ 4°C","Temperatura da carne","Uso de termômetro espeto","A cada entrega","Responsável da plataforma de recepção","Rejeitar a matéria-prima ou separar o lote para reavaliação","Formulário de Recebimento","Auditoria periódica de fornecedores"

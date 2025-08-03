@@ -1,0 +1,100 @@
+{
+  "produto": "iogurte",
+  "etapa": "Recepção do leite",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Microrganismo patogênico",
+          "justificativa": "O leite é um excelente meio de cultura para microrganismos patogênicos.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Pasteurização em etapa subsequente",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Não aplicável",
+          "monitoramento": {
+            "oque": "Não aplicável",
+            "como": "Não aplicável",
+            "quando": "Não aplicável",
+            "quem": "Não aplicável"
+          },
+          "acao_corretiva": "Não aplicável",
+          "registro": "Não aplicável",
+          "verificacao": "Não aplicável"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Microrganismo patogênico",
+          "justificativa": "O leite é um excelente meio de cultura para microrganismos patogênicos.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Pasteurização em etapa subsequente",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Antibiótico",
+          "justificativa": "Perigo químico decorrente do envio de leite de animais em tratamento, com resíduos de antibióticos.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Realização de testes para verificação da presença de antibiótico",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
+}

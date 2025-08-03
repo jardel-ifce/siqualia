@@ -1,0 +1,46 @@
+{
+  "produto": "alface",
+  "etapa": "Recepção/seleção da matéria-prima (retiradas folhas externas, forma manual)",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "contaminação cruzada por mãos ou utensílios",
+          "justificativa": "As mãos dos trabalhadores e os utensílios (facas) são potenciais veículos de microrganismos patogênicos (como bactérias, vírus, vermes e protozoários) que podem ser transferidos de folhas sujas, solo ou outros materiais contaminados para as folhas sadias da alface durante o processo manual de retirada das folhas externas. Muitos microrganismos que causam doenças em humanos não causam danos visíveis às hortaliças.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "É essencial realizar treinamento contínuo dos trabalhadores sobre a correta higienização das mãos, que deve ocorrer antes e após o manuseio das hortaliças e após o uso de sanitários. O uso de luvas não substitui a lavagem das mãos. As facas devem ser de aço inox, limpas e frequentemente sanitizadas. Cada equipamento deve ter procedimentos de higiene documentados. A lavagem com água e detergente reduz microrganismos, mas a sanitização com produtos como hipoclorito de sódio é necessária para eliminar patógenos como Salmonella, E. coli e Staphylococcus aureus. Trabalhadores doentes ou com ferimentos devem ser afastados ou protegidos. Devem ser seguidas boas práticas de higiene pessoal e o ambiente de trabalho deve ser mantido limpo e organizado.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Mãos dos manipuladores: Ausência de sujidade visível e estar em conformidade com padrões microbiológicos após higienização;\nUtensílios (facas): Ausência de sujidade visível e estar em conformidade com padrões microbiológicos após higienização e sanitização;\nAusência de matéria orgânica visível nas facas e superfícies de contato antes do uso.",
+          "monitoramento": {
+            "oque": "Higiene das mãos dos trabalhadores; higiene e estado dos utensílios (facas); saúde dos trabalhadores.",
+            "como": "Mãos: Observação visual contínua da prática de lavagem de mãos e aplicação de antisséptico. Testes microbiológicos periódicos das mãos dos manipuladores (swabs) [simulação];Utensílios: Inspeção visual antes e durante o uso para verificar a limpeza. Testes microbiológicos periódicos das superfícies dos utensílios [simulação];Saúde: Verificação diária da saúde dos trabalhadores (questionário ou observação de sintomas).",
+            "quando": "Higiene das mãos: Continuamente, antes de iniciar o trabalho e após cada interrupção;Utensílios: Antes de iniciar a seleção e após cada uso ou a cada 2 horas (manual), ou mais frequentemente se houver acúmulo de sujidade;Saúde: No início de cada turno.",
+            "quem": "Supervisor da área ou líder de equipe [simulação];Responsável pelo controle de qualidade [simulação]."
+          },
+          "acao_corretiva": "Reinstruir e retreinar o trabalhador imediatamente sobre os procedimentos de higiene das mãos e utensílios [simulação];\nRemover o trabalhador da atividade até que a conformidade seja garantida;\nHigienizar e sanitizar novamente os utensílios;\nIsolar e inspecionar o lote de alface que pode ter sido contaminado. Se a contaminação for provável e o risco alto, o descarte do lote pode ser necessário [simulação];\nTrabalhador Doente/Lesionado: Afastar imediatamente o trabalhador da atividade e direcioná-lo para atendimento médico;\nReforço de Treinamento: Se a falha for recorrente, reforçar o treinamento de toda a equipe e revisar os procedimentos operacionais padrão (POP).",
+          "registro": "ichas de monitoramento da higiene das mãos e utensílios;Registros de treinamento dos funcionários em higiene e boas práticas de manipulação;Registros de saúde dos trabalhadores;Registros de não conformidades e ações corretivas;Laudos de análises microbiológicas (se realizadas).",
+          "verificacao": "Revisão semanal dos registros de monitoramento para garantir a aplicação consistente dos procedimentos [simulação];Auditorias internas periódicas (mensal ou trimestral) para avaliar a conformidade geral com os padrões de higiene e eficácia do treinamento [simulação];Análise de reclamações de clientes relacionadas à presença de sujidade ou doenças transmitidas por alimentos para identificar falhas no controle [simulação];Calibração periódica de qualquer equipamento de medição de concentração de sanitizantes, se aplicável (não se aplica diretamente aqui, mas em etapas futuras de sanitização)."
+        }
+      ]
+    }
+  ]
+}

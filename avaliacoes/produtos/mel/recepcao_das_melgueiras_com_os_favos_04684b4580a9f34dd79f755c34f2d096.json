@@ -1,0 +1,37 @@
+{
+  "produto": "mel",
+  "etapa": "Recepção das melgueiras com os favos",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Clostridium botulinum (esporos)",
+          "justificativa": "Contato das melgueiras com o chão na recepção pode aumentar o risco de contaminação por esporos de C. botulinum.",
+          "probabilidade": "Desprezível",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "BPF: procedimentos que evitem depositar as melgueiras com favos diretamente no chão e procedimentos de higienização adequada da área de recepção. PERIGO NÃO CONTROLADO NO ESTABELECIMENTO.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Presença dos dizeres no rótulo",
+          "monitoramento": {
+            "oque": "Dizeres no rótulo",
+            "como": "Inspeção visual",
+            "quando": "A cada lote de rotulagem",
+            "quem": "Responsável pela rotulagem"
+          },
+          "acao_corretiva": "Substituir o rótulo com ausência dos dizeres",
+          "registro": "Planilha de controle de rotulagem",
+          "verificacao": "Supervisão da operação e verificação documental"
+        }
+      ]
+    }
+  ]
+}

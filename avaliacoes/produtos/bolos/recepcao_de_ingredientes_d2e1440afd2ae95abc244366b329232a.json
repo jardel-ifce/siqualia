@@ -1,0 +1,99 @@
+{
+  "produto": "bolos",
+  "etapa": "Recepção de Ingredientes",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por microrganismos (patogênicos e deteriorantes)",
+          "justificativa": "Matérias-primas como ovos podem estar contaminadas com microrganismos perigosos, especialmente se forem de origem clandestina [cite: 235].",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Selecionar fornecedores confiáveis e inspecionar a qualidade e integridade dos ingredientes na recepção[cite: 834, 835].",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de microrganismos patogênicos e níveis aceitáveis de deteriorantes",
+          "monitoramento": {
+            "oque": "Condições higiênico-sanitárias da matéria-prima e dos manipuladores",
+            "como": "Inspeção visual e verificação de laudos de qualidade",
+            "quando": "No recebimento de cada lote",
+            "quem": "Funcionário responsável pela qualidade"
+          },
+          "acao_corretiva": "Rejeição do lote não-conforme e/ou repetição da higienização",
+          "registro": "Planilha de controle da etapa Recepção de Ingredientes",
+          "verificacao": "Revisão periódica dos registros e laudos"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Objetos estranhos (metal, vidro, pedras, plástico)",
+          "justificativa": "Objetos estranhos podem ser introduzidos durante a colheita, processamento inicial ou embalagem do fornecedor[cite: 108].",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Inspeção visual dos ingredientes. Utilizar peneiras para farinhas e outros ingredientes secos. Recusar embalagens danificadas[cite: 867].",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de perigos físicos visíveis",
+          "monitoramento": {
+            "oque": "Integridade e limpeza da embalagem, e ausência de perigos físicos na matéria-prima",
+            "como": "Inspeção visual",
+            "quando": "No recebimento de cada lote",
+            "quem": "Funcionário responsável pela qualidade"
+          },
+          "acao_corretiva": "Rejeição ou devolução do lote não-conforme",
+          "registro": "Planilha de controle da etapa Recepção de Ingredientes",
+          "verificacao": "Revisão periódica dos registros e inspeção do local"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Resíduos de agrotóxicos ou saneantes",
+          "justificativa": "Ingredientes de origem agrícola podem conter resíduos de agrotóxicos. Veículos de transporte podem deixar resíduos de produtos de limpeza.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Aprovar fornecedores que comprovem o controle de resíduos químicos. Inspecionar o produto e as condições de transporte[cite: 854].",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de substâncias não permitidas e/ou dentro dos limites legais",
+          "monitoramento": {
+            "oque": "Integridade da embalagem e documentação do fornecedor",
+            "como": "Análise da documentação do fornecedor e inspeção do rótulo",
+            "quando": "No recebimento de cada lote",
+            "quem": "Funcionário responsável pela qualidade"
+          },
+          "acao_corretiva": "Rejeição ou devolução do lote não-conforme",
+          "registro": "Planilha de controle da etapa Recepção de Ingredientes",
+          "verificacao": "Revisão periódica dos registros e laudos"
+        }
+      ]
+    }
+  ]
+}

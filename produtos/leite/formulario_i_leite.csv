@@ -1,4 +1,4 @@
-etapa,perigos,codigo,limite_critico,monitoramento_oque,monitoramento_como,monitoramento_quando,monitoramento_quem,acao_corretiva,registro,verificacao
+etapa,perigos,tipo,limite_critico,monitoramento_oque,monitoramento_como,monitoramento_quando,monitoramento_quem,acao_corretiva,registro,verificacao
 Recepção do Leite Cru,"Micro-organismos patogênicos, psicrotróficos e de toxinas",B,Temperatura maior que 7°C,Temperatura e carga microbiana,Medida com termômetro e análises laboratoriais,A cada tanque recebido na plataforma,Responsável técnico e operador,Descarte do leite ou ajuste do processo e comunicação aos fornecedores,Planilhas de controle e resultados de análises,"Auditoria, calibração de equipamentos e supervisão"
 Recepção do Leite Cru,Resíduos de antibióticos,Q,Ausência,Resíduos de antibióticos,Teste de detecção de antibiótico,Em todos os tanques,Responsável técnico,Descarte do leite e comunicação aos fornecedores,Planilhas de controle,Verificação da técnica e validade dos kits
 Recepção do Leite Cru,Não identificado,F,,,,,,,,

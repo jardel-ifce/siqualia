@@ -1,0 +1,60 @@
+{
+  "produto": "peixe",
+  "etapa": "Recepção",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por microrganismos patógenos (E. coli, Salmonella)",
+          "justificativa": "Uso de pescado de origem desconhecida ou em condições higiênicas inadequadas. Transporte em temperatura incorreta.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Monitoramento constante da temperatura da matéria-prima e do ambiente. Inspeção da origem e do transporte.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Biotoxinas marinhas e resíduos químicos",
+          "justificativa": "Presença de biotoxinas devido a florações de algas ou contaminantes ambientais. Falha no monitoramento da área de captura.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Análise de laudos de biotoxinas e contaminantes da área de origem. Verificação com fornecedores.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
+}
