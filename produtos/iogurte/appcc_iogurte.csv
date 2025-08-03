@@ -1,15 +1,15 @@
 etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
 Recepção do leite,Q,Antibiótico,"Perigo químico decorrente do envio de leite de animais em tratamento, com resíduos de antibióticos.",Média,Alta,Médio,Realização de testes para verificação da presença de antibiótico,Sim
 Recepção do leite,B,Microrganismo patogênico,O leite é um excelente meio de cultura para microrganismos patogênicos.,Alta,Alta,Alto,Pasteurização em etapa subsequente,Não
-Filtração,F,Corpos estranhos,Pode haver corpos estranhos no leite cru. Uma filtração posterior (2ª) garante a remoção.,Baixa,Baixa,Baixo,Nova filtração em etapa subsequente,Não
-Resfriamento/Estocagem,B,Multiplicação de microrganismos patogênicos,O perigo é a multiplicação de microrganismos patogênicos e toxinas.,Alta,Média,Alto,Pasteurização em etapa subsequente,Não
+Filtração,F,Corpos estranhos,Pode haver corpos estranhos no leite cru. Uma filtração posterior (2ª) garante a remoção.,Baixa,Baixa,Médio,Nova filtração em etapa subsequente,Não
+Resfriamento/Estocagem,B,Multiplicação de microrganismos patogênicos,O perigo é a multiplicação de microrganismos patogênicos e toxinas.,Alta,Média,Desprezível,Pasteurização em etapa subsequente,Não
 Resfriamento/Estocagem,Q,Toxinas,O perigo é a produção de toxinas por microrganismos.,Média,Alta,Médio,Controle de temperatura para inibir o crescimento microbiano,Não
 2ª Filtração,F,Corpo estranho,"O filtro pode não estar íntegro e permeável, permitindo que sujidades permaneçam no leite.",Média,Média,Médio,Filtro em boas condições,Sim
 Pasteurização,B,Sobrevivência de microrganismos patogênicos,Não há etapa anterior efetiva para a eliminação de microrganismos patogênicos.,Alta,Alta,Alto,Controle de tempo e temperatura (72 a 75°C por 15 a 20 segundos),Sim
-Padronização,B,Recontaminação,Risco de contaminação pós-pasteurização.,Baixa,Média,Baixo,Programa prévio para prevenir a contaminação,Não
+Padronização,B,Recontaminação,Risco de contaminação pós-pasteurização.,Baixa,Média,Médio,Programa prévio para prevenir a contaminação,Não
 Aquecimento até 95°C,B,Sobrevivência de microrganismos patogênicos,O aquecimento é necessário para eliminar microrganismos patogênicos.,Média,Média,Médio,Controle de temperatura (95°C por 5 minutos),Sim
-Resfriamento até 40°C e adição de lactase,B,Presença de microrganismos patogênicos,Contaminação de microrganismos patogênicos na lactase.,Baixa,Média,Baixo,Programa prévio de controle de matéria-prima,Sim
-Aquecimento até 41°C e adição de fermento,B,Adição de microrganismos patogênicos,A inoculação de fermento lácteo deve ser feita com cultura de qualidade.,Baixa,Média,Baixo,Programa de controle de matéria-prima,Sim
-Adição de polpa,B,Presença de microrganismos patogênicos,O ingrediente (polpa) pode estar contaminado com microrganismos.,Baixa,Média,Baixo,Controle de matéria-prima,Sim
-Adição de polpa,F,Corpo estranho,O ingrediente (polpa) pode conter corpos estranhos.,Baixa,Baixa,Baixo,Inspeção visual e detector de metais,Sim
-Envase,F,Corpo estranho (fragmentos de metais e/ou vidros),Risco de contaminação por fragmentos de metais ou vidros.,Baixa,Alta,Médio,"Controle de embalagens, inspeção visual",Sim
+Resfriamento até 40°C e adição de lactase,B,Presença de microrganismos patogênicos,Contaminação de microrganismos patogênicos na lactase.,Baixa,Média,Médio,Programa prévio de controle de matéria-prima,Sim
+Aquecimento até 41°C e adição de fermento,B,Adição de microrganismos patogênicos,A inoculação de fermento lácteo deve ser feita com cultura de qualidade.,Baixa,Média,Médio,Programa de controle de matéria-prima,Sim
+Adição de polpa,B,Presença de microrganismos patogênicos,O ingrediente (polpa) pode estar contaminado com microrganismos.,Baixa,Média,Médio,Controle de matéria-prima,Sim
+Adição de polpa,F,Corpo estranho,O ingrediente (polpa) pode conter corpos estranhos.,Baixa,Baixa,Médio,Inspeção visual e detector de metais,Sim
+Envase,F,Corpo estranho (fragmentos de metais e/ou vidros),Risco de contaminação por fragmentos de metais ou vidros.,Baixa,Alta,Alto,"Controle de embalagens, inspeção visual",Sim

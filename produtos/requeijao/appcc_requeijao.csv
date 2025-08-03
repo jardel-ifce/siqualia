@@ -1,7 +1,7 @@
 etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
 Recepção do Leite Cru,B,Micro-organismos patogênicos e toxinas,O leite cru tem microbiota natural e pode ser um substrato para o crescimento de micro-organismos. A temperatura inadequada pode levar à produção de toxinas que não são eliminadas em etapas posteriores. A qualidade da matéria-prima deficiente não garante a qualidade do produto final. ,Alta,Alta,Alto,"Controle de temperatura (abaixo de 5°C), análise de amostras",Sim
 Recepção do Leite Cru,Q,Resíduos de antibióticos,"A pasteurização não elimina resíduos de antibióticos que podem estar presentes no leite de animais em tratamento, representando um perigo químico.",Média,Alta,Médio,Realização de testes para verificação de antibióticos,Sim
-Recepção do Leite Cru,Q,Resíduos de produtos de limpeza,Contaminação acidental ou intencional por produtos de limpeza.,Baixa,Média,Baixo,Controle dos processos de limpeza e sanitização,Não
+Recepção do Leite Cru,Q,Resíduos de produtos de limpeza,Contaminação acidental ou intencional por produtos de limpeza.,Baixa,Média,Médio,Controle dos processos de limpeza e sanitização,Sim
 Recepção do Leite Cru,F,Não identificado,,,,,,
 Armazenamento sob Refrigeração,B,Multiplicação de micro-organismos,O desenvolvimento de micro-organismos presentes no leite pode modificar suas características físico-químicas e sensoriais. A baixa temperatura por um período curto garantirá que toxinas não sejam produzidas.,Média,Média,Médio,Manter a temperatura abaixo de 3°C por no máximo 3 horas,Sim
 Armazenamento sob Refrigeração,Q,Não identificado,,,,,,
@@ -15,9 +15,9 @@ Coagulação,F,Não identificado,,,,,,
 Fusão,B,Sobrevivência de micro-organismos,Esta etapa de tratamento térmico é a última a garantir a segurança e estabilidade microbiológica do produto. O binômio temperatura/tempo deve ser criticamente controlado.,Alta,Alta,Alto,Controle de tempo e temperatura (90°C por 15 minutos ou 95°C por 15 segundos) da massa,Sim
 Fusão,Q,Perigo químico (ingredientes de fusão),"A adição de ingredientes como sal de fusão, sorbato de potássio e sal deve ser controlada para evitar perigos químicos.",Média,Média,Médio,"Controle de pesagem e documentação dos ingredientes, inspeção da procedência",Sim
 Fusão,F,Não identificado,,,,,,
-Envase e Acondicionamento,B,Recontaminação por micro-organismos,"Risco de contaminação cruzada por manipuladores, ar ou embalagens após o tratamento térmico de fusão.",Baixa,Média,Baixo,"Higienização das embalagens, envase a 90°C, inversão para esterilização da tampa",Não
+Envase e Acondicionamento,B,Recontaminação por micro-organismos,"Risco de contaminação cruzada por manipuladores, ar ou embalagens após o tratamento térmico de fusão.",Baixa,Média,Médio,"Higienização das embalagens, envase a 90°C, inversão para esterilização da tampa",Não
 Envase e Acondicionamento,Q,Não identificado,,,,,,
-Envase e Acondicionamento,F,Fragmentos de embalagem ou outros materiais,"Pode ocorrer falha no processo de envase, levando a resíduos de fita de soldagem ou outros materiais estranhos.",Baixa,Média,Baixo,Inspeção visual da integridade das embalagens e da linha de envase,Não
-Resfriamento e Estocagem do produto final,B,Proliferação de micro-organismos,O produto deve ser resfriado rapidamente até atingir uma temperatura inferior a 10°C para interromper a multiplicação microbiana.,Baixa,Baixa,Baixo,Monitoramento e controle da temperatura de resfriamento e armazenamento,Não
+Envase e Acondicionamento,F,Fragmentos de embalagem ou outros materiais,"Pode ocorrer falha no processo de envase, levando a resíduos de fita de soldagem ou outros materiais estranhos.",Baixa,Média,Médio,Inspeção visual da integridade das embalagens e da linha de envase,Não
+Resfriamento e Estocagem do produto final,B,Proliferação de micro-organismos,O produto deve ser resfriado rapidamente até atingir uma temperatura inferior a 10°C para interromper a multiplicação microbiana.,Baixa,Baixa,Médio,Monitoramento e controle da temperatura de resfriamento e armazenamento,Não
 Resfriamento e Estocagem do produto final,Q,Não identificado,,,,,,
 Resfriamento e Estocagem do produto final,F,Não identificado,,,,,,

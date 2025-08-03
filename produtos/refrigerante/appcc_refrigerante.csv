@@ -1,0 +1,13 @@
+etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
+Tratamento de Água,B,Contaminação por microrganismos patógenos (E. coli),Falha na cloração ou em outros sistemas de desinfecção da água.,Média,Alta,Médio,Monitoramento contínuo dos níveis de cloro. Testes microbiológicos da água.,Sim
+Tratamento de Água,Q,Resíduos de produtos químicos de tratamento (cloro),Dosagem incorreta de produtos químicos.,Baixa,Média,Médio,Monitoramento e ajuste da dosagem de cloro. Análise de resíduos químicos na água tratada.,Sim
+Tratamento de Água,F,Partículas sólidas,Falha no sistema de filtração da água.,Baixa,Baixa,Médio,Manutenção e inspeção regulares dos filtros. Monitoramento da turbidez da água.,Sim
+Preparo do Xarope,B,Contaminação por bolores e leveduras,Uso de matérias-primas contaminadas (açúcar) ou higienização inadequada do equipamento.,Média,Média,Médio,Inspeção de matérias-primas. Limpeza e sanitização rigorosa dos tanques e misturadores.,Sim
+Preparo do Xarope,Q,Contaminação por alérgenos,Contaminação cruzada por uso de ingredientes alérgenos.,Baixa,Alta,Alto,Segregação de ingredientes. Protocolo de limpeza validado para alérgenos.,Sim
+Preparo do Xarope,F,Objetos estranhos,Fragmentos de plástico ou metal provenientes de embalagens ou equipamentos.,Baixa,Média,Médio,Inspeção visual de matérias-primas. Manutenção preventiva de equipamentos.,Sim
+Carbonatação,B,Não identificado,,,,,,
+Carbonatação,Q,Contaminação por gases tóxicos,Uso de dióxido de carbono (CO2) não purificado ou contaminado.,Baixa,Alta,Alto,Análise de laudos de CO2 fornecidos pelo fabricante. Uso de CO2 de grau alimentício.,Sim
+Carbonatação,F,Não identificado,,,,,,
+Envasamento e Envase,B,Contaminação por microrganismos,Falha na limpeza e sanitização das envasadoras ou das garrafas/latas.,Alta,Alta,Alto,Limpeza e sanitização rigorosas e validadas. Monitoramento microbiológico da linha de produção.,Sim
+Envasamento e Envase,Q,Resíduos de produtos de limpeza,"Enxágue insuficiente das garrafas, latas ou linha de envase.",Média,Alta,Médio,Protocolo de limpeza e enxágue validado. Verificação de resíduos químicos.,Sim
+Envasamento e Envase,F,"Fragmentos de vidro, metal ou plástico","Quebra de garrafas, desgaste de tampas ou falha no equipamento.",Alta,Alta,Alto,Inspeção visual da linha. Uso de detectores de metal e raio-X.,Sim

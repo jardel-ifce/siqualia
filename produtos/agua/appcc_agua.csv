@@ -1,0 +1,10 @@
+etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
+Captação,B,Contaminação por microrganismos patógenos,Presença de bactérias ou outros patógenos provenientes da fonte.,Média,Alta,Médio,Monitoramento microbiológico constante da fonte. Controle de acesso à área da fonte.,Sim
+Captação,Q,Contaminação por poluentes químicos,Presença de resíduos de pesticidas ou outros poluentes na água bruta.,Média,Alta,Médio,Análise físico-química regular da água da fonte. Proteção da área do aquífero.,Sim
+Captação,F,Partículas sólidas,"Presença de terra, areia ou outros detritos da fonte.",Baixa,Baixa,Médio,Manutenção da área de captação. Uso de filtros grossos na linha inicial.,Sim
+Filtragem e Tratamento,B,Contaminação por microrganismos patógenos,"Falha no sistema de filtração/esterilização (UV, ozônio) da água.",Média,Alta,Médio,Monitoramento contínuo dos sistemas de tratamento. Análise microbiológica da água tratada.,Sim
+Filtragem e Tratamento,Q,Resíduos de produtos de limpeza/tratamento,Dosagem incorreta de ozônio ou falha no enxágue de produtos de limpeza do equipamento.,Baixa,Média,Médio,Protocolos de dosagem controlada. Validação dos ciclos de limpeza e enxágue.,Sim
+Filtragem e Tratamento,F,Fragmentos de filtro,Desgaste ou quebra dos elementos filtrantes.,Baixa,Média,Médio,Manutenção preventiva dos filtros. Inspeção visual regular.,Sim
+Envase,B,Contaminação por microrganismos,"Falha na sanitização da envasadora, das tampas ou das garrafas.",Alta,Alta,Alto,Limpeza e sanitização rigorosas e validadas. Monitoramento microbiológico da linha e do produto final.,Sim
+Envase,Q,Resíduos de produtos de limpeza,Enxágue insuficiente das garrafas ou da linha de envase.,Baixa,Alta,Alto,Protocolo de limpeza e enxágue validado. Verificação de resíduos químicos.,Sim
+Envase,F,Fragmentos de plástico ou metal,"Desgaste da envasadora, da tampa ou quebra da garrafa.",Alta,Alta,Alto,Uso de detectores de metal e raio-X. Inspeção visual da linha.,Sim

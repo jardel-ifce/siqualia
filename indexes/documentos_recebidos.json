@@ -1,171 +1,11 @@
 [
     {
-        "produto": "paes",
-        "arquivo": "appcc_paes.csv",
-        "caminho": "paes/appcc_paes.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:23.248565"
-    },
-    {
-        "produto": "paes",
-        "arquivo": "formulario_i_paes.csv",
-        "caminho": "paes/formulario_i_paes.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:23.364982"
-    },
-    {
-        "produto": "mel",
-        "arquivo": "appcc_mel.csv",
-        "caminho": "mel/appcc_mel.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:23.677139"
-    },
-    {
-        "produto": "mel",
-        "arquivo": "formulario_i_mel.csv",
-        "caminho": "mel/formulario_i_mel.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:23.729751"
-    },
-    {
-        "produto": "alface",
-        "arquivo": "formulario_i_alface.csv",
-        "caminho": "alface/formulario_i_alface.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:24.125774"
-    },
-    {
-        "produto": "alface",
-        "arquivo": "appcc_alface.csv",
-        "caminho": "alface/appcc_alface.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:24.498980"
-    },
-    {
-        "produto": "queijomaturado",
-        "arquivo": "appcc_queijomaturado.csv",
-        "caminho": "queijomaturado/appcc_queijomaturado.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:24.574792"
-    },
-    {
-        "produto": "queijomaturado",
-        "arquivo": "formulario_i_queijomaturado.csv",
-        "caminho": "queijomaturado/formulario_i_queijomaturado.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:24.614021"
-    },
-    {
-        "produto": "biscoitos",
-        "arquivo": "appcc_biscoitos.csv",
-        "caminho": "biscoitos/appcc_biscoitos.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:24.704707"
-    },
-    {
-        "produto": "biscoitos",
-        "arquivo": "formulario_i_biscoitos.csv",
-        "caminho": "biscoitos/formulario_i_biscoitos.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:24.810949"
-    },
-    {
-        "produto": "queijocoalho",
-        "arquivo": "appcc_queijocoalho.csv",
-        "caminho": "queijocoalho/appcc_queijocoalho.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.138113"
-    },
-    {
-        "produto": "queijocoalho",
-        "arquivo": "formulario_I_queijocoalho.csv",
-        "caminho": "queijocoalho/formulario_I_queijocoalho.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.283557"
-    },
-    {
-        "produto": "bolos",
-        "arquivo": "appcc_bolos.csv",
-        "caminho": "bolos/appcc_bolos.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.423685"
-    },
-    {
-        "produto": "bolos",
-        "arquivo": "formulario_i_bolos.csv",
-        "caminho": "bolos/formulario_i_bolos.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.550554"
-    },
-    {
-        "produto": "embutidos",
-        "arquivo": "formulario_i_embutidos.csv",
-        "caminho": "embutidos/formulario_i_embutidos.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.636933"
-    },
-    {
-        "produto": "embutidos",
-        "arquivo": "appcc_embutidos.csv",
-        "caminho": "embutidos/appcc_embutidos.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.725215"
-    },
-    {
-        "produto": "processados",
-        "arquivo": "formulario_i_processados.csv",
-        "caminho": "processados/formulario_i_processados.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.812337"
-    },
-    {
-        "produto": "processados",
-        "arquivo": "appcc_processados.csv",
-        "caminho": "processados/appcc_processados.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:25.900069"
-    },
-    {
-        "produto": "carnebovina",
-        "arquivo": "formulario_i_carnebovina.csv",
-        "caminho": "carnebovina/formulario_i_carnebovina.csv",
-        "tipo": "formulario_i",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:26.018918"
-    },
-    {
-        "produto": "carnebovina",
-        "arquivo": "appcc_carnebovina.csv",
-        "caminho": "carnebovina/appcc_carnebovina.csv",
-        "tipo": "appcc",
-        "vetorizado": true,
-        "ultima_execucao": "2025-08-02T17:14:26.150088"
-    },
-    {
         "produto": "requeijao",
         "arquivo": "appcc_requeijao.csv",
         "caminho": "requeijao/appcc_requeijao.csv",
         "tipo": "appcc",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:55.599586"
+        "ultima_execucao": "2025-08-03T11:11:48.721929"
     },
     {
         "produto": "requeijao",
@@ -173,7 +13,7 @@
         "caminho": "requeijao/formulario_i_requeijao.csv",
         "tipo": "formulario_i",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:55.691380"
+        "ultima_execucao": "2025-08-03T11:11:48.802743"
     },
     {
         "produto": "propolis",
@@ -181,7 +21,7 @@
         "caminho": "propolis/appcc_propolis.csv",
         "tipo": "appcc",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:55.742980"
+        "ultima_execucao": "2025-08-03T11:11:48.851805"
     },
     {
         "produto": "propolis",
@@ -189,7 +29,103 @@
         "caminho": "propolis/formulario_I_propolis.csv",
         "tipo": "formulario_i",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:55.822213"
+        "ultima_execucao": "2025-08-03T11:11:48.931674"
+    },
+    {
+        "produto": "cerveja",
+        "arquivo": "formulario_i_cerveja.csv",
+        "caminho": "cerveja/formulario_i_cerveja.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.030718"
+    },
+    {
+        "produto": "cerveja",
+        "arquivo": "appcc_cerveja.csv",
+        "caminho": "cerveja/appcc_cerveja.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.085944"
+    },
+    {
+        "produto": "peixe",
+        "arquivo": "appcc_peixe.csv",
+        "caminho": "peixe/appcc_peixe.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.125348"
+    },
+    {
+        "produto": "peixe",
+        "arquivo": "formulario_i_peixe.csv",
+        "caminho": "peixe/formulario_i_peixe.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.198590"
+    },
+    {
+        "produto": "paes",
+        "arquivo": "appcc_paes.csv",
+        "caminho": "paes/appcc_paes.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.342425"
+    },
+    {
+        "produto": "paes",
+        "arquivo": "formulario_i_paes.csv",
+        "caminho": "paes/formulario_i_paes.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.481836"
+    },
+    {
+        "produto": "mel",
+        "arquivo": "appcc_mel.csv",
+        "caminho": "mel/appcc_mel.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.810493"
+    },
+    {
+        "produto": "mel",
+        "arquivo": "formulario_i_mel.csv",
+        "caminho": "mel/formulario_i_mel.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:49.864775"
+    },
+    {
+        "produto": "alface",
+        "arquivo": "formulario_i_alface.csv",
+        "caminho": "alface/formulario_i_alface.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:50.288395"
+    },
+    {
+        "produto": "alface",
+        "arquivo": "appcc_alface.csv",
+        "caminho": "alface/appcc_alface.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:50.666555"
+    },
+    {
+        "produto": "crustaceos",
+        "arquivo": "formulario_i_crustaceos.csv",
+        "caminho": "crustaceos/formulario_i_crustaceos.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:50.715533"
+    },
+    {
+        "produto": "crustaceos",
+        "arquivo": "appcc_crustaceos.csv",
+        "caminho": "crustaceos/appcc_crustaceos.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:50.749720"
     },
     {
         "produto": "iogurte",
@@ -197,7 +133,7 @@
         "caminho": "iogurte/formulario_i_iogurte.csv",
         "tipo": "formulario_i",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:55.909639"
+        "ultima_execucao": "2025-08-03T11:11:50.819284"
     },
     {
         "produto": "iogurte",
@@ -205,7 +141,151 @@
         "caminho": "iogurte/appcc_iogurte.csv",
         "tipo": "appcc",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:55.942351"
+        "ultima_execucao": "2025-08-03T11:11:50.844045"
+    },
+    {
+        "produto": "moluscos",
+        "arquivo": "formulario_i_moluscos.csv",
+        "caminho": "moluscos/formulario_i_moluscos.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:50.888593"
+    },
+    {
+        "produto": "moluscos",
+        "arquivo": "appcc_moluscos.csv",
+        "caminho": "moluscos/appcc_moluscos.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:50.923080"
+    },
+    {
+        "produto": "queijomaturado",
+        "arquivo": "appcc_queijomaturado.csv",
+        "caminho": "queijomaturado/appcc_queijomaturado.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.018290"
+    },
+    {
+        "produto": "queijomaturado",
+        "arquivo": "formulario_i_queijomaturado.csv",
+        "caminho": "queijomaturado/formulario_i_queijomaturado.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.058228"
+    },
+    {
+        "produto": "biscoitos",
+        "arquivo": "appcc_biscoitos.csv",
+        "caminho": "biscoitos/appcc_biscoitos.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.178111"
+    },
+    {
+        "produto": "biscoitos",
+        "arquivo": "formulario_i_biscoitos.csv",
+        "caminho": "biscoitos/formulario_i_biscoitos.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.259966"
+    },
+    {
+        "produto": "queijocoalho",
+        "arquivo": "appcc_queijocoalho.csv",
+        "caminho": "queijocoalho/appcc_queijocoalho.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.540295"
+    },
+    {
+        "produto": "queijocoalho",
+        "arquivo": "formulario_I_queijocoalho.csv",
+        "caminho": "queijocoalho/formulario_I_queijocoalho.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.682199"
+    },
+    {
+        "produto": "bolos",
+        "arquivo": "appcc_bolos.csv",
+        "caminho": "bolos/appcc_bolos.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.820148"
+    },
+    {
+        "produto": "bolos",
+        "arquivo": "formulario_i_bolos.csv",
+        "caminho": "bolos/formulario_i_bolos.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.945485"
+    },
+    {
+        "produto": "agua",
+        "arquivo": "formulario_i_agua.csv",
+        "caminho": "agua/formulario_i_agua.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:51.986334"
+    },
+    {
+        "produto": "agua",
+        "arquivo": "appcc_agua.csv",
+        "caminho": "agua/appcc_agua.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.007031"
+    },
+    {
+        "produto": "embutidos",
+        "arquivo": "formulario_i_embutidos.csv",
+        "caminho": "embutidos/formulario_i_embutidos.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.131513"
+    },
+    {
+        "produto": "embutidos",
+        "arquivo": "appcc_embutidos.csv",
+        "caminho": "embutidos/appcc_embutidos.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.208387"
+    },
+    {
+        "produto": "refrigerante",
+        "arquivo": "formulario_i_refrigerante.csv",
+        "caminho": "refrigerante/formulario_i_refrigerante.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.254790"
+    },
+    {
+        "produto": "refrigerante",
+        "arquivo": "appcc_refrigerante.csv",
+        "caminho": "refrigerante/appcc_refrigerante.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.284723"
+    },
+    {
+        "produto": "processados",
+        "arquivo": "formulario_i_processados.csv",
+        "caminho": "processados/formulario_i_processados.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.388812"
+    },
+    {
+        "produto": "processados",
+        "arquivo": "appcc_processados.csv",
+        "caminho": "processados/appcc_processados.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.474624"
     },
     {
         "produto": "leite",
@@ -213,7 +293,7 @@
         "caminho": "leite/formulario_i_leite.csv",
         "tipo": "formulario_i",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:55.997087"
+        "ultima_execucao": "2025-08-03T11:11:52.529533"
     },
     {
         "produto": "leite",
@@ -221,6 +301,38 @@
         "caminho": "leite/appcc_leite.csv",
         "tipo": "appcc",
         "vetorizado": true,
-        "ultima_execucao": "2025-08-02T19:22:56.082632"
+        "ultima_execucao": "2025-08-03T11:11:52.592761"
+    },
+    {
+        "produto": "suco",
+        "arquivo": "appcc_suco.csv",
+        "caminho": "suco/appcc_suco.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.639807"
+    },
+    {
+        "produto": "suco",
+        "arquivo": "formulario_i_suco.csv",
+        "caminho": "suco/formulario_i_suco.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.704615"
+    },
+    {
+        "produto": "carnebovina",
+        "arquivo": "formulario_i_carnebovina.csv",
+        "caminho": "carnebovina/formulario_i_carnebovina.csv",
+        "tipo": "formulario_i",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.824025"
+    },
+    {
+        "produto": "carnebovina",
+        "arquivo": "appcc_carnebovina.csv",
+        "caminho": "carnebovina/appcc_carnebovina.csv",
+        "tipo": "appcc",
+        "vetorizado": true,
+        "ultima_execucao": "2025-08-03T11:11:52.994520"
     }
 ]

@@ -1,0 +1,13 @@
+etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
+Recepção e Seleção,B,Contaminação por microrganismos (patógenos),"Uso de frutas danificadas, mofadas ou em decomposição. Presença de E. coli, Salmonella.",Alta,Alta,Alto,Inspeção rigorosa das frutas. Descarte de frutas com danos visíveis ou sinais de deterioração.,Sim
+Recepção e Seleção,Q,Resíduos de agrotóxicos,Provenientes do cultivo e colheita das frutas.,Média,Alta,Médio,Análise de laudos de fornecedores. Lavagem das frutas com solução sanitizante.,Sim
+Recepção e Seleção,F,"Objetos estranhos (pedras, folhas, insetos)",Mistura de objetos estranhos nas frutas durante a colheita e transporte.,Média,Baixa,Médio,Inspeção visual das frutas. Uso de peneiras e mesas de seleção.,Sim
+Lavagem/Sanitização,B,Contaminação por microrganismos patógenos,Ineficiência da lavagem e sanitização para remover microrganismos da superfície da fruta.,Média,Alta,Médio,Uso de água potável com sanitizante em concentração controlada. Monitoramento da eficácia da sanitização.,Sim
+Lavagem/Sanitização,Q,Resíduos de produtos de limpeza,Enxágue insuficiente após a sanitização das frutas.,Baixa,Média,Médio,Padronização do protocolo de enxágue. Verificação de resíduos.,Sim
+Lavagem/Sanitização,F,Não identificado,,,,,,
+Trituração e Prensagem,B,Contaminação por microrganismos,Equipamento de trituração ou prensagem sujo ou contaminado. Proliferação devido ao aumento da superfície de contato.,Alta,Alta,Alto,Limpeza e sanitização rigorosas do equipamento. Controle da temperatura ambiente.,Sim
+Trituração e Prensagem,Q,Contaminação por lubrificantes,Vazamento de óleo ou graxa dos equipamentos.,Baixa,Alta,Alto,Utilização de lubrificantes de grau alimentício. Manutenção preventiva.,Sim
+Trituração e Prensagem,F,Fragmentos de metal ou plástico,Desgaste do equipamento.,Média,Média,Médio,Manutenção preventiva e inspeção visual regular.,Sim
+Filtração e Envasamento,B,Contaminação por microrganismos,Falha no processo de filtração estéril ou na sanitização da envasadora e embalagens.,Alta,Alta,Alto,Manutenção dos filtros. Limpeza e sanitização rigorosas e validadas da envasadora.,Sim
+Filtração e Envasamento,Q,Resíduos de produtos de limpeza,Enxágue insuficiente das embalagens ou da linha de envase.,Baixa,Alta,Alto,Protocolo de limpeza e enxágue validado. Verificação de resíduos químicos.,Sim
+Filtração e Envasamento,F,"Fragmentos de vidro, metal ou plástico","Quebra de embalagens, desgaste de tampas ou falha no equipamento.",Alta,Alta,Alto,Inspeção visual da linha. Uso de detectores de metal e raio-X.,Sim

@@ -1,0 +1,22 @@
+etapa,codigo,perigos,justificativa,probabilidade,severidade,risco,medidas preventivas,o perigo é significativo?
+Recepção e Armazenamento,B,Proliferação de bolores e leveduras,"Armazenamento em local inadequado, com alta umidade e temperatura.",Média,Baixa,Médio,Controle de umidade e temperatura do local de armazenamento.,Sim
+Recepção e Armazenamento,Q,Resíduos de agrotóxicos,Provenientes de matérias-primas de origem agrícola (malte e lúpulo).,Baixa,Alta,Alto,Análise de laudos das matérias-primas. Verificação com fornecedores.,Sim
+Recepção e Armazenamento,F,"Objetos estranhos (metal, vidro, pedra)",Mistura de objetos estranhos nas matérias-primas durante a colheita ou transporte.,Média,Média,Médio,Inspeção visual das matérias-primas. Uso de peneiras e ímãs.,Sim
+Moagem do Malte,B,Proliferação de microrganismos,Equipamento de moagem sujo ou contaminado.,Baixa,Média,Médio,Limpeza e sanitização periódica do moinho.,Sim
+Moagem do Malte,Q,Contaminação por lubrificantes,Vazamento de óleo ou graxa do equipamento de moagem.,Baixa,Alta,Alto,Utilização de lubrificantes de grau alimentício.,Sim
+Moagem do Malte,F,Fragmentos de metal,Desgaste do equipamento de moagem.,Baixa,Alta,Alto,Manutenção preventiva do equipamento. Inspeção visual. Detector de metais.,Sim
+Mostura,B,Contaminação bacteriana,Controle de temperatura inadequado durante a mostura.,Média,Média,Médio,Monitoramento constante da temperatura. Calibração dos termômetros.,Sim
+Mostura,Q,Resíduos de produtos de limpeza,Enxágue insuficiente dos tanques após a limpeza e sanitização.,Baixa,Alta,Alto,Protocolo de limpeza e sanitização com verificação de resíduos. Treinamento da equipe.,Sim
+Mostura,F,Não identificado,,,,,,
+Fervura,B,Não identificado,,,,,,
+Fervura,Q,Resíduos de produtos de limpeza,Enxágue insuficiente do tanque antes da fervura.,Baixa,Alta,Alto,Protocolo de limpeza e sanitização com verificação de resíduos. Treinamento da equipe.,Sim
+Fervura,F,Fragmentos de metal,Desgaste do tanque ou dos equipamentos de agitação.,Baixa,Média,Médio,Manutenção preventiva do equipamento. Inspeção visual.,Sim
+Resfriamento e Aeração,B,Contaminação por microrganismos patógenos,Falha na higienização do trocador de calor. Aeração pode introduzir microrganismos do ar.,Alta,Alta,Alto,Limpeza e sanitização rigorosa do trocador de calor. Uso de filtro estéril para o ar de aeração.,Sim
+Resfriamento e Aeração,Q,Resíduos de produtos de limpeza,Enxágue insuficiente do trocador de calor.,Baixa,Alta,Alto,Protocolo de limpeza e sanitização com verificação de resíduos.,Sim
+Resfriamento e Aeração,F,Não identificado,,,,,,
+Fermentação,B,Contaminação por leveduras selvagens,Levedura ou equipamento contaminado.,Média,Média,Médio,Controle de qualidade da levedura. Limpeza e sanitização rigorosa dos fermentadores.,Sim
+Fermentação,Q,Contaminação por lubrificantes,Vazamento de lubrificantes das bombas ou selos dos fermentadores.,Baixa,Média,Médio,Utilização de lubrificantes de grau alimentício.,Sim
+Fermentação,F,Fragmentos de metal ou plástico,Desgaste de peças do fermentador ou da linha.,Baixa,Média,Médio,Manutenção preventiva e inspeção.,Sim
+Filtração e Envasamento,B,Contaminação por patógenos,Falha na limpeza e sanitização das envasadoras ou garrafas/latas.,Alta,Alta,Alto,Limpeza e sanitização rigorosa. Pasteurização (se aplicável).,Sim
+Filtração e Envasamento,Q,Resíduos de produtos de limpeza,"Enxágue insuficiente das garrafas, latas ou linha de envase.",Média,Alta,Médio,Protocolo de limpeza e sanitização com verificação de resíduos.,Sim
+Filtração e Envasamento,F,"Fragmentos de vidro, metal ou plástico","Quebra de garrafas, desgaste de tampas ou linha de produção.",Alta,Alta,Alto,Inspeção visual da linha. Uso de detector de metais e raios-X.,Sim
