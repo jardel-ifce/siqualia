@@ -41,6 +41,91 @@
           "verificacao": "Revisão periódica dos registros e laudos"
         }
       ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Objetos estranhos (fragmentos de casca, fios de cabelo)",
+          "justificativa": "Fragmentos de casca de ovo ou outros objetos estranhos podem ser introduzidos durante o preparo dos recheios e coberturas.",
+          "probabilidade": "Média",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "Treinar manipuladores em higiene pessoal. Inspecionar os ingredientes antes do uso.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": []
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Não identificadodsds",
+          "justificativa": "dsdsdsd",
+          "probabilidade": "Desprezível",
+          "severidade": "Média",
+          "risco": "Média",
+          "medida": "",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": []
+    },
+    {
+      "id": 4,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Não identificado",
+          "justificativa": "",
+          "probabilidade": "Desprezível",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": []
+    },
+    {
+      "id": 5,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por microrganismos (ovos crus, laticínios)",
+          "justificativa": "Ingredientes como ovos, cremes e laticínios, que não são submetidos a tratamento térmico, podem conter microrganismos perigosos [cite: 1052].",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Utilizar ovos pasteurizados ou em pó em preparações que não serão cozidas (como mousses e cremes)[cite: 1052]. Manter a temperatura de refrigeração para cremes e coberturas abaixo de 5°C.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de microrganismos patogênicos e níveis aceitáveis de deteriorantes",
+          "monitoramento": {
+            "oque": "Condições higiênico-sanitárias do(s) Contaminação por microrganismos e dos manipuladores",
+            "como": "Inspeção visual e verificação de laudos de qualidade",
+            "quando": "No recebimento de cada lote e/ou durante o processo",
+            "quem": "Funcionário responsável pela qualidade"
+          },
+          "acao_corretiva": "Rejeição do lote não-conforme e/ou repetição da higienização",
+          "registro": "Planilha de controle da etapa Recheio e/ou Cobertura",
+          "verificacao": "Revisão periódica dos registros e laudos"
+        }
+      ]
     }
   ]
 }

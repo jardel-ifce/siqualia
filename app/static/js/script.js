@@ -918,30 +918,65 @@ async function sugerirResumo(botao) {
     const justificativa = bloco.querySelector("textarea[name='justificativa']").value;
     const medida = bloco.querySelector("textarea[name='medida']").value;
 
-    const resp = await fetch("/ia/resumo/sugerir", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            produto: produtoSelecionado,
-            etapa: etapaSelecionada,
-            id_perigo: perigoId,
-            tipo,
-            perigo,
-            justificativa,
-            medida
-        })
-    });
-    const json = await resp.json();
-    if (!resp.ok) return alert("Erro: " + json.detail);
-    const dados = json.resumo;
-    bloco.querySelector("textarea[name='limite_critico']").value = dados.limite_critico;
-    bloco.querySelector("input[name='monitoramento_oque']").value = dados.monitoramento.oque;
-    bloco.querySelector("input[name='monitoramento_como']").value = dados.monitoramento.como;
-    bloco.querySelector("input[name='monitoramento_quando']").value = dados.monitoramento.quando;
-    bloco.querySelector("input[name='monitoramento_quem']").value = dados.monitoramento.quem;
-    bloco.querySelector("textarea[name='acao_corretiva']").value = dados.acao_corretiva;
-    bloco.querySelector("input[name='registro']").value = dados.registro;
-    bloco.querySelector("input[name='verificacao']").value = dados.verificacao;
+    try {
+        const resp = await fetch("/ia/resumo/sugerir", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                produto: produtoSelecionado,
+                etapa: etapaSelecionada,
+                id_perigo: perigoId,
+                tipo,
+                perigo,
+                justificativa,
+                medida
+            })
+        });
+
+        if (resp.status === 404) {
+            return alert("Não foi possível encontrar uma sugestão de resumo para este perigo. Tente preencher manualmente.");
+        }
+
+        const json = await resp.json();
+
+        if (!resp.ok) {
+            return alert("Erro na sugestão da IA: " + (json.detail || JSON.stringify(json)));
+        }
+
+        const dados = json.resumo;
+
+        // Verifica se o objeto de dados tem algum valor preenchido
+        const camposPreenchidos = [
+            dados.limite_critico,
+            dados.acao_corretiva,
+            dados.registro,
+            dados.verificacao,
+            dados.monitoramento?.oque,
+            dados.monitoramento?.como,
+            dados.monitoramento?.quando,
+            dados.monitoramento?.quem
+        ].some(value => value && value.trim() !== '');
+
+        if (!camposPreenchidos) {
+            alert("A sugestão da IA foi processada, mas não foram encontrados dados relevantes para preencher os campos.");
+        } else {
+            // Se houver dados, preenche e mostra a mensagem de sucesso
+            bloco.querySelector("textarea[name='limite_critico']").value = dados.limite_critico;
+            bloco.querySelector("input[name='monitoramento_oque']").value = dados.monitoramento.oque;
+            bloco.querySelector("input[name='monitoramento_como']").value = dados.monitoramento.como;
+            bloco.querySelector("input[name='monitoramento_quando']").value = dados.monitoramento.quando;
+            bloco.querySelector("input[name='monitoramento_quem']").value = dados.monitoramento.quem;
+            bloco.querySelector("textarea[name='acao_corretiva']").value = dados.acao_corretiva;
+            bloco.querySelector("input[name='registro']").value = dados.registro;
+            bloco.querySelector("input[name='verificacao']").value = dados.verificacao;
+
+            alert("Sugestão da IA aplicada com sucesso!");
+        }
+
+    } catch (error) {
+        console.error("Ocorreu um erro inesperado ao tentar obter ou aplicar a sugestão da IA:", error);
+        alert("Ocorreu um erro inesperado. Verifique o console para mais detalhes.");
+    }
 }
 
 /**
@@ -951,7 +986,6 @@ async function sugerirResumoEdicao() {
     const modalEl = document.getElementById("modalEditarResumo");
     const formResumo = document.getElementById("formEditarResumo");
 
-    // Obtém os dados dos atributos do modal (assumindo que já estão corretos)
     const perigoId = parseInt(modalEl.getAttribute('data-perigo-id'));
     const tipo = modalEl.getAttribute('data-perigo-tipo');
     const perigo = modalEl.getAttribute('data-perigo-perigo');
@@ -977,6 +1011,11 @@ async function sugerirResumoEdicao() {
             })
         });
 
+        if (resp.status === 404) {
+            alert("Não foi possível encontrar uma sugestão de resumo para este perigo. Tente preencher manualmente.");
+            return;
+        }
+
         const json = await resp.json();
 
         if (!resp.ok) {
@@ -984,72 +1023,51 @@ async function sugerirResumoEdicao() {
         }
 
         const dados = json.resumo;
-        console.log("Dados da sugestão de IA recebidos:", dados);
 
-        // --- INÍCIO DA LÓGICA DE ATUALIZAÇÃO MAIS SEGURA ---
+        // Verifica se o objeto de dados tem algum valor preenchido
+        const camposPreenchidos = [
+            dados.limite_critico,
+            dados.acao_corretiva,
+            dados.registro,
+            dados.verificacao,
+            dados.monitoramento?.oque,
+            dados.monitoramento?.como,
+            dados.monitoramento?.quando,
+            dados.monitoramento?.quem
+        ].some(value => value && value.trim() !== '');
 
-        // Campos de nível superior
-        const limiteCriticoEl = formResumo.querySelector("textarea[name='limite_critico']");
-        if (limiteCriticoEl) {
-            limiteCriticoEl.value = dados.limite_critico || '';
+        if (!camposPreenchidos) {
+            alert("A sugestão da IA foi processada, mas não foram encontrados dados relevantes para preencher os campos.");
+            // Não retorna, permitindo que os campos vazios sejam atribuídos
         } else {
-            console.error("Erro: O campo 'limite_critico' não foi encontrado no formulário do modal.");
+            // Se houver dados, preenche e mostra a mensagem de sucesso
+            const limiteCriticoEl = formResumo.querySelector("textarea[name='limite_critico']");
+            if (limiteCriticoEl) limiteCriticoEl.value = dados.limite_critico || '';
+
+            const acaoCorretivaEl = formResumo.querySelector("textarea[name='acao_corretiva']");
+            if (acaoCorretivaEl) acaoCorretivaEl.value = dados.acao_corretiva || '';
+
+            const registroEl = formResumo.querySelector("input[name='registro']");
+            if (registroEl) registroEl.value = dados.registro || '';
+
+            const verificacaoEl = formResumo.querySelector("input[name='verificacao']");
+            if (verificacaoEl) verificacaoEl.value = dados.verificacao || '';
+
+            const monitoramento = dados.monitoramento || {};
+            const oqueEl = formResumo.querySelector("input[name='monitoramento_oque']");
+            if (oqueEl) oqueEl.value = monitoramento.oque || '';
+
+            const comoEl = formResumo.querySelector("input[name='monitoramento_como']");
+            if (comoEl) comoEl.value = monitoramento.como || '';
+
+            const quandoEl = formResumo.querySelector("input[name='monitoramento_quando']");
+            if (quandoEl) quandoEl.value = monitoramento.quando || '';
+
+            const quemEl = formResumo.querySelector("input[name='monitoramento_quem']");
+            if (quemEl) quemEl.value = monitoramento.quem || '';
+
+            alert("Sugestão da IA aplicada com sucesso!");
         }
-
-        const acaoCorretivaEl = formResumo.querySelector("textarea[name='acao_corretiva']");
-        if (acaoCorretivaEl) {
-            acaoCorretivaEl.value = dados.acao_corretiva || '';
-        } else {
-            console.error("Erro: O campo 'acao_corretiva' não foi encontrado no formulário do modal.");
-        }
-
-        const registroEl = formResumo.querySelector("input[name='registro']");
-        if (registroEl) {
-            registroEl.value = dados.registro || '';
-        } else {
-            console.error("Erro: O campo 'registro' não foi encontrado no formulário do modal.");
-        }
-
-        const verificacaoEl = formResumo.querySelector("input[name='verificacao']");
-        if (verificacaoEl) {
-            verificacaoEl.value = dados.verificacao || '';
-        } else {
-            console.error("Erro: O campo 'verificacao' não foi encontrado no formulário do modal.");
-        }
-
-        // Campos do objeto aninhado 'monitoramento'
-        const monitoramento = dados.monitoramento || {};
-        const oqueEl = formResumo.querySelector("input[name='monitoramento_oque']");
-        if (oqueEl) {
-            oqueEl.value = monitoramento.oque || '';
-        } else {
-            console.error("Erro: O campo 'monitoramento_oque' não foi encontrado no formulário do modal.");
-        }
-
-        const comoEl = formResumo.querySelector("input[name='monitoramento_como']");
-        if (comoEl) {
-            comoEl.value = monitoramento.como || '';
-        } else {
-            console.error("Erro: O campo 'monitoramento_como' não foi encontrado no formulário do modal.");
-        }
-
-        const quandoEl = formResumo.querySelector("input[name='monitoramento_quando']");
-        if (quandoEl) {
-            quandoEl.value = monitoramento.quando || '';
-        } else {
-            console.error("Erro: O campo 'monitoramento_quando' não foi encontrado no formulário do modal.");
-        }
-
-        const quemEl = formResumo.querySelector("input[name='monitoramento_quem']");
-        if (quemEl) {
-            quemEl.value = monitoramento.quem || '';
-        } else {
-            console.error("Erro: O campo 'monitoramento_quem' não foi encontrado no formulário do modal.");
-        }
-
-        // --- FIM DA LÓGICA DE ATUALIZAÇÃO MAIS SEGURA ---
-
-        alert("Sugestão da IA aplicada com sucesso!");
 
     } catch (error) {
         console.error("Ocorreu um erro inesperado ao tentar obter ou aplicar a sugestão da IA:", error);
