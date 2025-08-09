@@ -667,20 +667,23 @@
 		etapaSelecionada = "";
 		perigosOrganizados = {};
 	}
-	
+
 	async function consultarEtapa() {
 		document.getElementById("selectContainer").style.display = "none";
 		document.getElementById("btnAnaliseContainer").style.display = "none";
 		document.getElementById("abasContainer").style.display = "none";
 		document.getElementById("tabelaPerigos").innerHTML = "";
-		
+
+        const btnSalvar = document.getElementById("btnSalvarEtapa");
+        if (btnSalvar) btnSalvar.classList.add("d-none");
+
 		const etapa = document.getElementById("inputEtapa").value.trim();
 		etapaSelecionada = etapa;
 		if (!etapa) {
 			alert("Digite o nome da etapa antes de consultar.");
 			return;
 		}
-		
+
 		const res = await fetch("/ia/etapas/similar", {
 			method: "POST",
 			headers: {'Content-Type': 'application/json'},
@@ -700,26 +703,32 @@
 	}
 	
 	async function buscarEtapaSelecionada() {
-		const etapa = document.getElementById("selectEtapas").value;
-		if (!etapa || !produtoSelecionado) return;
+        const etapa = document.getElementById("selectEtapas").value;
+        if (!etapa || !produtoSelecionado) return;
 
-		const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
-		if (!res.ok) return;
+        const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
+        if (!res.ok) return;
 
-		const etapasSalvas = await res.json();
-		const tabela = document.getElementById("tabelaPerigos");
-		const btnSalvar = document.getElementById("btnSalvarEtapa");
+        const etapasSalvas = await res.json();
+        const tabela = document.getElementById("tabelaPerigos");
+        const btnSalvar = document.getElementById("btnSalvarEtapa");
 
-		if (etapasSalvas.includes(etapa)) {
-			await verificarEtapaJaSalva(etapa);
-			etapaSelecionada = etapa;
-			btnSalvar.classList.add("d-none");
-		} else {
-			tabela.innerHTML = "";
-			btnSalvar.classList.remove("d-none");
-			document.getElementById("btnAnaliseContainer").style.display = "none";
-		}
-	}
+        // Lógica para verificar se a etapa já foi salva
+        const etapaJaSalva = etapasSalvas.includes(etapa);
+
+        if (etapaJaSalva) {
+            await verificarEtapaJaSalva(etapa);
+            etapaSelecionada = etapa;
+            if (btnSalvar) btnSalvar.classList.add("d-none");
+        } else {
+            // Mensagem de alerta adicionada aqui
+            alert(`A etapa "${etapa}" não foi encontrada no cadastro. Clique em "Salvar Etapa" para adicioná-la.`);
+            // Se a etapa NÃO existe, limpe a tabela e mostre o botão de salvar
+            if (tabela) tabela.innerHTML = "";
+            if (btnSalvar) btnSalvar.classList.remove("d-none");
+            document.getElementById("btnAnaliseContainer").style.display = "none";
+        }
+    }
 	
 	function slugify(texto) {
 		return texto
@@ -842,25 +851,26 @@
 			`;
 		}
 
-		btnSalvar.classList.add("d-none");
+		//btnSalvar.classList.add("d-none");
 		document.getElementById("btnAnaliseContainer").style.display = "block";
 	}
 	
 	let arquivoEtapaSalvo = "";
 	
 	async function salvarEtapa() {
-		const etapa = document.getElementById("selectEtapas").value;
-		const res = await fetch("/crud/etapas/salvar", {
-			method: "POST",
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({produto: produtoSelecionado, etapa})
-		});
-		const dados = await res.json();
-		etapaSelecionada = etapa;
-		arquivoEtapaSalvo = dados.arquivo;
-		document.getElementById("btnAnaliseContainer").style.display = "block";
-		alert("Etapa salva: " + dados.arquivo);
-	}
+        const etapa = document.getElementById("selectEtapas").value;
+        const res = await fetch("/crud/etapas/salvar", {
+           method: "POST",
+           headers: {'Content-Type': 'application/json'},
+           body: JSON.stringify({produto: produtoSelecionado, etapa})
+        });
+        const dados = await res.json();
+        etapaSelecionada = etapa;
+        arquivoEtapaSalvo = dados.arquivo;
+        document.getElementById("btnAnaliseContainer").style.display = "block";
+        document.getElementById("btnSalvarEtapa").style.display = "none"; // Linha adicionada
+        alert("Etapa salva: " + dados.arquivo);
+    }
 	
 	async function iniciarAnalise() {
 		const res = await fetch(`/ia/perigos/sugerir?produto=${produtoSelecionado}&etapa=${etapaSelecionada}`);
@@ -883,7 +893,7 @@
 		
 		montarAbas();
 		document.getElementById("abasContainer").style.display = "block";
-		document.getElementById("btnSalvarEtapa").style.display = "none";
+		//document.getElementById("btnSalvarEtapa").style.display = "none";
 		ativarComportamentoAbas();
 	}
 	
