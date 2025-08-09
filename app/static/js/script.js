@@ -419,8 +419,8 @@ async function verificarEtapaJaSalva(etapaDigitada) {
                          <i class="bi bi-journal-richtext"></i>
                       </button>
                       <button class="btn btn-sm btn-success me-1" title="Formulário I"
-                         onclick='abrirModalEditarResumo(${p.id}, ${JSON.stringify(p.resumo?.[0] || {})}, "${p.perigo?.[0]?.perigo || ""}")'>
-                         <i class="bi bi-journal-check"></i>
+                        onclick='abrirModalEditarResumo(${JSON.stringify(p)})'>
+                        <i class="bi bi-journal-check"></i>
                       </button>
                       <button class="btn btn-sm btn-danger" title="Relatório"
                          onclick="emitirRelatorioPorArquivo('${arquivoEtapaSalvo}', ${p.id})">
@@ -754,29 +754,39 @@ function abrirModalEditarQuestionario(perigoId, questionarioData = {}) {
 }
 
 /**
- * Abre o modal para editar um resumo.
- * @param {number} perigoId - O ID do perigo.
- * @param {object} resumoData - Os dados do resumo.
- * @param {string} perigoTexto - O texto do perigo.
+ * Abre o modal para editar um resumo, recebendo o objeto completo do perigo.
+ * @param {object} perigoObjeto - O objeto completo do perigo.
  */
-function abrirModalEditarResumo(perigoId, resumoData, perigoTexto) {
+function abrirModalEditarResumo(perigoObjeto) {
     const form = document.getElementById("formEditarResumo");
-    form.querySelector("[name='id']").value = perigoId;
+    const perigoItem = perigoObjeto.perigo?.[0] || {};
+
+    const modalEl = document.getElementById("modalEditarResumo");
+
+    // Armazena os dados completos do perigo em atributos do modal para a IA usar
+    modalEl.setAttribute('data-perigo-tipo', perigoItem.tipo || '');
+    modalEl.setAttribute('data-perigo-perigo', perigoItem.perigo || '');
+    modalEl.setAttribute('data-perigo-justificativa', perigoItem.justificativa || '');
+    modalEl.setAttribute('data-perigo-medida', perigoItem.medida || '');
+    modalEl.setAttribute('data-perigo-id', perigoObjeto.id);
+
+    // Preenche os campos do formulário do modal
+    form.querySelector("[name='id']").value = perigoObjeto.id;
     form.querySelector("[name='produto']").value = produtoSelecionado;
     form.querySelector("[name='arquivo']").value = arquivoEtapaSalvo;
     form.querySelector("[name='etapa']").value = etapaSelecionada;
     form.querySelector("[name='etapa_visivel']").value = etapaSelecionada;
-    form.querySelector("[name='perigo']").value = perigoTexto || "";
-    form.querySelector("[name='limite_critico']").value = resumoData?.limite_critico ?? "";
-    const mon = resumoData?.monitoramento ?? {};
+    form.querySelector("[name='perigo']").value = perigoItem.perigo || "";
+    form.querySelector("[name='limite_critico']").value = perigoObjeto.resumo?.[0]?.limite_critico ?? "";
+    const mon = perigoObjeto.resumo?.[0]?.monitoramento ?? {};
     form.querySelector("[name='monitoramento_oque']").value = mon.oque ?? "";
     form.querySelector("[name='monitoramento_como']").value = mon.como ?? "";
     form.querySelector("[name='monitoramento_quando']").value = mon.quando ?? "";
     form.querySelector("[name='monitoramento_quem']").value = mon.quem ?? "";
-    form.querySelector("[name='acao_corretiva']").value = resumoData?.acao_corretiva ?? "";
-    form.querySelector("[name='registro']").value = resumoData?.registro ?? "";
-    form.querySelector("[name='verificacao']").value = resumoData?.verificacao ?? "";
-    const modalEl = document.getElementById("modalEditarResumo");
+    form.querySelector("[name='acao_corretiva']").value = perigoObjeto.resumo?.[0]?.acao_corretiva ?? "";
+    form.querySelector("[name='registro']").value = perigoObjeto.resumo?.[0]?.registro ?? "";
+    form.querySelector("[name='verificacao']").value = perigoObjeto.resumo?.[0]?.verificacao ?? "";
+
     if (modalEl) {
         new bootstrap.Modal(modalEl).show();
     } else {
@@ -934,6 +944,118 @@ async function sugerirResumo(botao) {
     bloco.querySelector("input[name='verificacao']").value = dados.verificacao;
 }
 
+/**
+ * Sugere dados de resumo para o APPCC usando a IA para o formulário no modal de edição.
+ */
+async function sugerirResumoEdicao() {
+    const modalEl = document.getElementById("modalEditarResumo");
+    const formResumo = document.getElementById("formEditarResumo");
+
+    // Obtém os dados dos atributos do modal (assumindo que já estão corretos)
+    const perigoId = parseInt(modalEl.getAttribute('data-perigo-id'));
+    const tipo = modalEl.getAttribute('data-perigo-tipo');
+    const perigo = modalEl.getAttribute('data-perigo-perigo');
+    const justificativa = modalEl.getAttribute('data-perigo-justificativa');
+    const medida = modalEl.getAttribute('data-perigo-medida');
+
+    if (!perigoId || !tipo || !perigo || !justificativa) {
+        return alert("Dados do perigo incompletos. Não foi possível sugerir com IA.");
+    }
+
+    try {
+        const resp = await fetch("/ia/resumo/sugerir", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                produto: produtoSelecionado,
+                etapa: etapaSelecionada,
+                id_perigo: perigoId,
+                tipo,
+                perigo,
+                justificativa,
+                medida
+            })
+        });
+
+        const json = await resp.json();
+
+        if (!resp.ok) {
+            return alert("Erro na sugestão da IA: " + (json.detail || JSON.stringify(json)));
+        }
+
+        const dados = json.resumo;
+        console.log("Dados da sugestão de IA recebidos:", dados);
+
+        // --- INÍCIO DA LÓGICA DE ATUALIZAÇÃO MAIS SEGURA ---
+
+        // Campos de nível superior
+        const limiteCriticoEl = formResumo.querySelector("textarea[name='limite_critico']");
+        if (limiteCriticoEl) {
+            limiteCriticoEl.value = dados.limite_critico || '';
+        } else {
+            console.error("Erro: O campo 'limite_critico' não foi encontrado no formulário do modal.");
+        }
+
+        const acaoCorretivaEl = formResumo.querySelector("textarea[name='acao_corretiva']");
+        if (acaoCorretivaEl) {
+            acaoCorretivaEl.value = dados.acao_corretiva || '';
+        } else {
+            console.error("Erro: O campo 'acao_corretiva' não foi encontrado no formulário do modal.");
+        }
+
+        const registroEl = formResumo.querySelector("input[name='registro']");
+        if (registroEl) {
+            registroEl.value = dados.registro || '';
+        } else {
+            console.error("Erro: O campo 'registro' não foi encontrado no formulário do modal.");
+        }
+
+        const verificacaoEl = formResumo.querySelector("input[name='verificacao']");
+        if (verificacaoEl) {
+            verificacaoEl.value = dados.verificacao || '';
+        } else {
+            console.error("Erro: O campo 'verificacao' não foi encontrado no formulário do modal.");
+        }
+
+        // Campos do objeto aninhado 'monitoramento'
+        const monitoramento = dados.monitoramento || {};
+        const oqueEl = formResumo.querySelector("input[name='monitoramento_oque']");
+        if (oqueEl) {
+            oqueEl.value = monitoramento.oque || '';
+        } else {
+            console.error("Erro: O campo 'monitoramento_oque' não foi encontrado no formulário do modal.");
+        }
+
+        const comoEl = formResumo.querySelector("input[name='monitoramento_como']");
+        if (comoEl) {
+            comoEl.value = monitoramento.como || '';
+        } else {
+            console.error("Erro: O campo 'monitoramento_como' não foi encontrado no formulário do modal.");
+        }
+
+        const quandoEl = formResumo.querySelector("input[name='monitoramento_quando']");
+        if (quandoEl) {
+            quandoEl.value = monitoramento.quando || '';
+        } else {
+            console.error("Erro: O campo 'monitoramento_quando' não foi encontrado no formulário do modal.");
+        }
+
+        const quemEl = formResumo.querySelector("input[name='monitoramento_quem']");
+        if (quemEl) {
+            quemEl.value = monitoramento.quem || '';
+        } else {
+            console.error("Erro: O campo 'monitoramento_quem' não foi encontrado no formulário do modal.");
+        }
+
+        // --- FIM DA LÓGICA DE ATUALIZAÇÃO MAIS SEGURA ---
+
+        alert("Sugestão da IA aplicada com sucesso!");
+
+    } catch (error) {
+        console.error("Ocorreu um erro inesperado ao tentar obter ou aplicar a sugestão da IA:", error);
+        alert("Ocorreu um erro inesperado. Verifique o console para mais detalhes.");
+    }
+}
 
 // =================================================================================================
 //                                      FUNÇÕES UTILITÁRIAS

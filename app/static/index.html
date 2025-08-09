@@ -265,79 +265,81 @@
 
 <div aria-hidden="true" aria-labelledby="modalEditarResumoLabel" class="modal fade" id="modalEditarResumo"
      tabindex="-1">
-	<div class="modal-dialog modal-lg modal-dialog-scrollable">
-		<div class="modal-content">
-			<form class="d-flex flex-column h-100" id="formEditarResumo"
-			      onsubmit="event.preventDefault(); salvarEdicaoResumo();">
-				
-				<div class="modal-header bg-success text-white py-2 px-3 flex-shrink-0">
-					<h5 class="modal-title mb-0" id="modalEditarResumoLabel">Resumo do APPCC - Formulário I</h5>
-					<button aria-label="Fechar" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-				</div>
-				
-				<div class="modal-body p-3 overflow-auto flex-grow-1">
-					<div class="container-fluid">
-						<div class="mb-3">
-							<label class="form-label">Etapa</label>
-							<input class="form-control bg-light" name="etapa_visivel" readonly>
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Perigo</label>
-							<input class="form-control bg-light" name="perigo" readonly>
-						</div>
-						
-						<div class="row g-3">
-							<input name="id" type="hidden">
-							<input name="produto" type="hidden">
-							<input name="etapa" type="hidden">
-							<input name="arquivo" type="hidden">
-							
-							<div class="col-12">
-								<label class="form-label">Limite Crítico</label>
-								<textarea class="form-control" name="limite_critico" rows="2"></textarea>
-							</div>
-							
-							<div class="col-md-6">
-								<label class="form-label">Monitoramento - O quê?</label>
-								<input class="form-control" name="monitoramento_oque" type="text">
-							</div>
-							<div class="col-md-6">
-								<label class="form-label">Monitoramento - Como?</label>
-								<input class="form-control" name="monitoramento_como" type="text">
-							</div>
-							<div class="col-md-6">
-								<label class="form-label">Monitoramento - Quando?</label>
-								<input class="form-control" name="monitoramento_quando" type="text">
-							</div>
-							<div class="col-md-6">
-								<label class="form-label">Monitoramento - Quem?</label>
-								<input class="form-control" name="monitoramento_quem" type="text">
-							</div>
-							
-							<div class="col-12">
-								<label class="form-label">Ação Corretiva</label>
-								<textarea class="form-control" name="acao_corretiva" rows="2"></textarea>
-							</div>
-							
-							<div class="col-md-6">
-								<label class="form-label">Registro</label>
-								<input class="form-control" name="registro" type="text">
-							</div>
-							<div class="col-md-6">
-								<label class="form-label">Verificação</label>
-								<input class="form-control" name="verificacao" type="text">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="modal-footer py-2 px-3 flex-shrink-0">
-					<button class="btn btn-success" onclick="salvarEdicaoResumo()" type="button">Salvar Resumo</button>
-					<button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
-				</div>
-			</form>
-		</div>
-	</div>
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+       <div class="modal-content">
+          <form class="d-flex flex-column h-100" id="formEditarResumo"
+                onsubmit="event.preventDefault(); salvarEdicaoResumo();">
+
+             <div class="modal-header bg-success text-white py-2 px-3 flex-shrink-0">
+                <h5 class="modal-title mb-0" id="modalEditarResumoLabel">Resumo do APPCC - Formulário I</h5>
+                <button aria-label="Fechar" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+             </div>
+
+             <div class="modal-body p-3 overflow-auto flex-grow-1">
+                <div class="container-fluid">
+                   <div class="mb-3">
+                      <label class="form-label">Etapa</label>
+                      <input class="form-control bg-light" name="etapa_visivel" readonly>
+                   </div>
+                   <div class="mb-3">
+                      <label class="form-label">Perigo</label>
+                      <input class="form-control bg-light" name="perigo" readonly>
+                   </div>
+
+                   <button type="button" class="btn btn-outline-secondary btn-sm mb-3" onclick="sugerirResumoEdicao()">Sugerir com IA</button>
+
+                   <div class="row g-3">
+                      <input name="id" type="hidden">
+                      <input name="produto" type="hidden">
+                      <input name="etapa" type="hidden">
+                      <input name="arquivo" type="hidden">
+
+                      <div class="col-12">
+                         <label class="form-label">Limite Crítico</label>
+                         <textarea class="form-control" name="limite_critico" rows="2"></textarea>
+                      </div>
+
+                      <div class="col-md-6">
+                         <label class="form-label">Monitoramento - O quê?</label>
+                         <input class="form-control" name="monitoramento_oque" type="text">
+                      </div>
+                      <div class="col-md-6">
+                         <label class="form-label">Monitoramento - Como?</label>
+                         <input class="form-control" name="monitoramento_como" type="text">
+                      </div>
+                      <div class="col-md-6">
+                         <label class="form-label">Monitoramento - Quando?</label>
+                         <input class="form-control" name="monitoramento_quando" type="text">
+                      </div>
+                      <div class="col-md-6">
+                         <label class="form-label">Monitoramento - Quem?</label>
+                         <input class="form-control" name="monitoramento_quem" type="text">
+                      </div>
+
+                      <div class="col-12">
+                         <label class="form-label">Ação Corretiva</label>
+                         <textarea class="form-control" name="acao_corretiva" rows="2"></textarea>
+                      </div>
+
+                      <div class="col-md-6">
+                         <label class="form-label">Registro</label>
+                         <input class="form-control" name="registro" type="text">
+                      </div>
+                      <div class="col-md-6">
+                         <label class="form-label">Verificação</label>
+                         <input class="form-control" name="verificacao" type="text">
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+             <div class="modal-footer py-2 px-3 flex-shrink-0">
+                <button class="btn btn-success" onclick="salvarEdicaoResumo()" type="button">Salvar Resumo</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar</button>
+             </div>
+          </form>
+       </div>
+    </div>
 </div>
 
 
