@@ -1,0 +1,126 @@
+{
+  "produto": "alface",
+  "etapa": "Pré-lavagem (feita com sabão específico para vegetais)",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação cruzada por utensílios sujos ou água contaminada",
+          "justificativa": "A pré-lavagem, embora sirva para remover sujidades, pode se tornar uma fonte de contaminação se os utensílios (como tanques, escovas, ou cestos de imersão) estiverem sujos ou se a água utilizada não for potável. Microrganismos presentes nessas fontes podem ser transferidos para as hortaliças, anulando o propósito da etapa e introduzindo patógenos. A água contaminada pode veicular microrganismos patogênicos (bactérias, parasitas) que causam doenças em humanos.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "A água utilizada na lavagem de hortaliças deve ser potável;\nTanques e outros utensílios de lavagem devem ser limpos com água e sabão e sanitizados periodicamente com produtos indicados para a indústria de alimentos;\nRealizar a limpeza e manutenção de todo o sistema de bombeamento da água de irrigação/lavagem;\nOs tanques podem ser de alvenaria com revestimento de cerâmica, de fibra ou de plástico, com torneira ou chuveiro, e suas dimensões dependerão da capacidade de produção;\nA área de lavagem deve ser independente e coberta, devidamente azulejada, longe dos depósitos de defensivos agrícolas e de adubos orgânicos. A recepção deve ser separada da etapa final para que não haja contaminação cruzada do material limpo e sujo;\nA manipulação da hortaliça no processo de lavagem deve ser cuidadosa para evitar danos físicos.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Sabão utilizado: Apenas produtos aprovados para contato com alimentos;\nAlface após lavagem: Ausência de sabor ou odor residual de sabão.",
+          "monitoramento": {
+            "oque": "Tipo de sabão utilizado; procedimentos de enxágue; características sensoriais da alface (odor/sabor) após lavagem.",
+            "como": "Tipo de sabão: Verificação da ficha técnica e do rótulo do produto de limpeza no momento da compra e do uso [simulação];Procedimento: Observação diária dos funcionários durante a pré-lavagem e as lavagens subsequentes para garantir o enxágue adequado [simulação];Sensorial: Realização de avaliação sensorial (olfativa e gustativa) em amostras de alface após a lavagem e centrifugação [simulação].",
+            "quando": "Tipo de sabão: No recebimento e antes de cada uso;Procedimento: Diariamente, no início do turno e periodicamente durante a operação;Sensorial: Aleatoriamente, em alguns lotes por turno [simulação].",
+            "quem": "Supervisor da área ou responsável pelo controle de qualidade [simulação];Funcionários treinados para avaliação sensorial [simulação]."
+          },
+          "acao_corretiva": "Sabão Inadequado: Interromper imediatamente o uso do sabão não alimentício ou não aprovado. Descartar todo o sabão inadequado;\nSe for detectado resíduo de sabão na alface, realizar enxágues adicionais no lote afetado, se possível, para tentar remover os resíduos [simulação];\nSe o resíduo persistir ou se a segurança do produto for comprometida, o lote deve ser retido e descartado [simulação];\nInvestigar a causa do resíduo (dosagem excessiva, tempo de enxágue insuficiente, problema no equipamento).",
+          "registro": "Fichas de verificação do produto de limpeza;Planilhas de monitoramento da avaliação sensorial;Registros de não conformidades (detecção de resíduos) e ações corretivas;Registros de treinamento dos funcionários.",
+          "verificacao": "Revisão semanal dos registros de monitoramento para garantir a aplicação consistente das medidas preventivas [simulação];Auditorias internas periódicas (mensal ou trimestral) para verificar a conformidade com os POPs de pré-lavagem e a seleção de produtos químicos [simulação];Análise de dados de reclamações de clientes relacionadas a sabor ou odor estranho no produto [simulação]."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Outro problema",
+          "justificativa": "Não se identificou um perigo físico significativo específico nesta etapa, já que grandes corpos estranhos deveriam ser removidos na seleção e pequenos detritos serão tratados nas lavagens subsequentes. O risco de introdução de fragmentos da própria etapa é baixo se houver boas práticas.",
+          "probabilidade": "Baixa",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "Garantir que os utensílios e equipamentos de pré-lavagem estejam em bom estado de conservação, sem partes soltas ou deterioradas. Realizar inspeção visual da alface após a pré-lavagem para detecção de corpos estranhos visíveis. [simulação]",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Sabão utilizado: Apenas produtos aprovados para contato com alimentos;\nAlface após lavagem: Ausência de sabor ou odor residual de sabão.",
+          "monitoramento": {
+            "oque": "Tipo de sabão utilizado; procedimentos de enxágue; características sensoriais da alface (odor/sabor) após lavagem.",
+            "como": "Tipo de sabão: Verificação da ficha técnica e do rótulo do produto de limpeza no momento da compra e do uso [simulação];Procedimento: Observação diária dos funcionários durante a pré-lavagem e as lavagens subsequentes para garantir o enxágue adequado [simulação];Sensorial: Realização de avaliação sensorial (olfativa e gustativa) em amostras de alface após a lavagem e centrifugação [simulação].",
+            "quando": "Tipo de sabão: No recebimento e antes de cada uso;Procedimento: Diariamente, no início do turno e periodicamente durante a operação;Sensorial: Aleatoriamente, em alguns lotes por turno [simulação].",
+            "quem": "Supervisor da área ou responsável pelo controle de qualidade [simulação];Funcionários treinados para avaliação sensorial [simulação]."
+          },
+          "acao_corretiva": "Sabão Inadequado: Interromper imediatamente o uso do sabão não alimentício ou não aprovado. Descartar todo o sabão inadequado;\nSe for detectado resíduo de sabão na alface, realizar enxágues adicionais no lote afetado, se possível, para tentar remover os resíduos [simulação];\nSe o resíduo persistir ou se a segurança do produto for comprometida, o lote deve ser retido e descartado [simulação];\nInvestigar a causa do resíduo (dosagem excessiva, tempo de enxágue insuficiente, problema no equipamento).",
+          "registro": "Fichas de verificação do produto de limpeza;Planilhas de monitoramento da avaliação sensorial;Registros de não conformidades (detecção de resíduos) e ações corretivas;Registros de treinamento dos funcionários.",
+          "verificacao": "Revisão semanal dos registros de monitoramento para garantir a aplicação consistente das medidas preventivas [simulação];Auditorias internas periódicas (mensal ou trimestral) para verificar a conformidade com os POPs de pré-lavagem e a seleção de produtos químicos [simulação];Análise de dados de reclamações de clientes relacionadas a sabor ou odor estranho no produto [simulação]."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Resíduo de sabão não alimentício",
+          "justificativa": "O uso de sabão não específico ou não aprovado para contato com alimentos, ou o enxágue inadequado após a pré-lavagem, pode deixar resíduos químicos de sabão na superfície da alface. Esses resíduos podem ser tóxicos se ingeridos, causando irritação gastrointestinal ou outros problemas de saúde ao consumidor. Além disso, podem alterar as características sensoriais do produto (sabor e odor).",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Seleção do Produto: Utilizar apenas sabão específico para vegetais ou detergentes aprovados para uso em superfícies que entram em contato com alimentos. Verificar se o produto possui registro e aprovação de órgãos reguladores para uso alimentício [simulação];\nTreinamento: Treinar os funcionários sobre a dosagem correta do sabão e a importância do enxágue completo da alface após a pré-lavagem [simulação];\nPadronização do Enxágue: Estabelecer procedimentos claros para o enxágue, garantindo a remoção de todo o sabão. Pode-se incluir duas etapas de lavagem com água corrente após a pré-lavagem para assegurar a remoção (conforme as próximas etapas da produção);\nArmazenamento: Armazenar os produtos químicos de limpeza em locais separados e identificados, longe da área de manipulação e estocagem de alimentos, para evitar contaminação cruzada.",
+          "perigo_significativo": "NÃO",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Sabão utilizado: Apenas produtos aprovados para contato com alimentos;\nAlface após lavagem: Ausência de sabor ou odor residual de sabão.",
+          "monitoramento": {
+            "oque": "Tipo de sabão utilizado; procedimentos de enxágue; características sensoriais da alface (odor/sabor) após lavagem.",
+            "como": "Tipo de sabão: Verificação da ficha técnica e do rótulo do produto de limpeza no momento da compra e do uso [simulação];Procedimento: Observação diária dos funcionários durante a pré-lavagem e as lavagens subsequentes para garantir o enxágue adequado [simulação];Sensorial: Realização de avaliação sensorial (olfativa e gustativa) em amostras de alface após a lavagem e centrifugação [simulação].",
+            "quando": "Tipo de sabão: No recebimento e antes de cada uso;Procedimento: Diariamente, no início do turno e periodicamente durante a operação;Sensorial: Aleatoriamente, em alguns lotes por turno [simulação].",
+            "quem": "Supervisor da área ou responsável pelo controle de qualidade [simulação];Funcionários treinados para avaliação sensorial [simulação]."
+          },
+          "acao_corretiva": "Sabão Inadequado: Interromper imediatamente o uso do sabão não alimentício ou não aprovado. Descartar todo o sabão inadequado;\nSe for detectado resíduo de sabão na alface, realizar enxágues adicionais no lote afetado, se possível, para tentar remover os resíduos [simulação];\nSe o resíduo persistir ou se a segurança do produto for comprometida, o lote deve ser retido e descartado [simulação];\nInvestigar a causa do resíduo (dosagem excessiva, tempo de enxágue insuficiente, problema no equipamento).",
+          "registro": "Fichas de verificação do produto de limpeza;Planilhas de monitoramento da avaliação sensorial;Registros de não conformidades (detecção de resíduos) e ações corretivas;Registros de treinamento dos funcionários.",
+          "verificacao": "Revisão semanal dos registros de monitoramento para garantir a aplicação consistente das medidas preventivas [simulação];Auditorias internas periódicas (mensal ou trimestral) para verificar a conformidade com os POPs de pré-lavagem e a seleção de produtos químicos [simulação];Análise de dados de reclamações de clientes relacionadas a sabor ou odor estranho no produto [simulação]."
+        }
+      ]
+    }
+  ]
+}

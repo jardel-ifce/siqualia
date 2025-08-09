@@ -1,5 +1,73 @@
 {
   "produto": "crustaceos",
   "etapa": "Descascamento e Limpeza",
-  "perigos": []
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Proliferação de microrganismos",
+          "justificativa": "Manutenção do produto em temperaturas inadequadas e por tempo prolongado.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Manter a temperatura do salão de processamento abaixo de 15°C. Controle de tempo e temperatura de exposição do produto.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Temperatura do produto abaixo de 7°C",
+          "monitoramento": {
+            "oque": "Temperatura do produto e ambiente",
+            "como": "Medição com termômetro calibrado e inspeção visual",
+            "quando": "A cada hora",
+            "quem": "Operador de processo"
+          },
+          "acao_corretiva": "Ajustar a temperatura do ambiente. Descartar produto acima da temperatura limite.",
+          "registro": "Ficha de Monitoramento de Temperatura",
+          "verificacao": "Calibração dos termômetros. Revisão dos registros"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "F",
+          "perigo": "Fragmentos de casca ou espinhos",
+          "justificativa": "Remoção ineficiente de fragmentos do exoesqueleto durante o processamento.",
+          "probabilidade": "Média",
+          "severidade": "Média",
+          "risco": "Desprezível",
+          "medida": "Treinamento da equipe de processamento. Inspeção visual do produto.",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": []
+    }
+  ]
 }

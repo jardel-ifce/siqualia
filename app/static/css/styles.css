@@ -1,0 +1,13 @@
+.tab-pane {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+}
+
+.modal-dialog-scrollable .modal-body {
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+}
