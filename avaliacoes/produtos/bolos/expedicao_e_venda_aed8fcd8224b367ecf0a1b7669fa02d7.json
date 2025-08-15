@@ -1,0 +1,86 @@
+{
+  "produto": "bolos",
+  "etapa": "Expedição e Venda",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por manipulação inadequada ou pragas",
+          "justificativa": "O bolo pode ser contaminado por manipuladores, pragas ou falta de proteção no ponto de venda. Produtos recheados ou com cobertura de creme são frequentemente envolvidos em surtos de doenças alimentares [cite: 1276].",
+          "probabilidade": "Média",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "Expor produtos em vitrines fechadas, a uma temperatura segura[cite: 1259, 1260]. Utilizar utensílios específicos para o manuseio. Treinar colaboradores em boas práticas de higiene e manuseio.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de microrganismos patogênicos e níveis aceitáveis de deteriorantes",
+          "monitoramento": {
+            "oque": "Condições higiênico-sanitárias do(s) Contaminação por manipulação inadequada ou pragas e dos manipuladores",
+            "como": "Inspeção visual e verificação de laudos de qualidade",
+            "quando": "No recebimento de cada lote e/ou durante o processo",
+            "quem": "Funcionário responsável pela qualidade"
+          },
+          "acao_corretiva": "Rejeição do lote não-conforme e/ou repetição da higienização",
+          "registro": "Planilha de controle da etapa Expedição e Venda",
+          "verificacao": "Revisão periódica dos registros e laudos"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Contaminação por manipulação inadequada ou pragas",
+          "justificativa": "O bolo pode ser contaminado por manipuladores, pragas ou falta de proteção no ponto de venda. Produtos recheados ou com cobertura de creme são frequentemente envolvidos em surtos de doenças alimentares [cite: 1276].",
+          "probabilidade": "Média",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "Expor produtos em vitrines fechadas, a uma temperatura segura[cite: 1259, 1260]. Utilizar utensílios específicos para o manuseio. Treinar colaboradores em boas práticas de higiene e manuseio.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de microrganismos patogênicos e níveis aceitáveis de deteriorantes",
+          "monitoramento": {
+            "oque": "Condições higiênico-sanitárias do(s) Contaminação por manipulação inadequada ou pragas e dos manipuladores",
+            "como": "Inspeção visual e verificação de laudos de qualidade",
+            "quando": "No recebimento de cada lote e/ou durante o processo",
+            "quem": "Funcionário responsável pela qualidade"
+          },
+          "acao_corretiva": "Rejeição do lote não-conforme e/ou repetição da higienização",
+          "registro": "Planilha de controle da etapa Expedição e Venda",
+          "verificacao": "Revisão periódica dos registros e laudos"
+        }
+      ]
+    }
+  ]
+}
