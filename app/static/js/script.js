@@ -6,6 +6,10 @@ let etapaSelecionada = "";
 let perigosOrganizados = {};
 let arquivoEtapaSalvo = "";
 
+// helpers (opcional, só pra ficar limpo)
+const show = el => el && el.classList.remove('d-none');
+const hide = el => el && el.classList.add('d-none');
+
 
 // =================================================================================================
 //                             CONTROLES E INICIALIZAÇÃO DA INTERFACE (UI)
@@ -31,36 +35,103 @@ function limparMensagem() {
     document.getElementById("mensagem").innerHTML = "";
 }
 
+function formatScore(score) {
+    if (score == null || isNaN(score)) return null;
+    const pct = score <= 1 ? score * 100 : score;
+    return `${Math.round(Math.max(0, Math.min(pct, 100)))}%`;
+}
+
 /**
  * Carrega a lista de produtos na inicialização da página.
  */
-window.onload = async () => {
-    const res = await fetch("/crud/produtos");
-    const produtos = await res.json();
-    const select = document.getElementById("selectProduto");
-    produtos.forEach(p => {
-        const opt = document.createElement("option");
-        opt.value = p;
-        opt.textContent = p;
-        select.appendChild(opt);
-    });
-};
+// -------------------------
+// Produtos (grupo/subgrupo)
+// -------------------------
 
-/**
- * Atualiza a interface quando um novo produto é selecionado.
- */
-function atualizarProduto() {
-    produtoSelecionado = document.getElementById("selectProduto").value;
-    document.getElementById("consultaEtapaContainer").style.display = produtoSelecionado ? "block" : "none";
-    document.getElementById("selectContainer").style.display = "none";
-    document.getElementById("btnAnaliseContainer").style.display = "none";
-    document.getElementById("abasContainer").style.display = "none";
-    document.getElementById("tabelaPerigos").innerHTML = "";
-    document.getElementById("inputEtapa").value = "";
-    document.getElementById("selectEtapas").innerHTML = "";
-    etapaSelecionada = "";
-    perigosOrganizados = {};
+// Carrega e popula o <select id="selectProduto"> com <optgroup>
+async function carregarProdutosAgrupados({
+                                             somenteVetorizados = true, habilitarNaoVetorizados = false
+                                         } = {}) {
+    const sel = document.getElementById("selectProduto");
+    if (!sel) {
+        console.warn("#selectProduto não encontrado");
+        return;
+    }
+
+    // placeholder inicial
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "-- Escolha um produto --";
+    sel.replaceChildren(placeholder);
+
+    try {
+        const resp = await fetch(`/crud/produtos/agrupados?somente_vetorizados=${somenteVetorizados ? "true" : "false"}`);
+        if (!resp.ok) throw new Error("Falha ao carregar produtos agrupados");
+        const data = await resp.json();
+
+        const frag = document.createDocumentFragment();
+        frag.appendChild(placeholder);
+
+        for (const g of (data.grupos || [])) {
+            for (const sg of (g.subgrupos || [])) {
+                const og = document.createElement("optgroup");
+                og.label = `${g.grupo} — ${sg.subgrupo}`;
+
+                for (const p of (sg.produtos || [])) {
+                    const opt = document.createElement("option");
+                    opt.value = p.slug;
+                    opt.textContent = p.nome;
+                    if (!p.vetorizado && !habilitarNaoVetorizados) {
+                        opt.disabled = true;
+                        opt.textContent += " (sem índice)";
+                    }
+                    og.appendChild(opt);
+                }
+                if (og.children.length) frag.appendChild(og);
+            }
+        }
+        sel.replaceChildren(frag);
+
+        // mantém o bloco de consulta escondido até escolher um produto
+        hide(document.getElementById("consultaEtapaContainer"));
+
+    } catch (err) {
+        console.error(err);
+        sel.replaceChildren(placeholder);
+        placeholder.textContent = "Erro ao carregar produtos";
+        hide(document.getElementById("consultaEtapaContainer"));
+    }
 }
+
+// Inicializa ao abrir a página (uma vez)
+document.addEventListener("DOMContentLoaded", () => {
+    carregarProdutosAgrupados({somenteVetorizados: true});
+    hide(document.getElementById("consultaEtapaContainer"));
+});
+
+
+// Reage à mudança do produto (não repopula o select!)
+function atualizarProduto() {
+    const sel = document.getElementById("selectProduto");
+    produtoSelecionado = sel.value;
+    atualizarUIEtapa();
+    const produto = document.getElementById("selectProduto").value;
+    const container = document.getElementById("consultaEtapaContainer");
+
+    if (produto) {
+        container.classList.remove("d-none");
+        container.style.display = "";
+    } else {
+        container.classList.add("d-none");
+        container.style.display = "none";
+    }
+
+    // Oculta etapas encontradas e botão de salvar
+    document.getElementById("selectContainer").style.display = "none";
+    document.getElementById("btnSalvarEtapa").classList.add("d-none");
+    document.getElementById("selectEtapas").innerHTML = "";
+}
+
 
 /**
  * Monta as abas e os formulários de perigo na interface.
@@ -298,42 +369,86 @@ function removerPerigo(idx) {
 // =================================================================================================
 //                             FUNÇÕES DE ANÁLISE E CONSULTA (FLUXO PRINCIPAL)
 // =================================================================================================
-
-/**
- * Consulta etapas similares com base em um nome de etapa digitado pelo usuário.
- */
 async function consultarEtapa() {
-    document.getElementById("selectContainer").style.display = "none";
-    document.getElementById("btnAnaliseContainer").style.display = "none";
-    document.getElementById("abasContainer").style.display = "none";
-    document.getElementById("tabelaPerigos").innerHTML = "";
+    const produto = document.getElementById("selectProduto").value;
+    const termo = document.getElementById("inputEtapa").value.trim();
+    const selectEtapas = document.getElementById("selectEtapas");
 
-    const btnSalvar = document.getElementById("btnSalvarEtapa");
-    if (btnSalvar) btnSalvar.classList.add("d-none");
-
-    const etapa = document.getElementById("inputEtapa").value.trim();
-    etapaSelecionada = etapa;
-    if (!etapa) {
-        alert("Digite o nome da etapa antes de consultar.");
+    if (!produto || !termo) {
+        alert("Informe o produto e a etapa!");
         return;
     }
 
-    const res = await fetch("/ia/etapas/similar", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({produto: produtoSelecionado, etapa})
-    });
-    const dados = await res.json();
-    const select = document.getElementById("selectEtapas");
-    select.innerHTML = "";
-    dados.forEach(e => {
-        const opt = document.createElement("option");
-        opt.value = e.etapa;
-        opt.textContent = `${e.etapa} (similaridade: ${e.similaridade})`;
-        select.appendChild(opt);
-    });
-    document.getElementById("selectContainer").style.display = "block";
-    await verificarEtapaJaSalva(etapa);
+    const payload = {
+        produto: produto, etapa: termo, top_n: 10
+    };
+    console.log("[DEBUG] Requisição para /ia/etapas/similar:", payload);
+
+    try {
+        const res = await fetch("/ia/etapas/similar", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+            const erroTexto = await res.text();
+            console.error(`[ERRO] Status: ${res.status}`);
+            console.error(`[ERRO] Corpo da resposta: ${erroTexto}`);
+            alert("Erro ao consultar etapas similares: " + res.status);
+            return;
+        }
+
+        const dados = await res.json();
+        console.log("[DEBUG] Etapas retornadas:", dados);
+
+        selectEtapas.innerHTML = "";
+        const optPadrao = document.createElement("option");
+        optPadrao.textContent = "-- Selecione uma etapa --";
+        selectEtapas.appendChild(optPadrao);
+
+        const top3 = (dados || []).slice(0, 3);
+        if (top3.length === 0) {
+            console.warn("Nenhuma etapa similar encontrada.");
+            return;
+        }
+
+        top3.forEach(et => {
+            const opt = document.createElement("option");
+            const score = extrairScoreBruto(et);
+            const extras = [];
+
+            if (score != null) extras.push(formatScore(score));
+            if (et.origem) extras.push(et.origem);
+
+            opt.value = et.etapa;
+            opt.textContent = extras.length
+                ? `${et.etapa} — ${extras.join(" · ")}`
+                : et.etapa;
+
+            selectEtapas.appendChild(opt);
+        });
+
+        document.getElementById("selectContainer").style.display = "block";
+
+    } catch (e) {
+        console.error("[FALHA DE REDE] Erro ao consultar etapas:", e);
+        alert("Erro de rede ao consultar etapas.");
+    }
+}
+
+function extrairScoreBruto(x) {
+    if (typeof x?.score === "number") return x.score;
+    if (typeof x?.similaridade === "number") return x.similaridade;
+    if (typeof x?.similarity === "number") return x.similarity;
+    if (typeof x?.distance === "number") return 1 - x.distance;
+    if (typeof x?.distancia === "number") return 1 - x.distancia;
+    return null;
+}
+
+function atualizarUIEtapa() {
+    const mostrar = !!produtoSelecionado;
+    document.getElementById("consultaEtapaContainer").style.display = mostrar ? "block" : "none";
 }
 
 /**
@@ -341,29 +456,45 @@ async function consultarEtapa() {
  */
 async function buscarEtapaSelecionada() {
     const etapa = document.getElementById("selectEtapas").value;
-    if (!etapa || !produtoSelecionado) return;
+    console.log("Etapa selecionada:", document.getElementById("selectEtapas").value);
+    console.log("Produto selecionado:", produtoSelecionado);
 
-    const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
-    if (!res.ok) return;
+    if (!etapa || !produtoSelecionado) {
+        console.warn("Produto ou etapa não selecionados.");
+        return;
+    }
 
-    const etapasSalvas = await res.json();
-    const tabela = document.getElementById("tabelaPerigos");
-    const btnSalvar = document.getElementById("btnSalvarEtapa");
-
-    const etapaJaSalva = etapasSalvas.includes(etapa);
-
-    if (etapaJaSalva) {
-        await verificarEtapaJaSalva(etapa);
+    try {
         etapaSelecionada = etapa;
-        if (btnSalvar) btnSalvar.classList.add("d-none");
-    } else {
-        alert(`A etapa "${etapa}" não foi encontrada no cadastro. Clique em "Salvar Etapa" para adicioná-la.`);
-        if (tabela) tabela.innerHTML = "";
-        if (btnSalvar) btnSalvar.classList.remove("d-none");
-        document.getElementById("btnAnaliseContainer").style.display = "none";
+
+        // Verifica se etapa já está salva
+        const res = await fetch(`/crud/etapas?produto=${produtoSelecionado}`);
+        if (!res.ok) {
+            console.error("Erro ao buscar etapas salvas:", res.status);
+            return;
+        }
+
+        const etapasSalvas = await res.json();
+        const etapaJaSalva = etapasSalvas.some(e => e.trim().toLowerCase() === etapa.trim().toLowerCase());
+
+        const tabela = document.getElementById("tabelaPerigos");
+        const btnSalvar = document.getElementById("btnSalvarEtapa");
+
+        if (etapaJaSalva) {
+            console.log("Etapa já cadastrada:", etapa);
+            await verificarEtapaJaSalva(etapa);
+            btnSalvar?.classList.add("d-none");
+        } else {
+            console.warn(`Etapa "${etapa}" não encontrada.`);
+            alert(`A etapa "${etapa}" não foi encontrada no cadastro. Clique em "Salvar Etapa" para adicioná-la.`);
+            tabela.innerHTML = "";
+            btnSalvar?.classList.remove("d-none");
+            document.getElementById("btnAnaliseContainer").style.display = "none";
+        }
+    } catch (e) {
+        console.error("Erro ao verificar etapa selecionada:", e);
     }
 }
-
 /**
  * Verifica se a etapa já existe no banco de dados e carrega seus dados se ela existir.
  * @param {string} etapaDigitada - O nome da etapa a ser verificada.
@@ -458,11 +589,7 @@ async function iniciarAnalise() {
     const dados = await res.json();
     perigosOrganizados = {};
     const tipoMapeado = {
-        "B": "biologico",
-        "F": "fisico",
-        "Q": "quimico",
-        "QUAL": "qualidade",
-        "A": "alergenico"
+        "B": "biologico", "F": "fisico", "Q": "quimico", "QUAL": "qualidade", "A": "alergenico"
     };
 
     for (const perigo of dados.formulario_g) {
@@ -513,9 +640,7 @@ async function salvarPerigo(form) {
     data.arquivo = arquivoEtapaSalvo;
 
     const resp = await fetch("/crud/perigos/salvar", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
+        method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)
     });
 
     const json = await resp.json();
@@ -543,9 +668,7 @@ async function salvarEdicaoPerigo() {
     data.arquivo = arquivoEtapaSalvo;
 
     const response = await fetch("/crud/perigos/atualizar", {
-        method: "PUT",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data),
+        method: "PUT", headers: {"Content-Type": "application/json"}, body: JSON.stringify(data),
     });
 
     const json = await response.json();
@@ -573,9 +696,7 @@ async function salvarQuestionario(form) {
     data.id = perigoId;
 
     const resp = await fetch("/crud/questionario/salvar", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
+        method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)
     });
     const json = await resp.json();
 
@@ -600,9 +721,7 @@ async function salvarEdicaoQuestionario() {
     data.arquivo = arquivoEtapaSalvo;
 
     const resp = await fetch("/crud/questionario/salvar", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
+        method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(data)
     });
 
     const json = await resp.json();
@@ -636,15 +755,10 @@ async function salvarResumo(botao) {
         verificacao: bloco.querySelector("input[name='verificacao']").value
     };
     const payload = {
-        produto: produtoSelecionado,
-        etapa: etapaSelecionada,
-        id_perigo: perigoId,
-        resumo: dadosResumo
+        produto: produtoSelecionado, etapa: etapaSelecionada, id_perigo: perigoId, resumo: dadosResumo
     };
     const resp = await fetch("/crud/resumo/salvar", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(payload)
+        method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)
     });
     const json = await resp.json();
     if (resp.ok) {
@@ -678,9 +792,7 @@ async function salvarEdicaoResumo() {
         verificacao: data.verificacao || ""
     };
     const response = await fetch("/crud/resumo/atualizar", {
-        method: "PUT",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(payload),
+        method: "PUT", headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload),
     });
     const json = await response.json();
     if (response.ok) {
@@ -828,8 +940,7 @@ function questionarioModal(elemento) {
     });
     resultado.value = "";
     if (nome === "questao_1") {
-        if (val === "Não") form.querySelector("[data-q='q1a']").style.display = "block";
-        else if (val === "Sim") form.querySelector("[data-q='q2']").style.display = "block";
+        if (val === "Não") form.querySelector("[data-q='q1a']").style.display = "block"; else if (val === "Sim") form.querySelector("[data-q='q2']").style.display = "block";
         return;
     }
     if (nome === "questao_1a") {
@@ -837,13 +948,11 @@ function questionarioModal(elemento) {
         return;
     }
     if (nome === "questao_2") {
-        if (val === "Sim") resultado.value = "É um PCC";
-        else if (val === "Não") form.querySelector("[data-q='q3']").style.display = "block";
+        if (val === "Sim") resultado.value = "É um PCC"; else if (val === "Não") form.querySelector("[data-q='q3']").style.display = "block";
         return;
     }
     if (nome === "questao_3") {
-        if (val === "Não") resultado.value = "Não é um PCC";
-        else if (val === "Sim") form.querySelector("[data-q='q4']").style.display = "block";
+        if (val === "Não") resultado.value = "Não é um PCC"; else if (val === "Sim") form.querySelector("[data-q='q4']").style.display = "block";
         return;
     }
     if (nome === "questao_4") {
@@ -877,8 +986,7 @@ function questionario(elemento) {
     });
     resultado.value = "";
     if (nome === "questao_1") {
-        if (val === "Não") form.querySelector("[data-q='q1a']").style.display = "block";
-        else if (val === "Sim") form.querySelector("[data-q='q2']").style.display = "block";
+        if (val === "Não") form.querySelector("[data-q='q1a']").style.display = "block"; else if (val === "Sim") form.querySelector("[data-q='q2']").style.display = "block";
         return;
     }
     if (nome === "questao_1a") {
@@ -886,13 +994,11 @@ function questionario(elemento) {
         return;
     }
     if (nome === "questao_2") {
-        if (val === "Sim") resultado.value = "É um PCC";
-        else if (val === "Não") form.querySelector("[data-q='q3']").style.display = "block";
+        if (val === "Sim") resultado.value = "É um PCC"; else if (val === "Não") form.querySelector("[data-q='q3']").style.display = "block";
         return;
     }
     if (nome === "questao_3") {
-        if (val === "Não") resultado.value = "Não é um PCC";
-        else if (val === "Sim") form.querySelector("[data-q='q4']").style.display = "block";
+        if (val === "Não") resultado.value = "Não é um PCC"; else if (val === "Sim") form.querySelector("[data-q='q4']").style.display = "block";
         return;
     }
     if (nome === "questao_4") {
@@ -920,9 +1026,7 @@ async function sugerirResumo(botao) {
 
     try {
         const resp = await fetch("/ia/resumo/sugerir", {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
+            method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
                 produto: produtoSelecionado,
                 etapa: etapaSelecionada,
                 id_perigo: perigoId,
@@ -946,16 +1050,7 @@ async function sugerirResumo(botao) {
         const dados = json.resumo;
 
         // Verifica se o objeto de dados tem algum valor preenchido
-        const camposPreenchidos = [
-            dados.limite_critico,
-            dados.acao_corretiva,
-            dados.registro,
-            dados.verificacao,
-            dados.monitoramento?.oque,
-            dados.monitoramento?.como,
-            dados.monitoramento?.quando,
-            dados.monitoramento?.quem
-        ].some(value => value && value.trim() !== '');
+        const camposPreenchidos = [dados.limite_critico, dados.acao_corretiva, dados.registro, dados.verificacao, dados.monitoramento?.oque, dados.monitoramento?.como, dados.monitoramento?.quando, dados.monitoramento?.quem].some(value => value && value.trim() !== '');
 
         if (!camposPreenchidos) {
             alert("A sugestão da IA foi processada, mas não foram encontrados dados relevantes para preencher os campos.");
@@ -998,9 +1093,7 @@ async function sugerirResumoEdicao() {
 
     try {
         const resp = await fetch("/ia/resumo/sugerir", {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
+            method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
                 produto: produtoSelecionado,
                 etapa: etapaSelecionada,
                 id_perigo: perigoId,
@@ -1025,16 +1118,7 @@ async function sugerirResumoEdicao() {
         const dados = json.resumo;
 
         // Verifica se o objeto de dados tem algum valor preenchido
-        const camposPreenchidos = [
-            dados.limite_critico,
-            dados.acao_corretiva,
-            dados.registro,
-            dados.verificacao,
-            dados.monitoramento?.oque,
-            dados.monitoramento?.como,
-            dados.monitoramento?.quando,
-            dados.monitoramento?.quem
-        ].some(value => value && value.trim() !== '');
+        const camposPreenchidos = [dados.limite_critico, dados.acao_corretiva, dados.registro, dados.verificacao, dados.monitoramento?.oque, dados.monitoramento?.como, dados.monitoramento?.quando, dados.monitoramento?.quem].some(value => value && value.trim() !== '');
 
         if (!camposPreenchidos) {
             alert("A sugestão da IA foi processada, mas não foram encontrados dados relevantes para preencher os campos.");

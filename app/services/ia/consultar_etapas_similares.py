@@ -12,7 +12,7 @@ model = SentenceTransformer("msmarco-distilbert-base-v4")
 # 🔍 Função principal para busca de etapas similares
 def consultar_etapas_similares(
     produto: str,
-    etapa_digitada: str,
+    etapa: str,
     top_n: int = 3,
     tipo_consulta: str = "etapa"
 ):
@@ -32,7 +32,7 @@ def consultar_etapas_similares(
         raise ValueError("tipo_consulta deve ser 'etapa' ou 'contexto'.")
 
     indexes_dir = Path("indexes") / produto
-    etapa_emb = model.encode([etapa_digitada], convert_to_numpy=True, normalize_embeddings=True)
+    etapa_emb = model.encode([etapa], convert_to_numpy=True, normalize_embeddings=True)
     resultados = []
 
     for tipo in ["appcc", "pac", "bpf"]:

@@ -11,13 +11,13 @@
 <h2 class="mb-4">Consulta de Etapas e Perigos</h2>
 
 <div class="mb-3">
-	<label class="form-label" for="selectProduto">Selecione o produto:</label>
-	<select class="form-select" id="selectProduto" onchange="atualizarProduto()">
-		<option value="">-- Escolha um produto --</option>
-	</select>
+  <label class="form-label" for="selectProduto">Selecione o produto:</label>
+  <select id="selectProduto" class="form-select" onchange="atualizarProduto()">
+      <option value="">-- Escolha um produto --</option>
+  </select>
 </div>
 
-<div class="mb-4" id="consultaEtapaContainer" style="display:none;">
+<div class="mb-4" id="consultaEtapaContainer">
 	<label class="form-label" for="inputEtapa">Digite a etapa:</label>
 	<input class="form-control mb-2" id="inputEtapa" placeholder="Ex: Envase" type="text">
 	<button class="btn btn-primary" onclick="consultarEtapa()">Consultar Etapas</button>
