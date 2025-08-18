@@ -1,0 +1,167 @@
+<!-- 📁 /static/uploads.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Uploads de Documentos — SIQUALIA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="container py-4">
+
+  <h3 class="mb-3">Cadastrar documentos de produto</h3>
+
+  <form id="formUploads" class="vstack gap-3">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Produto</label>
+        <input class="form-control" name="produto_nome" placeholder="Ex.: Queijo Minas Frescal" required />
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Grupo</label>
+        <input class="form-control" name="grupo" placeholder="Ex.: Pescados e Frutos do Mar" required />
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Subgrupo</label>
+        <input class="form-control" name="subgrupo" placeholder="Ex.: Peixes" required />
+      </div>
+    </div>
+
+    <div>
+      <label class="form-label">Arquivos</label>
+      <input class="form-control" id="inputArquivos" type="file" multiple required />
+      <div class="form-text">Aceitos para vetorização: .csv, .txt. Outros (como .pdf/.docx) ficam arquivados.</div>
+    </div>
+
+    <div id="gridArquivos" class="table-responsive" style="display:none;">
+      <table class="table table-sm align-middle">
+        <thead>
+          <tr>
+            <th style="width:45%;">Arquivo</th>
+            <th style="width:25%;">Tipo do documento</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyArquivos"></tbody>
+      </table>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary" type="submit">Enviar</button>
+      <button class="btn btn-secondary" type="button" onclick="document.getElementById('formUploads').reset(); resetGrid();">Limpar</button>
+    </div>
+  </form>
+
+  <hr class="my-4"/>
+
+  <div id="resultado" class="d-none">
+    <h5>Resultado</h5>
+    <pre class="bg-light p-3 rounded" id="resultadoPre" style="white-space:pre-wrap;"></pre>
+  </div>
+
+  <script>
+    let TIPOS = [];
+
+    async function carregarTipos() {
+      const r = await fetch("/crud/uploads/tipos");
+      const { tipos } = await r.json();
+      TIPOS = tipos || [];
+    }
+
+    function resetGrid() {
+      document.querySelector("#gridArquivos").style.display = "none";
+      document.querySelector("#tbodyArquivos").innerHTML = "";
+      document.querySelector("#resultado").classList.add("d-none");
+      document.querySelector("#resultadoPre").textContent = "";
+    }
+
+    function montarGridArquivos(files) {
+      const tbody = document.getElementById("tbodyArquivos");
+      tbody.innerHTML = "";
+
+      Array.from(files).forEach((f, i) => {
+        const tr = document.createElement("tr");
+
+        // nome
+        const tdNome = document.createElement("td");
+        tdNome.textContent = f.name;
+        tr.appendChild(tdNome);
+
+        // tipo
+        const tdTipo = document.createElement("td");
+        const sel = document.createElement("select");
+        sel.className = "form-select form-select-sm";
+        sel.name = "tipos"; // importante: vários 'tipos' para alinhar com os arquivos
+        TIPOS.forEach(t => {
+          const opt = document.createElement("option");
+          opt.value = t;
+          opt.textContent = t.toUpperCase();
+          sel.appendChild(opt);
+        });
+        tdTipo.appendChild(sel);
+        tr.appendChild(tdTipo);
+
+        // observacao
+        const tdObs = document.createElement("td");
+        tdObs.innerHTML = (/\.(csv|txt)$/i.test(f.name))
+          ? "<span class='text-success'>vetorizável</span>"
+          : "<span class='text-muted'>apenas arquivado</span>";
+        tr.appendChild(tdObs);
+
+        tbody.appendChild(tr);
+      });
+
+      document.querySelector("#gridArquivos").style.display = files.length ? "block" : "none";
+    }
+
+    document.getElementById("inputArquivos").addEventListener("change", (e) => {
+      montarGridArquivos(e.target.files);
+    });
+
+    document.getElementById("formUploads").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const form = e.currentTarget;
+      const fd = new FormData();
+
+      // campos principais
+      fd.append("produto_nome", form.produto_nome.value);
+      fd.append("grupo", form.grupo.value);
+      fd.append("subgrupo", form.subgrupo.value);
+
+      // arquivos
+      const files = document.getElementById("inputArquivos").files;
+      if (!files?.length) {
+        alert("Selecione ao menos um arquivo.");
+        return;
+      }
+      Array.from(files).forEach(f => fd.append("arquivos", f));
+
+      // tipos (na ordem das linhas/arquivos)
+      document.querySelectorAll("#tbodyArquivos select[name='tipos']").forEach(sel => {
+        fd.append("tipos", sel.value);
+      });
+
+      const resp = await fetch("/crud/uploads", { method: "POST", body: fd });
+      const data = await resp.json();
+
+      document.getElementById("resultado").classList.remove("d-none");
+      document.getElementById("resultadoPre").textContent = JSON.stringify(data, null, 2);
+
+      if (resp.status === 200) {
+        // sucesso total
+        alert("Arquivos enviados e padronizados com sucesso!");
+        // opcional: limpar form
+        // form.reset(); resetGrid();
+      } else if (resp.status === 207) {
+        // parcial
+        alert("Alguns arquivos foram enviados; verifique os erros listados.");
+      } else {
+        alert("Falha no envio. Verifique as mensagens de erro.");
+      }
+    });
+
+    // init
+    carregarTipos();
+  </script>
+</body>
+</html>

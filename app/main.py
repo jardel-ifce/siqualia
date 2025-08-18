@@ -16,6 +16,7 @@ from app.routes.crud import etapas as crud_etapas
 from app.routes.crud import perigos as crud_perigos
 from app.routes.crud import questionario as crud_questionario
 from app.routes.crud import resumo as crud_resumo
+from app.routes.crud import uploads as crud_uploads
 
 # Instância do app
 app = FastAPI(
@@ -39,6 +40,7 @@ app.include_router(crud_etapas.router)
 app.include_router(crud_perigos.router)
 app.include_router(crud_questionario.router)
 app.include_router(crud_resumo.router)
+app.include_router(crud_uploads.router)
 
 ## IA
 app.include_router(ia_etapas.router)

@@ -1,0 +1,46 @@
+{
+  "produto": "leite_pasteurizado",
+  "etapa": "Recepção do Leite Cru",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Micro-organismos patogênicos (ex. E. coli, Salmonella), psicrotróficos e de toxinas",
+          "justificativa": "Leite cru tem microbiota natural e pode conter patógenos de vacas doentes ou por higiene inadequada. A temperatura de refrigeração parcial do leite pode contribuir para a multiplicação rápida de micro-organismos psicrotróficos.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Controle de temperatura (até 5°C), análise de amostras, seleção de fornecedores, Boas Práticas de Ordenha (BPO)",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Temperatura maior que 7°C",
+          "monitoramento": {
+            "oque": "Temperatura e carga microbiana",
+            "como": "Medida com termômetro e análises laboratoriais",
+            "quando": "A cada tanque recebido na plataforma",
+            "quem": "Responsável técnico e operador"
+          },
+          "acao_corretiva": "Descarte do leite ou ajuste do processo e comunicação aos fornecedores",
+          "registro": "Planilhas de controle e resultados de análises",
+          "verificacao": "Auditoria, calibração de equipamentos e supervisão"
+        }
+      ]
+    }
+  ]
+}

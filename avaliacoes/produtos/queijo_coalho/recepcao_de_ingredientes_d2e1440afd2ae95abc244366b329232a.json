@@ -1,0 +1,46 @@
+{
+  "produto": "queijo_coalho",
+  "etapa": "Recepção de Ingredientes",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Enterobacteriaceae",
+          "justificativa": "Contaminação cruzada pode ocorrer através de manipuladores e superfícies que não são devidamente higienizadas, transportando patógenos como Salmonella sp e Escherichia coli para os alimentos.",
+          "probabilidade": "Média",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Seguir o Manual de Boas Práticas de Fabricação (BPF), garantindo a higiene pessoal, dos ambientes e dos equipamentos. Adquirir insumos de fornecedores confiáveis e com a devida procedência.",
+          "perigo_significativo": "",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [
+        {
+          "questao_1": "Sim",
+          "questao_1a": "",
+          "questao_2": "Sim",
+          "questao_3": "",
+          "questao_4": "",
+          "resultado": "É um PCC"
+        }
+      ],
+      "resumo": [
+        {
+          "limite_critico": "Ausência de microrganismos patogênicos e níveis aceitáveis de microrganismos deteriorantes (conforme legislação).",
+          "monitoramento": {
+            "oque": "Condições higiênico-sanitárias da matéria-prima e dos manipuladores.",
+            "como": "Inspeção visual e verificação de laudos de qualidade.",
+            "quando": "No recebimento de cada lote.",
+            "quem": "Funcionário responsável pelo recebimento e/ou Controle de Qualidade."
+          },
+          "acao_corretiva": "Rejeição do lote não-conforme.",
+          "registro": "Planilha de controle de recebimento.",
+          "verificacao": "Revisão periódica dos registros e laudos."
+        }
+      ]
+    }
+  ]
+}

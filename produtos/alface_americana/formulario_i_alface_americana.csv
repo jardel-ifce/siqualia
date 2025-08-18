@@ -1,0 +1,272 @@
+etapa,perigos,tipo,limite_critico,monitoramento_oque,monitoramento_como,monitoramento_quando,monitoramento_quem,acao_corretiva,registro,verificacao
+Estocagem da matéria-prima (câmara de refrigeração),Multiplicação de microrganismos por temperatura inadequada,B,"Temperatura da câmara de refrigeração: entre 0°C e 5°C. A temperatura nunca deve ser inferior a -0,2°C.
+
+Umidade relativa: 95-100%.",Temperatura e umidade relativa da câmara de refrigeração,"Verificação contínua por termômetros e higrômetros calibrados com registro automático, e/ou verificações manuais periódicas","A cada 2-4 horas (manual), ou continuamente com alarmes (automático) [simulação]","Funcionário responsável pelo armazenamento, gerente de produção ou profissional de controle de qualidade [simulação]","Ajustar imediatamente a temperatura e/ou umidade da câmara para a faixa correta [simulação];
+Verificar o funcionamento do sistema de refrigeração e, se necessário, acionar a manutenção [simulação];
+Inspecionar visualmente a alface armazenada para detectar sinais de deterioração. Se houver desvio de qualidade (murchamento, amarelamento, presença de podridões), avaliar o descarte ou redirecionamento do lote afetado para outro fim (ex: processamento mínimo, se ainda seguro, ou descarte total se comprometido) [simulação];
+Isolar e identificar o lote afetado [simulação];
+Treinar novamente a equipe sobre os procedimentos de monitoramento e ajustes [simulação];","Planilhas de monitoramento de temperatura e umidade da câmara;
+Registros de manutenção do equipamento de refrigeração;
+Registros de descarte ou redirecionamento de lotes;
+Relatórios de ações corretivas;","Revisão diária dos registros de monitoramento para garantir que os limites críticos foram mantidos [simulação];
+Calibração periódica dos termômetros e higrômetros (semestralmente ou conforme especificação do fabricante) [simulação];
+Auditorias internas e externas (se aplicável) para verificar a conformidade com o plano APPCC e a eficácia das medidas preventivas e corretivas [simulação];
+Análise de dados históricos de temperatura e perdas por deterioração para identificar tendências e otimizar o controle [simulação];"
+Estocagem da matéria-prima (câmara de refrigeração),Resíduos de defensivos agrícolas,Q,Níveis de resíduos de defensivos agrícolas: devem estar em conformidade com os Limites Máximos de Resíduos (LMRs) estabelecidos pela Agência Nacional de Vigilância Sanitária (ANVISA) e pelo Ministério da Agricultura e Pecuária e Abastecimento (MAPA) no Brasil.,"Documentação de origem (certificados, registros de aplicação), resultados de análises laboratoriais de resíduos de defensivos agrícolas.","Verificação documental na recepção de cada lote (certificados de análise, declarações do produtor sobre as práticas e defensivos utilizados);
+Coleta de amostras e envio a laboratório credenciado para análise de resíduos (frequência baseada em análise de risco do fornecedor e histórico de conformidade) [simulação].","Na recepção de cada lote de matéria-prima (documentação); periodicamente, conforme plano de amostragem definido (análises laboratoriais) [simulação].",Responsável pelo recebimento da matéria-prima ou controle de qualidade [simulação].,"Retenção e Descarte: Reter o lote de alface que apresentar resíduos de defensivos agrícolas acima dos limites permitidos. Este lote deve ser descartado ou devolvido ao fornecedor, conforme contrato e legislação [simulação];
+Investigação do Fornecedor: Comunicar o fornecedor e exigir uma investigação da causa do problema. Avaliar a continuidade do fornecimento com base nos resultados da investigação e nas ações corretivas do fornecedor [simulação];
+Aumento da Frequência de Análises: Aumentar a frequência de análises para lotes futuros do mesmo fornecedor até que a conformidade seja comprovada [simulação];
+Notificação: Notificar os órgãos competentes, se exigido pela legislação [simulação].","Registros de recebimento da matéria-prima, incluindo dados do fornecedor e certificações;
+Laudos de análises laboratoriais de resíduos de defensivos agrícolas;
+Registros de não conformidades (lotes reprovados);
+Registros de ações corretivas tomadas (descarte, devolução, comunicação ao fornecedor).","Revisão periódica dos laudos de análises e registros de não conformidades;
+Auditorias nos fornecedores para verificar a implementação das boas práticas agrícolas;
+Revisão anual ou bienal do plano APPCC para garantir a eficácia das medidas de controle do perigo de resíduos de defensivos agrícolas [simulação];
+Análise de tendências de conformidade dos fornecedores [simulação]."
+Estocagem da matéria-prima (câmara de refrigeração),Fragmentos de gelo,F,Ausência de formação excessiva de gelo nas superfícies internas da câmara ou sobre o produto.,"Temperatura da câmara de refrigeração (para controlar a formação de gelo);
+Presença de gelo acumulado nas superfícies da câmara ou sobre o produto.","Verificação visual periódica da formação de gelo na câmara (parede, teto, equipamentos);
+Uso de termômetros calibrados para monitorar a temperatura da câmara [simulação].","Temperatura da câmara: A cada 2-4 horas (manual), ou continuamente com alarmes (automático) [simulação].
+Condição das embalagens e gelo na câmara: A cada turno de trabalho ou na entrada/saída de lotes [simulação].","Funcionário responsável pelo armazenamento ou operador da câmara [simulação];
+Profissional de controle de qualidade (para inspeções mais detalhadas) [simulação].","Ajustar imediatamente a temperatura da câmara para a faixa correta [simulação];
+Se houver formação excessiva de gelo, iniciar processo de degelo manual ou forçado conforme o procedimento da câmara;
+Verificar a causa da formação excessiva de gelo (ex: porta aberta, vedação, sensor);
+Isolar e descartar qualquer alface que apresente sinais de congelamento ou contaminação por fragmentos de gelo [simulação].","Planilhas de monitoramento de temperatura da câmara [simulação];
+Registros de inspeção de gelo na câmara [simulação];
+Registros de inspeção de integridade das embalagens [simulação];
+Relatórios de não conformidades (embalagens danificadas, gelo excessivo, produtos afetados) e ações corretivas;
+Registros de manutenção dos equipamentos de refrigeração.","Revisão semanal ou quinzenal dos registros de monitoramento e ações corretivas para identificar tendências e assegurar a eficácia do controle [simulação];
+Auditorias internas periódicas para verificar a conformidade com os procedimentos operacionais e o cumprimento dos limites críticos [simulação];
+Análise de reclamações de clientes relacionadas a corpos estranhos ou danos por gelo [simulação];
+Calibração anual dos termômetros e outros equipamentos de monitoramento [simulação]."
+Estocagem da matéria-prima (câmara de refrigeração),Fragmentos de embalagem,F,Ausência de embalagens danificadas ou com partes soltas em contato com o produto.,Condição das embalagens (integridade),Verificação visual da integridade das embalagens de alface na entrada da câmara e durante a estocagem.,Condição das embalagens na câmara: A cada turno de trabalho ou na entrada/saída de lotes [simulação].,"Funcionário responsável pelo armazenamento ou operador da câmara [simulação];
+Profissional de controle de qualidade (para inspeções mais detalhadas) [simulação].","Remover e descartar embalagens danificadas imediatamente [simulação];
+Inspecionar o produto contido na embalagem danificada e, se contaminado, isolar e descartar o lote afetado [simulação];
+Investigar a causa da danificação da embalagem (manuseio, empilhamento, qualidade da embalagem) [simulação];
+Rever e reforçar o treinamento de manuseio de embalagens [simulação].","Planilhas de monitoramento de temperatura da câmara [simulação];
+Registros de inspeção de gelo na câmara [simulação];
+Registros de inspeção de integridade das embalagens [simulação];
+Relatórios de não conformidades (embalagens danificadas, gelo excessivo, produtos afetados) e ações corretivas;
+Registros de manutenção dos equipamentos de refrigeração.","Revisão semanal ou quinzenal dos registros de monitoramento e ações corretivas para identificar tendências e assegurar a eficácia do controle [simulação];
+Auditorias internas periódicas para verificar a conformidade com os procedimentos operacionais e o cumprimento dos limites críticos [simulação];
+Análise de reclamações de clientes relacionadas a corpos estranhos ou danos por gelo [simulação];
+Calibração anual dos termômetros e outros equipamentos de monitoramento [simulação]."
+"Recepção/seleção da matéria-prima (retiradas folhas externas, forma manual)",contaminação cruzada por mãos ou utensílios,B,"Mãos dos manipuladores: Ausência de sujidade visível e estar em conformidade com padrões microbiológicos após higienização;
+Utensílios (facas): Ausência de sujidade visível e estar em conformidade com padrões microbiológicos após higienização e sanitização;
+Ausência de matéria orgânica visível nas facas e superfícies de contato antes do uso.",Higiene das mãos dos trabalhadores; higiene e estado dos utensílios (facas); saúde dos trabalhadores.,"Mãos: Observação visual contínua da prática de lavagem de mãos e aplicação de antisséptico. Testes microbiológicos periódicos das mãos dos manipuladores (swabs) [simulação];
+Utensílios: Inspeção visual antes e durante o uso para verificar a limpeza. Testes microbiológicos periódicos das superfícies dos utensílios [simulação];
+Saúde: Verificação diária da saúde dos trabalhadores (questionário ou observação de sintomas).","Higiene das mãos: Continuamente, antes de iniciar o trabalho e após cada interrupção;
+Utensílios: Antes de iniciar a seleção e após cada uso ou a cada 2 horas (manual), ou mais frequentemente se houver acúmulo de sujidade;
+Saúde: No início de cada turno.","Supervisor da área ou líder de equipe [simulação];
+Responsável pelo controle de qualidade [simulação].","Reinstruir e retreinar o trabalhador imediatamente sobre os procedimentos de higiene das mãos e utensílios [simulação];
+Remover o trabalhador da atividade até que a conformidade seja garantida;
+Higienizar e sanitizar novamente os utensílios;
+Isolar e inspecionar o lote de alface que pode ter sido contaminado. Se a contaminação for provável e o risco alto, o descarte do lote pode ser necessário [simulação];
+Trabalhador Doente/Lesionado: Afastar imediatamente o trabalhador da atividade e direcioná-lo para atendimento médico;
+Reforço de Treinamento: Se a falha for recorrente, reforçar o treinamento de toda a equipe e revisar os procedimentos operacionais padrão (POP).","ichas de monitoramento da higiene das mãos e utensílios;
+Registros de treinamento dos funcionários em higiene e boas práticas de manipulação;
+Registros de saúde dos trabalhadores;
+Registros de não conformidades e ações corretivas;
+Laudos de análises microbiológicas (se realizadas).","Revisão semanal dos registros de monitoramento para garantir a aplicação consistente dos procedimentos [simulação];
+Auditorias internas periódicas (mensal ou trimestral) para avaliar a conformidade geral com os padrões de higiene e eficácia do treinamento [simulação];
+Análise de reclamações de clientes relacionadas à presença de sujidade ou doenças transmitidas por alimentos para identificar falhas no controle [simulação];
+Calibração periódica de qualquer equipamento de medição de concentração de sanitizantes, se aplicável (não se aplica diretamente aqui, mas em etapas futuras de sanitização)."
+"Recepção/seleção da matéria-prima (retiradas folhas externas, forma manual)",não identificado,Q,,,,,,,,
+"Recepção/seleção da matéria-prima (retiradas folhas externas, forma manual)",não aplicável,F,,,,,,,,
+Pré-lavagem (feita com sabão específico para vegetais),Contaminação cruzada por utensílios sujos ou água contaminada,B,"Água de pré-lavagem: Potável e em conformidade com os padrões de potabilidade (ausência de coliformes termotolerantes e outros patógenos);
+Utensílios e superfícies de contato: Limpos e sanitizados, ausência de sujidade visível e matéria orgânica, e conformidade com padrões microbiológicos.",Qualidade da água de pré-lavagem; limpeza e estado dos utensílios e superfícies de contato.,"Análise microbiológica e físico-química da água utilizada na pré-lavagem (ex: cloro residual livre, pH, presença de coliformes termotolerantes) [simulação];
+Inspeção visual de sujidade nos tanques, bancadas e outros utensílios antes e durante a operação. Testes microbiológicos periódicos de swab nas superfícies dos equipamentos e utensílios [simulação].","Diariamente (cloro residual livre, pH) e semanalmente/mensalmente (análises microbiológicas) [simulação];
+Antes de iniciar o turno e a cada interrupção, ou a cada 2-4 horas durante a operação [simulação].","Operador da linha de pré-lavagem ou funcionário responsável pela higiene [simulação];
+Laboratório interno ou externo (para análises da água e superfícies) [simulação].","Interromper imediatamente o uso da água contaminada;
+Identificar a fonte da contaminação e implementar medidas corretivas (ex: filtração, cloração da fonte de água, manutenção do sistema de abastecimento);
+Reter e descartar o lote de alface que foi pré-lavado com água contaminada, ou submetê-lo a um processo de higienização mais rigoroso, se possível e seguro, conforme avaliação de risco [simulação];
+Limpar e sanitizar imediatamente os utensílios e superfícies;
+Reforçar o treinamento dos funcionários sobre a importância da higiene dos equipamentos [simulação];
+Se necessário, revisar e ajustar a frequência e os procedimentos de limpeza e sanitização.","Registros de monitoramento da qualidade da água (cloro, pH, laudos microbiológicos);
+Fichas de limpeza e sanitização dos equipamentos e utensílios de pré-lavagem;
+Registros de não conformidades (água/utensílios contaminados) e ações corretivas.","Revisão diária ou semanal dos registros de monitoramento para garantir a conformidade com os limites críticos [simulação];
+Calibração periódica dos equipamentos de medição (ex: medidor de cloro, pHmetro) [simulação];
+Auditorias internas para verificar a aderência aos procedimentos de pré-lavagem e higiene."
+Pré-lavagem (feita com sabão específico para vegetais),Resíduo de sabão não alimentício,Q,"Sabão utilizado: Apenas produtos aprovados para contato com alimentos;
+Alface após lavagem: Ausência de sabor ou odor residual de sabão.",Tipo de sabão utilizado; procedimentos de enxágue; características sensoriais da alface (odor/sabor) após lavagem.,"Tipo de sabão: Verificação da ficha técnica e do rótulo do produto de limpeza no momento da compra e do uso [simulação];
+Procedimento: Observação diária dos funcionários durante a pré-lavagem e as lavagens subsequentes para garantir o enxágue adequado [simulação];
+Sensorial: Realização de avaliação sensorial (olfativa e gustativa) em amostras de alface após a lavagem e centrifugação [simulação].","Tipo de sabão: No recebimento e antes de cada uso;
+Procedimento: Diariamente, no início do turno e periodicamente durante a operação;
+Sensorial: Aleatoriamente, em alguns lotes por turno [simulação].","Supervisor da área ou responsável pelo controle de qualidade [simulação];
+Funcionários treinados para avaliação sensorial [simulação].","Sabão Inadequado: Interromper imediatamente o uso do sabão não alimentício ou não aprovado. Descartar todo o sabão inadequado;
+Se for detectado resíduo de sabão na alface, realizar enxágues adicionais no lote afetado, se possível, para tentar remover os resíduos [simulação];
+Se o resíduo persistir ou se a segurança do produto for comprometida, o lote deve ser retido e descartado [simulação];
+Investigar a causa do resíduo (dosagem excessiva, tempo de enxágue insuficiente, problema no equipamento).","Fichas de verificação do produto de limpeza;
+Planilhas de monitoramento da avaliação sensorial;
+Registros de não conformidades (detecção de resíduos) e ações corretivas;
+Registros de treinamento dos funcionários.","Revisão semanal dos registros de monitoramento para garantir a aplicação consistente das medidas preventivas [simulação];
+Auditorias internas periódicas (mensal ou trimestral) para verificar a conformidade com os POPs de pré-lavagem e a seleção de produtos químicos [simulação];
+Análise de dados de reclamações de clientes relacionadas a sabor ou odor estranho no produto [simulação]."
+Pré-lavagem (feita com sabão específico para vegetais),não  identificado,F,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+Lavagem 1 (água corrente),Água contaminada,B,"Água de lavagem: Potável, ausente de coliformes termotolerantes e outros patógenos, e com cloro residual livre dentro dos padrões estabelecidos (se clorada).",Qualidade microbiológica e físico-química da água (cloro residual livre pH).,"Análise microbiológica da água (semanalmente/mensalmente) [simulação];
+Medição diária do cloro residual livre e pH da água (se for tratada com cloro) [simulação];
+Inspeção visual da limpeza dos tanques e utensílios de lavagem [simulação].","Semanalmente/Mensalmente (microbiológica da água) [simulação];
+Diariamente (cloro residual livre, pH da água) [simulação];
+Antes do início de cada turno e durante a operação (limpeza de utensílios) [simulação].","Responsável pelo controle de qualidade [simulação];
+Operador da linha de lavagem ou funcionário da higiene [simulação].","Interromper imediatamente o uso da água contaminada [simulação];
+Identificar a fonte e implementar medidas corretivas (ex: filtração, cloração, manutenção do sistema de abastecimento) [simulação];
+Reter e descartar o lote de alface processado com água contaminada, ou reprocessar se a segurança permitir [simulação];
+Limpar e sanitizar os tanques e utensílios [simulação].","Laudos de análises microbiológicas e físico-químicas da água;
+Registros de monitoramento de cloro residual livre e pH;
+Fichas de limpeza e sanitização dos tanques;
+Registros de não conformidades e ações corretivas.","Revisão dos laudos de análise da água [simulação];
+Auditorias internas sobre a rotina de limpeza e controle da água [simulação];
+Verificação da calibração dos equipamentos de medição. Análise de reclamações de clientes relacionadas a doenças transmitidas por alimentos."
+Lavagem 1 (água corrente),Resíduos de cloro ou outros saneantes em excesso,Q,"Concentração de cloro residual livre na alface: Abaixo do limite de detecção ou conforme LMRs específicos (se houver);
+Alface após lavagem: Ausência de sabor ou odor residual de cloro/saneante. [simulação]","Concentração de cloro na água de lavagem;
+Avaliação sensorial (sabor/odor) da alface após lavagem.","Medição da concentração de cloro na água com kit colorimétrico ou sensor [simulação];
+Degustação de amostras de alface por equipe treinada [simulação].","A cada 2-4 horas ou por lote de preparo (concentração de cloro) [simulação];
+Periodicamente, por turno (avaliação sensorial) [simulação].","Responsável pelo controle de qualidade [simulação];
+Funcionários treinados para avaliação sensorial [simulação].","Se a concentração de cloro estiver alta, ajustar a dosagem na água [simulação];
+Se resíduo sensorial for detectado, realizar enxágues adicionais no lote, se possível [simulação];
+Reter e descartar o lote se o problema persistir e comprometer a segurança/qualidade [simulação];
+Revisar e ajustar procedimentos de dosagem e enxágue; retreinar a equipe.","Registros de monitoramento da concentração de cloro;
+Fichas de avaliação sensorial;
+Registros de não conformidades e ações corretivas.","Revisão diária dos registros de monitoramento e ações corretivas [simulação];
+Calibração periódica dos equipamentos de medição (kit de cloro, pHmetro) [simulação];
+Análise de reclamações de clientes relacionadas a sabor/odor. Auditorias internas."
+Lavagem 1 (água corrente),Fragmentos de vegetais ou pequenos corpos estranhos,F,"Alface após lavagem: Ausência de fragmentos de vegetais deteriorados ou corpos estranhos visíveis (sujidade, insetos, etc.).",Inspeção visual da alface após a lavagem.,Observação visual contínua da alface em esteiras ou cestos de drenagem após a lavagem. [simulação],A cada lote ou a cada 30 minutos de operação [simulação].,"Operador da linha de lavagem;
+Responsável pelo controle de qualidade [simulação].","Remover manualmente os fragmentos e corpos estranhos encontrados [simulação];
+Se a quantidade de fragmentos for excessiva, reprocessar o lote (se possível sem comprometer a qualidade) ou ajustar os procedimentos das etapas anteriores (pré-lavagem/seleção) [simulação];
+Limpar e inspecionar mais frequentemente os tanques e telas de drenagem. [simulação]","Registros de inspeção visual;
+Registros de não conformidades e ações corretivas.","Revisão semanal dos registros de inspeção e ações corretivas [simulação];
+Análise de reclamações de clientes relacionadas a corpos estranhos;
+Auditorias internas para verificar a eficácia da remoção de detritos."
+Lavagem 2 (água corrente),Recontaminação por água ou utensílios,B,"Água de Lavagem 2: Potável, ausente de coliformes termotolerantes e outros patógenos;
+Utensílios e superfícies de contato: Limpos e sanitizados, ausência de sujidade visível e matéria orgânica, e conformidade com padrões microbiológicos. [simulação]","Qualidade microbiológica e físico-química da água da Lavagem 2;
+Limpeza e estado dos utensílios e superfícies de contato.","Análise microbiológica da água (semanalmente/mensalmente) [simulação];
+Medição diária do cloro residual livre e pH da água (se clorada) [simulação].",Inspeção visual diária da limpeza dos tanques e utensílios. [simulação],"Responsável pelo controle de qualidade [simulação];
+Operador da linha de lavagem ou funcionário da higiene [simulação].","Interromper o uso de água/utensílios contaminados [simulação];
+Identificar e corrigir a fonte da contaminação [simulação];
+Reter e, se necessário, reprocessar ou descartar o lote de alface recontaminado, avaliando o risco [simulação];
+Reforçar o treinamento de higiene da equipe. [simulação]","Laudos de análises microbiológicas e físico-químicas da água;
+Fichas de limpeza e sanitização dos tanques e utensílios;
+Registros de não conformidades e ações corretivas.","Revisão periódica dos registros de monitoramento e ações corretivas [simulação];
+Auditorias internas para verificar a adesão aos procedimentos de higiene [simulação];
+Verificação da calibração dos equipamentos de medição."
+Lavagem 2 (água corrente),não identificado,Q,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+Lavagem 2 (água corrente),não identificado,F,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+"Sanitização (ozônio - tempo, temperatura e concentração não padronizados)",Ineficiência na eliminação de patógenos,B,"Tempo de contato, temperatura e concentração de ozônio: Devem estar dentro das especificações validadas para garantir a redução microbiana segura;
+Alface sanitizada: Conformidade com padrões microbiológicos de segurança alimentar. [simulação]","Tempo de contato, temperatura da solução, concentração de ozônio: Estes são os parâmetros críticos que precisam ser padronizados e monitorados para garantir a eficácia da sanitização;
+Resultados de análises microbiológicas da alface após sanitização: Para confirmar que os patógenos foram eliminados a níveis seguros.","Tempo de contato, temperatura da solução, concentração de ozônio;
+Resultados de análises microbiológicas da alface após sanitização.","Medição contínua ou periódica (a cada lote) da concentração de ozônio (com sensor ou kit) [simulação];
+Verificação da temperatura da solução [simulação];
+Registro do tempo de exposição.
+Realização de análises microbiológicas da alface sanitizada (regularmente, conforme plano de amostragem) [simulação].","Operador do sistema de sanitização;
+Responsável pelo controle de qualidade [simulação].","Ajustar imediatamente os parâmetros (tempo, temperatura, concentração) para os valores padronizados [simulação];
+Reter o lote de alface sanitizado fora das especificações. Reprocessar se a segurança permitir e a qualidade não for afetada, ou descartar [simulação];
+Verificar e calibrar os equipamentos de geração e medição de ozônio [simulação];
+Revisar o POP de sanitização e retreinar a equipe.","Registros de monitoramento dos parâmetros do ozônio (tempo, temperatura, concentração);
+Laudos de análises microbiológicas da alface;
+Registros de não conformidades e ações corretivas.","Revisão diária/semanal dos registros de monitoramento e ações corretivas;
+Validação periódica do processo de sanitização para confirmar a eficácia do ozônio [simulação];
+Auditorias internas;
+Análise de reclamações de clientes relacionadas a doenças transmitidas por alimentos."
+"Sanitização (ozônio - tempo, temperatura e concentração não padronizados)",Resíduos de ozônio em excesso,Q,"Não aplicável (perigo não significativo, se o processo for validado)",Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+"Sanitização (ozônio - tempo, temperatura e concentração não padronizados)",Não identificado,F,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+Centrifugação (tempo não padronizado),Contaminação cruzada,B,"Centrífuga e cestos: Limpos e sanitizados, ausência de sujidade visível;
+Alface centrifugada: Nível de umidade residual aceitável (ex: por análise de teor de umidade ou avaliação visual/tátil de secura da superfície), e conformidade com padrões microbiológicos. [simulação]","Limpeza visual da centrífuga e cestos;
+Verificação do tempo de centrifugação;
+Avaliação da umidade residual da alface (visual/tátil) [simulação];
+Análises microbiológicas da alface após centrifugação (periodicamente) [simulação].","Limpeza: Antes do uso e a cada turno;
+Tempo: A cada lote [simulação];
+Umidade residual: A cada lote ou a cada 30 minutos [simulação];
+Análises: Conforme plano de amostragem.","Operador da centrífuga;
+Responsável pelo controle de qualidade [simulação].","Limpar e sanitizar imediatamente a centrífuga e os cestos se estiverem sujos [simulação];
+Ajustar o tempo de centrifugação para o valor padronizado [simulação];
+Se umidade excessiva ou contaminação for detectada, reprocessar o lote (se possível) ou descartar [simulação];
+Reforçar o treinamento de higiene e operação da centrífuga. [simulação]","Fichas de limpeza e sanitização da centrífuga;
+Registros de tempo de centrifugação;
+Planilhas de avaliação de umidade residual;
+Laudos de análises microbiológicas;
+Registros de não conformidades e ações corretivas.","Revisão diária dos registros de monitoramento;
+Auditorias internas para verificar a limpeza e operação da centrífuga;
+Análise de dados de umidade residual e crescimento microbiano para otimização.",
+Centrifugação (tempo não padronizado),não identificado,Q,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+Centrifugação (tempo não padronizado),Possível presença de corpos estranhos (plásticos soltos da máquina),F,Centrífuga e cestos: Ausência de partes danificadas ou soltas; Alface centrifugada: Ausência de fragmentos de plástico/metal e mínimos fragmentos vegetais; Tempo de centrifugação: Dentro do padrão validado para minimizar danos. [simulação],Inspeção visual da centrífuga e cestos; Inspeção visual da alface após centrifugação para detectar fragmentos não conformes.,Inspeção visual da centrífuga e cestos; Inspeção visual da alface após centrifugação para detectar fragmentos não conformes.,Antes de cada turno e durante a operação (inspeção de máquina) [simulação]; A cada lote ou a cada 30 minutos (inspeção do produto) [simulação].,Operador da centrífuga; Responsável pela manutenção; Responsável pelo controle de qualidade [simulação].,"Parar a operação se houver danos na centrífuga e realizar reparos/manutenção [simulação]; Isolar e inspecionar o lote de alface afetado. Se houver contaminação por fragmentos de plástico/metal, descartar o lote [simulação]; Ajustar o tempo de centrifugação para evitar danos ao produto; Reforçar o treinamento sobre manuseio da alface.",Registros de manutenção da centrífuga; Fichas de inspeção visual de equipamentos e produto; Registros de não conformidades e ações corretivas.,Revisão dos registros de manutenção; Auditorias internas para verificar o cumprimento dos POPs de inspeção e operação; Análise de reclamações de clientes sobre corpos estranhos no produto.
+Acondicionamento (embalagem em atmosfera modificada ativa),Falha na atmosfera modificada,B,"Composição gasosa da embalagem (O2 e CO2): Dentro dos limites validados (ex: 2-5% O2, 5-10% CO2 para alface, valores simulados) para inibir o crescimento microbiano;
+Integridade da selagem: Sem vazamentos ou falhas visíveis. [simulação]","Composição gasosa da embalagem (O2 e CO2): para verificar se está dentro dos limites validados (ex: 2-5% O2, 5-10% CO2 para alface, valores simulados) para inibir o crescimento microbiano;
+Integridade da selagem: para verificar a ausência de vazamentos ou falhas visíveis.","Análise da composição gasosa (O2 e CO2) em amostras de embalagens (com analisador de gases) [simulação];
+Teste de integridade da selagem (ex: teste de bolha ou vácuo) [simulação];
+Inspeção visual da selagem das embalagens.","Análise gasosa: A cada lote ou a cada hora de produção [simulação];
+Integridade da selagem: Continuamente durante a operação ou a cada 15-30 minutos [simulação].","Operador da máquina de embalagem;
+Responsável pelo controle de qualidade [simulação].","Ajustar imediatamente os parâmetros de injeção de gases ou a máquina de selagem [simulação];
+Reter e reprocessar (se a segurança e qualidade permitirem) ou descartar os lotes com falha na atmosfera modificada ou na selagem [simulação];
+Verificar e calibrar os equipamentos de análise de gases e selagem [simulação];
+Revisar o POP e retreinar a equipe.","Registros de análise de gases na embalagem;
+Registros de testes de integridade da selagem;
+Registros de não conformidades e ações corretivas.","Revisão diária/semanal dos registros de monitoramento e ações corretivas;
+Validação periódica do processo de AMA [simulação];
+Auditorias internas. Análise de reclamações de clientes sobre deterioração precoce."
+Acondicionamento (embalagem em atmosfera modificada ativa),Presença de compostos de gases acima do permitido,Q,"Composição gasosa da embalagem (O2 e CO2): Dentro dos limites validados para a qualidade da alface e ausência de toxicidade (ex: CO2 abaixo de 10-15%, valor simulado);
+Ausência de odores ou sabores estranhos na alface. [simulação]","Composição gasosa (O2 e CO2) em amostras de embalagens;
+Avaliação sensorial (odor/sabor) da alface embalada","Análise da composição gasosa (O2 e CO2) em amostras de embalagens [simulação];
+Avaliação sensorial (odor/sabor) da alface embalada.","A cada lote ou a cada hora de produção (análise gasosa) [simulação];
+Periodicamente (avaliação sensorial) [simulação].",Responsável pelo controle de qualidade [simulação].,"Ajustar imediatamente os parâmetros de injeção de gases [simulação];
+Reter e descartar lotes com composição gasosa tóxica ou sabor/odor anormais [simulação];
+Investigar a causa do desvio (problema no equipamento, dosagem incorreta, fonte de etileno).","Registros de análise de gases na embalagem;
+Fichas de avaliação sensorial;
+Registros de não conformidades e ações corretivas.","Revisão dos registros de monitoramento;
+Validação periódica dos parâmetros de AMA;
+Análise de reclamações de clientes sobre sabor/odor estranho."
+Acondicionamento (embalagem em atmosfera modificada ativa),Presença de material plástico ou falhas na selagem,F,"Embalagem: Íntegra, sem rasgos, furos, falhas na selagem ou presença de material estranho;
+Produto embalado: Ausência de fragmentos plásticos visíveis. [simulação]","Integridade da embalagem e do produto: Isso inclui verificar a ausência de rasgos, furos, falhas na selagem ou presença de material estranho, bem como a ausência de fragmentos plásticos visíveis no produto embalado.",Inspeção visual da integridade da embalagem e do produto. Teste de selagem.,Continuamente durante a operação ou a cada 15-30 minutos (inspeção visual e teste de selagem) [simulação].,"Operador da máquina de embalagem;
+Responsável pelo controle de qualidade [simulação].","Parar a operação e realizar ajustes/reparos na máquina de embalagem se houver falhas [simulação];
+Reter e descartar os lotes com embalagens danificadas ou contaminadas por fragmentos plásticos [simulação];
+Reforçar o treinamento de operação da máquina e inspeção de qualidade.","Registros de inspeção de embalagem e selagem;
+Registros de manutenção da máquina de embalagem;
+Registros de não conformidades e ações corretivas.","Revisão dos registros de inspeção;
+Auditorias internas para verificar a conformidade dos procedimentos de embalagem;
+Análise de reclamações de clientes sobre corpos estranhos ou falhas na embalagem."
+Estocagem (câmara refrigerada),Multiplicação de patógenos,B,"Temperatura da câmara de refrigeração: entre 0°C e 5°C. A temperatura nunca deve ser inferior a -0,2°C;
+Umidade relativa: 95-100%;
+Alface estocada: Ausência de crescimento microbiano visível ou odores estranhos. [simulação].","Temperatura e umidade da câmara : para garantir que estejam dentro dos limites ideais para a alface (0°C a 5°C para temperatura e 95-100% de umidade relativa ) e evitar a proliferação microbiana. A temperatura nunca deve ser inferior a -0,2°C (ponto de congelamento da alface) para evitar injúria por frio e subsequente deterioração;
+Inspeção visual da alface estocada: para verificar a ausência de crescimento microbiano visível ou odores estranhos;
+Testes microbiológicos periódicos da alface estocada [simulação].","Temperatura e umidade da câmara;
+Inspeção visual da alface estocada;
+Testes microbiológicos periódicos da alface estocada [simulação].","Temperatura/umidade: Contínuo (automático) ou a cada 2-4 horas (manual) [simulação];
+Inspeção visual: Diária ou a cada entrada/saída de lote [simulação];
+Testes microbiológicos: Semanalmente ou conforme plano de amostragem [simulação].","Funcionário responsável pela câmara;
+Responsável pelo controle de qualidade [simulação].","Ajustar temperatura/umidade da câmara imediatamente [simulação];
+Verificar o funcionamento do sistema de refrigeração e manutenção [simulação];
+Isolar e inspecionar lotes afetados: se houver deterioração ou crescimento microbiano, descartar o lote [simulação];
+Reforçar treinamento sobre estocagem e monitoramento.","Planilhas de monitoramento de temperatura e umidade da câmara;
+Registros de inspeção visual da alface;
+Laudos de análises microbiológicas;
+Registros de não conformidades e ações corretivas.","Revisão diária/semanal dos registros de monitoramento;
+Auditorias internas da câmara (limpeza, organização, manutenção);
+Análise de dados de perdas por deterioração na estocagem;
+Calibração periódica dos instrumentos de monitoramento."
+Estocagem (câmara refrigerada),Não identificado,Q,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+Estocagem (câmara refrigerada),Não identificado,F,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,
+Transporte/distribuição (caminhão refrigerado),Perda de temperatura ou contaminação,B,"Temperatura interna do caminhão: entre 0°C e 5°C, sem flutuações significativas;
+Alface no recebimento: Ausência de deterioração ou sinais de crescimento microbiano visível. [simulação].","Temperatura interna do caminhão: para garantir que esteja entre 0°C e 5°C, sem flutuações significativas;
+Inspeção visual da limpeza do caminhão: antes de cada carregamento;
+Inspeção visual da alface no destino: para verificar a ausência de deterioração (como murchamento, amarelamento ou podridão) ou sinais de crescimento microbiano visível.","Registros de temperatura do caminhão (termógrafos ou sensores com GPS) [simulação];
+Inspeção visual da limpeza do caminhão antes do carregamento [simulação];
+Inspeção visual da alface no destino (murchamento, podridão) [simulação].","Temperatura: Contínuo durante todo o percurso [simulação];
+Limpeza do caminhão: Antes de cada carregamento [simulação];
+Inspeção visual: No carregamento e descarregamento [simulação].","Motorista ou transportadora;
+Responsável pelo controle de qualidade (carregamento/descarregamento) [simulação].","Se houver desvio de temperatura, notificar a transportadora e investigar a causa [simulação];
+Se a alface apresentar deterioração por perda de temperatura, reter e descartar o lote [simulação];
+Se houver contaminação por sujidade, devolver ou descartar o lote [simulação];
+Reforçar os requisitos de transporte com a transportadora.","Registros de temperatura do caminhão;
+Fichas de inspeção de limpeza do veículo;
+Relatórios de não conformidades e ações corretivas.","Revisão periódica dos registros de temperatura e laudos de inspeção dos caminhões;
+Auditorias em transportadoras para verificar a conformidade com as BPF de transporte;
+Análise de reclamações de clientes relacionadas à qualidade no recebimento."
+Transporte/distribuição (caminhão refrigerado),Não identificado,Q,Não aplicável (perigo não significativo),Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável,Não aplicável
+Transporte/distribuição (caminhão refrigerado),Não identificado,F,"Manter o interior do caminhão limpo e livre de detritos;
+Integridade das embalagens;
+Alface no recebimento: Ausência de danos físicos significativos (amassamentos, rasgos) e corpos estranhos. [simulação]","Integridade das embalagens: Para verificar a ausência de danos como amassamentos ou rasgos;
+Alface no recebimento: Para inspecionar a ausência de danos físicos significativos (amassamentos, rasgos) e corpos estranhos.
+",Inspeção visual das embalagens e do produto no carregamento e descarregamento.,No carregamento e descarregamento de cada lote [simulação].,"Motorista ou transportadora;
+Responsável pelo controle de qualidade [simulação].","Se houver embalagens danificadas, isolar o lote, inspecionar o produto e descartar se houver comprometimento [simulação];
+Investigar a causa dos danos (empilhamento, manuseio, condições da estrada) [simulação];
+Reforçar treinamento de manuseio e carregamento.","Registros de inspeção visual de embalagens e produto;
+Registros de não conformidades e ações corretivas.","Revisão periódica dos registros de inspeção;
+Análise de reclamações de clientes sobre danos físicos ou corpos estranhos."

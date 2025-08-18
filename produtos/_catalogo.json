@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "alface_americana",
+    "nome": "Alface Americana",
+    "grupo": "Hortaliças Minimamente Processadas",
+    "subgrupo": "Alface",
+    "criado_em": "2025-08-15T09:05:43.154527",
+    "atualizado_em": "2025-08-15T11:05:28.357103"
+  },
+  {
+    "slug": "queijo_coalho",
+    "nome": "Queijo Coalho",
+    "grupo": "Laticínios",
+    "subgrupo": "Leite, Queijos, Iogurtes, Manteigas",
+    "criado_em": "2025-08-15T14:55:27.445135",
+    "atualizado_em": "2025-08-15T14:56:38.607031"
+  },
+  {
+    "slug": "queijo_maturado",
+    "nome": "Queijo Maturado",
+    "grupo": "Laticínios",
+    "subgrupo": "Leite, Queijos, Iogurtes, Manteigas",
+    "criado_em": "2025-08-15T15:01:40.484551",
+    "atualizado_em": "2025-08-15T15:02:09.385540"
+  },
+  {
+    "slug": "leite_pasteurizado",
+    "nome": "Leite Pasteurizado",
+    "grupo": "Laticínios",
+    "subgrupo": "Leite, Queijos, Iogurtes, Manteigas",
+    "criado_em": "2025-08-15T15:04:04.576098",
+    "atualizado_em": "2025-08-15T15:04:04.576098"
+  },
+  {
+    "slug": "biscoitos",
+    "nome": "Biscoitos",
+    "grupo": "Panificação e Confeitaria",
+    "subgrupo": "Pães, Bolos e Tortas",
+    "criado_em": "2025-08-17T19:39:53.491113",
+    "atualizado_em": "2025-08-17T19:39:53.491113"
+  }
+]
