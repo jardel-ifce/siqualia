@@ -1,0 +1,13 @@
+{
+  "dataset_usado": "Envase e Rotulagem",
+  "timestamp": "20250903_105512",
+  "classes": [
+    "DESPREZ\u00cdVEL",
+    "BAIXA",
+    "M\u00c9DIA",
+    "ALTA"
+  ],
+  "modelo_path": "/Users/jardelrodrigues/Desktop/siqualia-ia-main/ml/scripts/envase_rotulagem/../../models/envase_rotulagem/classificador_mel_20250903_105512.pkl",
+  "scaler_path": "/Users/jardelrodrigues/Desktop/siqualia-ia-main/ml/scripts/envase_rotulagem/../../models/envase_rotulagem/scaler_mel_20250903_105512.pkl",
+  "etapa": "envase_rotulagem"
+}
