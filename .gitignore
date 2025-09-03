@@ -1,23 +1,27 @@
 # Ignorar o diretório do ambiente virtual
 venv/
 .venv/
+
+# Python
 *.pyc
 *.pyo
 *.pyd
+*.py[cod]
 __pycache__/
+**/__pycache__/
 
+# Arquivos de teste e antigos
 testes/
 app_old/
 /requirements.dev
 
-# Ignorar arquivos de configuração do editor (exemplo: VSCode)
+# Editores
 .vscode/
+.idea/
+*.iml
 
-# Ignorar arquivos de log
+# Logs
 *.log
 
-# Ignorar a pasta .idea (onde PyCharm armazena suas configurações de projeto)
-.idea/
-
-# Ignorar arquivos de configuração específicos do PyCharm
-*.iml
+# Sistema
+*.DS_Store
