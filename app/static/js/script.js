@@ -370,12 +370,18 @@ function removerPerigo(idx) {
 //                             FUNÇÕES DE ANÁLISE E CONSULTA (FLUXO PRINCIPAL)
 // =================================================================================================
 async function consultarEtapa() {
+
     const produto = document.getElementById("selectProduto").value;
     const termo = document.getElementById("inputEtapa").value.trim();
     const selectEtapas = document.getElementById("selectEtapas");
 
     if (!produto || !termo) {
         alert("Informe o produto e a etapa!");
+        return;
+    }
+
+    if (termo.length < 5) {
+        alert("O termo de pesquisa deve ter no mínimo 5 caracteres.");
         return;
     }
 

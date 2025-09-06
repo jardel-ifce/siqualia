@@ -1,0 +1,24 @@
+{
+  "produto": "alface_americana",
+  "etapa": "Estocagem da matéria-prima (câmara de refrigeração)",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Multiplicação de microrganismos por temperatura inadequada",
+          "justificativa": "A alface é altamente perecível e sensível à temperatura. O aumento da temperatura acelera a proliferação de microrganismos, a transpiração e a respiração, causando rápida deterioração. O controle rigoroso da temperatura é essencial para preservar a qualidade e reduzir as perdas pós-colheita.",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Somente alfaces sadias e de alta qualidade devem ser armazenadas, pois a baixa temperatura não destrói os patógenos, apenas diminui sua atividade;\nA temperatura da alface deve ser reduzida logo após a colheita (pré-resfriamento) para diminuir a atividade metabólica e a transpiração;\nManter a temperatura de armazenamento entre 0°C e 5°C , com umidade relativa entre 95-100%;\nAs câmaras de refrigeração devem ser limpas regularmente;\nMonitorar e manter a ventilação adequada nas câmaras para evitar o acúmulo de etileno e calor;\nNão exceder a capacidade da câmara, mantendo corredores livres para circulação de ar;\nEvitar armazenar a alface com frutos climatéricos (como tomate, melancia, banana) que liberam etileno, pois este gás pode causar manchas escuras e acelerar o amadurecimento e deterioração da alface;",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": []
+    }
+  ]
+}

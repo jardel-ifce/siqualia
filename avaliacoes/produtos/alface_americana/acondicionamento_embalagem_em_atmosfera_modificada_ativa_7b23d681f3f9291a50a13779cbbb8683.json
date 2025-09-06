@@ -1,0 +1,24 @@
+{
+  "produto": "alface_americana",
+  "etapa": "Acondicionamento (embalagem em atmosfera modificada ativa)",
+  "perigos": [
+    {
+      "id": 1,
+      "perigo": [
+        {
+          "tipo": "B",
+          "perigo": "Falha na atmosfera modificada",
+          "justificativa": "A falha em manter a atmosfera modificada ativa (AMA) ideal dentro da embalagem pode resultar em condições anaeróbicas ou em níveis inadequados de O2 e CO2, favorecendo a multiplicação de microrganismos (especialmente anaeróbios ou facultativos) e levando à deterioração acelerada da alface, como o apodrecimento e perda de qualidade. [simulação]",
+          "probabilidade": "Alta",
+          "severidade": "Alta",
+          "risco": "Desprezível",
+          "medida": "Validar e controlar os parâmetros de injeção de gases (O2, CO2, N2) para garantir a formação da AMA ideal para alface [simulação];\nUtilizar filmes de embalagem com permeabilidade adequada e que não permitam o acúmulo excessivo de umidade ou a formação de anaerobiose[cite: 999];\nGarantir a integridade da selagem da embalagem para manter a atmosfera modificada;\nManter a temperatura da alface baixa durante o acondicionamento para diminuir a atividade metabólica e a respiração, que podem alterar rapidamente a composição gasosa da embalagem. [cite: 781]",
+          "perigo_significativo": "SIM",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": []
+    }
+  ]
+}

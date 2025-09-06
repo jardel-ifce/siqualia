@@ -81,6 +81,37 @@
           "verificacao": "Revisão diária/semanal dos registros de monitoramento;Auditorias internas da câmara (limpeza, organização, manutenção);Análise de dados de perdas por deterioração na estocagem;Calibração periódica dos instrumentos de monitoramento."
         }
       ]
+    },
+    {
+      "id": 3,
+      "perigo": [
+        {
+          "tipo": "Q",
+          "perigo": "Não identificado",
+          "justificativa": "Não se identificou um perigo químico significativo específico introduzido na estocagem em câmara refrigerada, assumindo que não há vazamentos de refrigerantes ou outros produtos químicos dentro da câmara que possam contaminar a alface.",
+          "probabilidade": "Baixa",
+          "severidade": "Baixa",
+          "risco": "Desprezível",
+          "medida": "Garantir a manutenção preventiva dos sistemas de refrigeração para evitar vazamentos de gases refrigerantes. Manter a câmara limpa e livre de produtos químicos não alimentícios. [simulação]",
+          "perigo_significativo": "NÃO",
+          "origem": "appcc"
+        }
+      ],
+      "questionario": [],
+      "resumo": [
+        {
+          "limite_critico": "Temperatura da câmara de refrigeração: entre 0°C e 5°C. A temperatura nunca deve ser inferior a -0,2°C;\nUmidade relativa: 95-100%;\nAlface estocada: Ausência de crescimento microbiano visível ou odores estranhos. [simulação].",
+          "monitoramento": {
+            "oque": "Temperatura e umidade da câmara : para garantir que estejam dentro dos limites ideais para a alface (0°C a 5°C para temperatura e 95-100% de umidade relativa ) e evitar a proliferação microbiana. A temperatura nunca deve ser inferior a -0,2°C (ponto de congelamento da alface) para evitar injúria por frio e subsequente deterioração;Inspeção visual da alface estocada: para verificar a ausência de crescimento microbiano visível ou odores estranhos;Testes microbiológicos periódicos da alface estocada [simulação].",
+            "como": "Temperatura e umidade da câmara;Inspeção visual da alface estocada;Testes microbiológicos periódicos da alface estocada [simulação].",
+            "quando": "Temperatura/umidade: Contínuo (automático) ou a cada 2-4 horas (manual) [simulação];Inspeção visual: Diária ou a cada entrada/saída de lote [simulação];Testes microbiológicos: Semanalmente ou conforme plano de amostragem [simulação].",
+            "quem": "Funcionário responsável pela câmara;Responsável pelo controle de qualidade [simulação]."
+          },
+          "acao_corretiva": "Ajustar temperatura/umidade da câmara imediatamente [simulação];\nVerificar o funcionamento do sistema de refrigeração e manutenção [simulação];\nIsolar e inspecionar lotes afetados: se houver deterioração ou crescimento microbiano, descartar o lote [simulação];\nReforçar treinamento sobre estocagem e monitoramento.",
+          "registro": "Planilhas de monitoramento de temperatura e umidade da câmara;Registros de inspeção visual da alface;Laudos de análises microbiológicas;Registros de não conformidades e ações corretivas.",
+          "verificacao": "Revisão diária/semanal dos registros de monitoramento;Auditorias internas da câmara (limpeza, organização, manutenção);Análise de dados de perdas por deterioração na estocagem;Calibração periódica dos instrumentos de monitoramento."
+        }
+      ]
     }
   ]
 }
