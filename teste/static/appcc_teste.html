@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>APPCC – Assistente (Teste)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Atualizado: servir via FastAPI em /static -->
+  <link rel="stylesheet" href="/static/appcc_teste.css" />
+</head>
+<body>
+<header class="topbar">
+  <h1>APPCC – Assistente (Ambiente de Teste)</h1>
+  <div id="statusBar">Rascunho: —</div>
+</header>
+
+<main id="wizard">
+  <!-- Passo 1: Seleção -->
+  <section class="step active" data-step="1">
+    <h2>1) Seleção inicial</h2>
+    <div class="grid">
+      <label>Produto
+        <select id="produto">
+          <option value="">Selecione…</option>
+          <option value="mel">Mel</option>
+          <!-- adicione outros produtos aqui -->
+        </select>
+      </label>
+      <label>Etapa (texto livre)
+        <input id="etapa" type="text" placeholder="ex.: envase e rotulagem" />
+      </label>
+      <label>Tipo de perigo
+        <select id="tipoPerigo">
+          <option value="">Selecione…</option>
+          <option value="B">Biológico</option>
+          <option value="F">Físico</option>
+          <option value="Q">Químico</option>
+        </select>
+      </label>
+      <label>Perigo
+        <input id="perigoDescricao" type="text" placeholder="ex.: contaminação microbiológica" />
+      </label>
+    </div>
+    <label>Justificativa
+      <textarea id="justificativa" rows="3" placeholder="Descreva por que o perigo é considerado nesta etapa…"></textarea>
+    </label>
+    <nav class="nav">
+      <button id="next1" class="primary">Próximo</button>
+    </nav>
+  </section>
+
+  <!-- Passo 2: Perguntas BPF (probabilidade) -->
+  <section class="step" data-step="2">
+    <h2>2) Boas Práticas de Fabricação (para estimar a Probabilidade)</h2>
+    <p class="muted">Responda às perguntas; enviaremos para predição de probabilidade.</p>
+
+    <div id="bpfForm" class="grid grid-2">
+      <!-- As chaves/labels refletem predicao_mel.py -->
+      <label>Tipo de embalagem
+        <select data-key="tipo_embalagem">
+          <option value="1">Vidro</option>
+          <option value="0">PET</option>
+        </select>
+      </label>
+      <label>Estado da embalagem
+        <select data-key="estado_embalagem">
+          <option value="1">Íntegra</option>
+          <option value="0">Danificada</option>
+        </select>
+      </label>
+      <label>Tampa correta
+        <select data-key="tampa_correta">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+      </label>
+      <label>Vedação adequada
+        <select data-key="vedacao_adequada">
+          <option value="1">Adequada</option>
+          <option value="0">Inadequada</option>
+        </select>
+      </label>
+
+      <label>Higienização prévia
+        <select data-key="higienizacao_previa">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+      </label>
+      <label>Uso de EPI
+        <select data-key="uso_epi">
+          <option value="2">Completo</option>
+          <option value="1">Parcial</option>
+          <option value="0">Ausente</option>
+        </select>
+      </label>
+      <label>Local de envase
+        <select data-key="local_envase">
+          <option value="1">Adequado</option>
+          <option value="0">Inadequado</option>
+        </select>
+      </label>
+      <label>Higiene do manipulador
+        <select data-key="manipulador_higiene">
+          <option value="1">Adequada</option>
+          <option value="0">Inadequada</option>
+        </select>
+      </label>
+
+      <label>Aspecto visual do mel
+        <select data-key="aspecto_visual">
+          <option value="2">Normal</option>
+          <option value="1">Espuma</option>
+          <option value="0">Sujidades</option>
+        </select>
+      </label>
+      <label>Umidade do mel
+        <select data-key="umidade_mel">
+          <option value="1">≤ 20%</option>
+          <option value="0">&gt; 20%</option>
+        </select>
+      </label>
+      <label>Temperatura de envase
+        <select data-key="temperatura_envase">
+          <option value="1">Adequada</option>
+          <option value="0">Inadequada</option>
+        </select>
+      </label>
+      <label>Cristalização
+        <select data-key="cristalizacao">
+          <option value="2">Ausente</option>
+          <option value="1">Parcial</option>
+          <option value="0">Excessiva</option>
+        </select>
+      </label>
+
+      <label>Rótulo presente
+        <select data-key="rotulo_presente">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+      </label>
+      <label>Informações completas
+        <select data-key="informacoes_completas">
+          <option value="1">Completas</option>
+          <option value="0">Incompletas</option>
+        </select>
+      </label>
+      <label>Validade legível
+        <select data-key="data_validade_legivel">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+      </label>
+      <label>Lote identificado
+        <select data-key="lote_identificado">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+      </label>
+
+      <label>Treinamento da equipe
+        <select data-key="treinamento_equipe">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+      </label>
+      <label>Histórico de reclamações
+        <select data-key="historico_reclamacoes">
+          <option value="2">Nenhuma</option>
+          <option value="1">Poucas</option>
+          <option value="0">Frequentes</option>
+        </select>
+      </label>
+      <label>Registro do lote
+        <select data-key="registro_lote">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+      </label>
+      <label>Tempo de exposição ao ar (5–60 min)
+        <input data-key="tempo_exposicao_ar" type="number" min="5" max="60" value="10" />
+      </label>
+    </div>
+
+    <div class="box">
+      <button id="btnPredizer" class="secondary">Calcular Probabilidade</button>
+      <strong id="probOut" class="pill">—</strong>
+    </div>
+
+    <nav class="nav">
+      <button class="ghost" data-back>Voltar</button>
+      <button id="next2" class="primary" disabled>Próximo</button>
+    </nav>
+  </section>
+
+  <!-- Passo 3: Severidade -->
+  <section class="step" data-step="3">
+    <h2>3) Severidade</h2>
+    <div class="segGroup">
+      <label><input type="radio" name="sev" value="Baixa" /> Baixa</label>
+      <label><input type="radio" name="sev" value="Média" /> Média</label>
+      <label><input type="radio" name="sev" value="Alta" /> Alta</label>
+    </div>
+    <nav class="nav">
+      <button class="ghost" data-back>Voltar</button>
+      <button id="next3" class="primary" disabled>Próximo</button>
+    </nav>
+  </section>
+
+  <!-- Passo 4: Matriz de risco -->
+  <section class="step" data-step="4">
+    <h2>4) Matriz Probabilidade × Severidade</h2>
+    <p class="muted">Probabilidade: <b id="probResumo">—</b> | Severidade: <b id="sevResumo">—</b></p>
+    <div id="riscoBadge" class="risk-badge">Risco: —</div>
+
+    <div id="mp-extra" class="hidden">
+      <label>Medidas preventivas (obrigatório quando risco &gt; Desprezível)
+        <textarea id="medidasPreventivas" rows="3" placeholder="Liste medidas de controle/monitoramento…"></textarea>
+      </label>
+    </div>
+
+    <nav class="nav">
+      <button class="ghost" data-back>Voltar</button>
+      <button id="next4" class="primary" disabled>Próximo</button>
+    </nav>
+  </section>
+
+  <!-- Passo 5: Perigo significativo -->
+  <section class="step" data-step="5">
+    <h2>5) O perigo é significativo?</h2>
+    <div class="segGroup">
+      <label><input type="radio" name="signif" value="true" /> Sim</label>
+      <label><input type="radio" name="signif" value="false" /> Não</label>
+    </div>
+    <nav class="nav">
+      <button class="ghost" data-back>Voltar</button>
+      <button id="next5" class="primary" disabled>Revisar</button>
+    </nav>
+  </section>
+
+  <!-- Passo 6: Revisão e salvar -->
+  <section class="step" data-step="6">
+    <h2>6) Revisão</h2>
+    <pre id="reviewBox" class="review"></pre>
+    <nav class="nav">
+      <button class="ghost" data-back>Voltar</button>
+      <button id="btnSalvar" class="success">Finalizar e salvar JSON</button>
+    </nav>
+  </section>
+</main>
+
+<footer class="footer">
+  <button id="btnLimpar" class="danger ghost">Limpar rascunho</button>
+</footer>
+
+<!-- Atualizado: servir via FastAPI em /static -->
+<script src="/static/appcc_teste.js"></script>
+</body>
+</html>
