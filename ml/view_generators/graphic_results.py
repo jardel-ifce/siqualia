@@ -1,3 +1,4 @@
+# ml/view_generators/graphic_results.py
 """
 GERADOR DE GRÁFICOS E ANÁLISES VISUAIS
 ====================================

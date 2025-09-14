@@ -1,7 +1,6 @@
-// appcc_teste.js
+// teste/static/appcc_teste.js
 // Assistente APPCC (Ambiente de Teste)
 // Fluxo: Produto → Etapa → Tipo de perigo → Perigo → Justificativa → BPF/Probabilidade → Severidade → Matriz de Risco → Medidas (se preciso) → Significativo → Salvar
-
 // =====================
 // Config / util sessão
 // =====================

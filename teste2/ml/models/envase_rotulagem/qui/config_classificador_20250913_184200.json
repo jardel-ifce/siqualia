@@ -1,0 +1,24 @@
+{
+  "dataset_usado": "Envase e Rotulagem (QUI)",
+  "timestamp": "20250913_184200",
+  "classes": [
+    "DESPREZÍVEL",
+    "BAIXA",
+    "MÉDIA",
+    "ALTA"
+  ],
+  "modelo_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/qui/classificador_mel_20250913_184200.pkl",
+  "scaler_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/qui/scaler_mel_20250913_184200.pkl",
+  "etapa": "envase_rotulagem",
+  "tipo_perigo": "qui",
+  "features_usadas": [
+    "informacoes_completas",
+    "rotulo_presente",
+    "data_validade_legivel",
+    "lote_identificado",
+    "vedacao_adequada",
+    "tipo_embalagem",
+    "higienizacao_previa",
+    "registro_lote"
+  ]
+}

@@ -1,0 +1,38 @@
+RESULTADOS DO TREINAMENTO - ENVASE E ROTULAGEM
+============================================================
+
+Timestamp: 20250903_105458
+Dataset: Envase e Rotulagem
+
+CLASSIFICADOR UTILIZADO:
+- Algoritmo: Random Forest
+- Estimadores: 100
+- Max Depth: 10
+- Min Samples Split: 5
+- Random State: 42
+
+RESULTADOS:
+Acurácia: 64.3%
+
+MÉTRICAS POR CLASSE:
+------------------------------
+              precision    recall  f1-score   support
+
+ DESPREZÍVEL       0.85      0.84      0.84       182
+       BAIXA       0.18      0.16      0.17        43
+       MÉDIA       0.37      0.47      0.41        51
+        ALTA       0.60      0.38      0.46        24
+
+    accuracy                           0.64       300
+   macro avg       0.50      0.46      0.47       300
+weighted avg       0.65      0.64      0.64       300
+
+
+MATRIZ DE CONFUSÃO:
+--------------------
+       Predito →
+Real ↓    DESP  BAIX   MED  ALTA
+DESP      153    14    15     0
+BAIX       19     7    16     1
+MED         7    15    24     5
+ALTA        2     3    10     9

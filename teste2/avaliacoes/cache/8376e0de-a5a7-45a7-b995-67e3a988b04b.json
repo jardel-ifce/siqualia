@@ -1,0 +1,33 @@
+{
+  "produto": "mel",
+  "etapa": "envase e rotulagem",
+  "tipoPerigo": "Q",
+  "perigoDescricao": "Produtos químicos diversos",
+  "justificativa": "Presença de resíduos de produtos químicos utilizados para limpeza dos equipamentos e embalagens.",
+  "updatedAt": "2025-09-13T21:28:32.032Z",
+  "_step": 2,
+  "bpfRespostas": {
+    "tipo_embalagem": 0,
+    "estado_embalagem": 1,
+    "tampa_correta": 1,
+    "vedacao_adequada": 0,
+    "higienizacao_previa": 0,
+    "uso_epi": 2,
+    "local_envase": 1,
+    "manipulador_higiene": 1,
+    "aspecto_visual": 2,
+    "umidade_mel": 1,
+    "temperatura_envase": 1,
+    "cristalizacao": 2,
+    "rotulo_presente": 0,
+    "informacoes_completas": 0,
+    "data_validade_legivel": 0,
+    "lote_identificado": 0,
+    "treinamento_equipe": 1,
+    "historico_reclamacoes": 2,
+    "registro_lote": 0,
+    "tempo_exposicao_ar": 10
+  },
+  "probabilidade": "DESPREZÍVEL",
+  "prob_score": 0
+}

@@ -1,0 +1,24 @@
+{
+  "dataset_usado": "Envase e Rotulagem (BIO)",
+  "timestamp": "20250913_184110",
+  "classes": [
+    "DESPREZÍVEL",
+    "BAIXA",
+    "MÉDIA",
+    "ALTA"
+  ],
+  "modelo_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/bio/classificador_mel_20250913_184110.pkl",
+  "scaler_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/bio/scaler_mel_20250913_184110.pkl",
+  "etapa": "envase_rotulagem",
+  "tipo_perigo": "bio",
+  "features_usadas": [
+    "umidade_mel",
+    "higienizacao_previa",
+    "manipulador_higiene",
+    "uso_epi",
+    "local_envase",
+    "temperatura_envase",
+    "tempo_exposicao_ar",
+    "aspecto_visual"
+  ]
+}

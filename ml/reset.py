@@ -1,3 +1,4 @@
+# ml/scripts/envase_rotulagem/predicao_mel.py
 """
 SCRIPT DE RESET - SISTEMA DE CLASSIFICAÇÃO DE MEL
 ================================================

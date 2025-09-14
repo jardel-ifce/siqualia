@@ -1,4 +1,5 @@
 #!/bin/bash
+# ml/reset.sh
 
 # SCRIPT DE RESET - SISTEMA DE CLASSIFICAÇÃO DE MEL
 # ==================================================

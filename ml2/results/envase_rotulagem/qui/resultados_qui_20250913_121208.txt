@@ -1,0 +1,22 @@
+RESULTADOS - Envase e Rotulagem (QUI)
+============================================================
+
+Acurácia: 82.0%
+
+MÉTRICAS POR CLASSE:
+              precision    recall  f1-score   support
+
+ DESPREZÍVEL       1.00      0.14      0.25         7
+       BAIXA       0.89      0.72      0.80        80
+       MÉDIA       0.78      0.99      0.88       171
+        ALTA       1.00      0.40      0.58        42
+
+    accuracy                           0.82       300
+   macro avg       0.92      0.57      0.63       300
+weighted avg       0.85      0.82      0.80       300
+
+MATRIZ DE CONFUSÃO:
+[[  1   6   0   0]
+ [  0  58  22   0]
+ [  0   1 170   0]
+ [  0   0  25  17]]

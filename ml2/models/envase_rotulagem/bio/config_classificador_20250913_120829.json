@@ -1,0 +1,14 @@
+{
+  "dataset_usado": "Envase e Rotulagem (BIO)",
+  "timestamp": "20250913_120829",
+  "classes": [
+    "DESPREZ\u00cdVEL",
+    "BAIXA",
+    "M\u00c9DIA",
+    "ALTA"
+  ],
+  "modelo_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/bio/classificador_mel_20250913_120829.pkl",
+  "scaler_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/bio/scaler_mel_20250913_120829.pkl",
+  "etapa": "envase_rotulagem",
+  "tipo_perigo": "bio"
+}

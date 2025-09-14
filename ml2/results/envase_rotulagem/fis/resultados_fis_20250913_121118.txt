@@ -1,0 +1,22 @@
+RESULTADOS - Envase e Rotulagem (FIS)
+============================================================
+
+Acurácia: 95.0%
+
+MÉTRICAS POR CLASSE:
+              precision    recall  f1-score   support
+
+ DESPREZÍVEL       0.89      0.89      0.89         9
+       BAIXA       0.91      0.96      0.94        75
+       MÉDIA       0.98      0.94      0.96       171
+        ALTA       0.92      0.98      0.95        45
+
+    accuracy                           0.95       300
+   macro avg       0.92      0.94      0.93       300
+weighted avg       0.95      0.95      0.95       300
+
+MATRIZ DE CONFUSÃO:
+[[  8   1   0   0]
+ [  1  72   2   0]
+ [  0   6 161   4]
+ [  0   0   1  44]]

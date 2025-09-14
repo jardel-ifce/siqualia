@@ -1,0 +1,22 @@
+RESULTADOS - Envase e Rotulagem (BIO)
+============================================================
+
+Acurácia: 74.3%
+
+MÉTRICAS POR CLASSE:
+              precision    recall  f1-score   support
+
+ DESPREZÍVEL       0.17      0.75      0.27         4
+       BAIXA       0.92      0.30      0.46        79
+       MÉDIA       0.75      0.99      0.85       181
+        ALTA       0.94      0.47      0.63        36
+
+    accuracy                           0.74       300
+   macro avg       0.70      0.63      0.55       300
+weighted avg       0.81      0.74      0.72       300
+
+MATRIZ DE CONFUSÃO:
+[[  3   1   0   0]
+ [ 15  24  40   0]
+ [  0   1 179   1]
+ [  0   0  19  17]]

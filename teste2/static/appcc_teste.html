@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <title>SIQUALIA • Teste de Predição com Top-N Features</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="/static/appcc_teste.css"/>
+  <style>
+      :root{
+      --bg:#ffffff; --fg:#111827; --muted:#6b7280; --bd:#e5e7eb;
+      --card:#ffffff; --pill:#f3f4f6;
+      --btn:#2563eb; --btn-fg:#ffffff; --btn-hover:#1d4ed8;
+      --btn-sec:#6b7280; --btn-sec-hover:#4b5563;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0f172a; --fg:#e5e7eb; --muted:#94a3b8; --bd:#334155;
+        --card:#0b1220; --pill:#111827;
+        --btn:#2563eb; --btn-fg:#ffffff; --btn-hover:#1e40af;
+        --btn-sec:#475569; --btn-sec-hover:#334155;
+      }
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:16px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px;margin:10px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    label{font-size:13px;color:var(--fg);display:block;margin-bottom:4px}
+    select,input[type="number"],input[type="text"]{
+      width:100%;padding:8px;border:1px solid var(--bd);border-radius:8px;background:#fff;color:#111827;
+    }
+    @media (prefers-color-scheme: dark){
+      select,input[type="number"],input[type="text"]{background:#0b1220;color:var(--fg)}
+    }
+    button{
+      padding:10px 14px;border:1px solid transparent;border-radius:10px;cursor:pointer;
+      background:var(--btn);color:var(--btn-fg);font-weight:600
+    }
+    button:hover{background:var(--btn-hover)}
+    button.secondary{background:var(--btn-sec)}
+    button.secondary:hover{background:var(--btn-sec-hover)}
+    button:focus{outline:3px solid #93c5fd;outline-offset:2px}
+    .muted{color:var(--muted);font-size:13px}
+    .pill{display:inline-block;background:var(--pill);border:1px solid var(--bd);padding:4px 8px;border-radius:999px;margin:2px;font-size:12px}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    .divider{height:1px;background:var(--bd);margin:12px 0}
+    .result{font-size:28px;font-weight:700}
+    .small{font-size:12px}
+  </style>
+</head>
+<body>
+  <h1>Predição de Probabilidade (Top-N Features por Perigo)</h1>
+
+  <div class="card">
+    <div class="row">
+      <div>
+        <label for="tipoPerigo">Tipo de perigo</label>
+        <select id="tipoPerigo">
+          <option value="bio">Biológico</option>
+          <option value="fis">Físico</option>
+          <option value="qui">Químico</option>
+        </select>
+      </div>
+      <div>
+        <label for="topN">Top-N features (Permutation Importance)</label>
+        <input id="topN" type="number" min="3" max="20" step="1" value="8"/>
+        <div class="muted small">Se não houver importance, usa as <span class="mono">features_usadas</span> do modelo.</div>
+      </div>
+      <div style="align-self:flex-end">
+        <button id="btnCarregar">Carregar campos</button>
+        <button id="btnLimpar" class="secondary">Limpar</button>
+      </div>
+    </div>
+    <div id="status" class="muted" style="margin-top:8px"></div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Campos selecionados</h2>
+    <div id="campos" class="grid"></div>
+    <div class="divider"></div>
+    <div class="row">
+      <button id="btnPredizer">Predizer probabilidade</button>
+      <span id="validMsg" class="muted"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Resultado</h2>
+    <div id="resultado" class="result">—</div>
+    <div id="detalhes" class="muted"></div>
+  </div>
+
+  <script>
+    // ===== Config de mapeamento de inputs por variável =====
+    const FEATURE_UI = {
+      tipo_embalagem:   {label:"Tipo de embalagem", kind:"select", options:[["0","PET"],["1","Vidro"]]},
+      estado_embalagem: {label:"Estado da embalagem", kind:"select", options:[["0","Danificada"],["1","Íntegra"]]},
+      tampa_correta:    {label:"Tampa correta", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      vedacao_adequada: {label:"Vedação adequada", kind:"select", options:[["0","Inadequada"],["1","Adequada"]]},
+      higienizacao_previa: {label:"Higienização prévia", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      uso_epi:          {label:"Uso de EPI", kind:"select", options:[["0","Ausente"],["1","Parcial"],["2","Completo"]]},
+      local_envase:     {label:"Local de envase", kind:"select", options:[["0","Inadequado"],["1","Adequado"]]},
+      manipulador_higiene:{label:"Higiene do manipulador", kind:"select", options:[["0","Inadequada"],["1","Adequada"]]},
+      aspecto_visual:   {label:"Aspecto visual", kind:"select", options:[["0","Sujidades"],["1","Espuma"],["2","Normal"]]},
+      umidade_mel:      {label:"Umidade do mel", kind:"select", options:[["0","> 20%"],["1","≤ 20%"]]},
+      temperatura_envase:{label:"Temperatura de envase", kind:"select", options:[["0","Inadequada"],["1","Adequada"]]},
+      cristalizacao:    {label:"Cristalização", kind:"select", options:[["0","Excessiva"],["1","Parcial"],["2","Ausente"]]},
+      rotulo_presente:  {label:"Rótulo presente", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      informacoes_completas:{label:"Informações completas", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      data_validade_legivel:{label:"Data de validade legível", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      lote_identificado:{label:"Lote identificado", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      registro_lote:    {label:"Registro de lote", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      treinamento_equipe:{label:"Treinamento da equipe", kind:"select", options:[["0","Não"],["1","Sim"]]},
+      historico_reclamacoes:{label:"Histórico de reclamações", kind:"select", options:[["0","Frequentes"],["1","Poucas"],["2","Nenhuma"]]},
+      tempo_exposicao_ar:{label:"Tempo de exposição ao ar (min)", kind:"number", min:5, max:60, step:1, placeholder:"5–60"}
+    };
+
+    const el = id => document.getElementById(id);
+    const status = el("status");
+    const campos = el("campos");
+    const resultado = el("resultado");
+    const detalhes = el("detalhes");
+    const validMsg = el("validMsg");
+
+    // ===== Utilidades HTTP =====
+    async function getJSON(url) {
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(`GET ${url} -> ${r.status}`);
+      return r.json();
+    }
+    async function postJSON(url, body) {
+      const r = await fetch(url, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(body)
+      });
+      if (!r.ok) {
+        const t = await r.text().catch(()=> "");
+        throw new Error(`POST ${url} -> ${r.status}\n${t}`);
+      }
+      return r.json();
+    }
+
+    // ===== Núcleo: obter features a exibir =====
+    async function fetchTopFeatures(perigo, n) {
+      // 1) tenta pegar importance
+      try {
+        const imp = await getJSON(`/api/importance/top?perigo=${encodeURIComponent(perigo)}&n=${n}`);
+        if (imp.ok && Array.isArray(imp.top) && imp.top.length) {
+          return imp.top.map(r => r.feature);
+        }
+      } catch (e) {
+        console.warn("importance/top falhou:", e);
+      }
+      // 2) fallback: modelos/status
+      const st = await getJSON(`/api/models/status`);
+      const info = (st.modelos && st.modelos[perigo]) || null;
+      if (info && info.ok && Array.isArray(info.features_usadas)) {
+        return info.features_usadas;
+      }
+      throw new Error("Não há features para exibir (sem importance e sem modelo).");
+    }
+
+    // ===== Render dinâmico do formulário =====
+    function buildField(name) {
+      const cfg = FEATURE_UI[name] || {label: name, kind: "number"};
+      const wrap = document.createElement("div");
+      const lab = document.createElement("label");
+      lab.textContent = cfg.label || name;
+      lab.setAttribute("for", `f_${name}`);
+      wrap.appendChild(lab);
+
+      let input;
+      if (cfg.kind === "select") {
+        input = document.createElement("select");
+        (cfg.options || []).forEach(([val, txt]) => {
+          const opt = document.createElement("option");
+          opt.value = val; opt.textContent = txt;
+          input.appendChild(opt);
+        });
+      } else {
+        input = document.createElement("input");
+        input.type = "number";
+        if (cfg.min != null) input.min = cfg.min;
+        if (cfg.max != null) input.max = cfg.max;
+        input.step = cfg.step != null ? cfg.step : "1";
+        if (cfg.placeholder) input.placeholder = cfg.placeholder;
+      }
+      input.id = `f_${name}`;
+      input.name = name;
+      input.dataset.feature = name;
+      wrap.appendChild(input);
+      return wrap;
+    }
+
+    function buildForm(names) {
+      campos.innerHTML = "";
+      names.forEach(n => campos.appendChild(buildField(n)));
+      status.innerHTML = `Exibindo <strong>${names.length}</strong> campos: ` +
+        names.map(n => `<span class="pill mono">${n}</span>`).join(" ");
+      validMsg.textContent = "";
+      resultado.textContent = "—";
+      detalhes.textContent = "";
+    }
+
+    function readForm(names) {
+      const obj = {};
+      for (const n of names) {
+        const inp = document.querySelector(`[data-feature="${n}"]`);
+        if (!inp) throw new Error(`Campo ausente no DOM: ${n}`);
+        let v = inp.value;
+        if (v === "" || v == null) return {ok:false, faltando:n};
+        if (inp.tagName === "SELECT") {
+          obj[n] = parseInt(v, 10);
+        } else {
+          const num = Number(v);
+          if (Number.isNaN(num)) return {ok:false, faltando:n};
+          obj[n] = num;
+        }
+      }
+      return {ok:true, data: obj};
+    }
+
+    // ===== Eventos =====
+    el("btnCarregar").addEventListener("click", async () => {
+      const perigo = el("tipoPerigo").value;
+      const n = Math.max(3, Math.min(20, parseInt(el("topN").value || "8", 10)));
+
+      status.textContent = "Carregando features...";
+      try {
+        const names = await fetchTopFeatures(perigo, n);
+        buildForm(names);
+        status.innerHTML += ` <span class="ok">ok</span>`;
+      } catch (e) {
+        status.innerHTML = `<span class="err">Falha ao carregar features:</span> ${e.message}`;
+      }
+    });
+
+    el("btnLimpar").addEventListener("click", () => {
+      campos.innerHTML = "";
+      status.textContent = "";
+      validMsg.textContent = "";
+      resultado.textContent = "—";
+      detalhes.textContent = "";
+    });
+
+    el("btnPredizer").addEventListener("click", async () => {
+      const perigo = el("tipoPerigo").value;
+      // features atualmente renderizadas
+      const names = Array.from(document.querySelectorAll("#campos [data-feature]")).map(x => x.dataset.feature);
+      if (!names.length) { validMsg.textContent = "Carregue os campos antes."; return; }
+
+      const parsed = readForm(names);
+      if (!parsed.ok) {
+        validMsg.innerHTML = `<span class="err">Preencha o campo obrigatório:</span> <span class="mono">${parsed.faltando}</span>`;
+        return;
+      }
+      validMsg.textContent = "Enviando...";
+      try {
+        const body = { tipo_perigo: perigo, bpfRespostas: parsed.data };
+        const resp = await postJSON("/api/predicao", body);
+        resultado.textContent = resp.prob_classe || "—";
+        detalhes.innerHTML =
+          `score: <span class="mono">${resp.prob_score}</span> • origem: <span class="mono">${resp.fonte}</span> • modelo: <span class="mono">${resp.modelo || "-"}</span><br/>
+           features usadas no modelo: ${ (resp.features_usadas||[]).map(n=>`<span class="pill mono">${n}</span>`).join(" ") }`;
+        validMsg.textContent = "";
+      } catch (e) {
+        validMsg.innerHTML = `<span class="err">Erro:</span> ${e.message}`;
+      }
+    });
+
+    // UX: carrega default ao abrir
+    window.addEventListener("DOMContentLoaded", () => el("btnCarregar").click());
+  </script>
+</body>
+</html>

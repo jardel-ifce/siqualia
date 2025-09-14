@@ -1,3 +1,4 @@
+# ml/view_generators/analysis_generator.py
 """
 GERADOR DE ANÁLISES - PRODUÇÃO DE MEL
 ====================================

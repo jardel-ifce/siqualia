@@ -1,0 +1,14 @@
+{
+  "dataset_usado": "Envase e Rotulagem (FIS)",
+  "timestamp": "20250913_115707",
+  "classes": [
+    "DESPREZ\u00cdVEL",
+    "BAIXA",
+    "M\u00c9DIA",
+    "ALTA"
+  ],
+  "modelo_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/fis/classificador_mel_20250913_115707.pkl",
+  "scaler_path": "/home/reginaldo/PycharmProjects/siqualia/ml2/scripts/envase_rotulagem/../../models/envase_rotulagem/fis/scaler_mel_20250913_115707.pkl",
+  "etapa": "envase_rotulagem",
+  "tipo_perigo": "fis"
+}

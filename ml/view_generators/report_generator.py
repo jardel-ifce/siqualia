@@ -1,3 +1,4 @@
+# ml/view_generators/report_generator.py
 """
 GERADOR DE RELATÓRIOS - PRODUÇÃO DE MEL
 ======================================

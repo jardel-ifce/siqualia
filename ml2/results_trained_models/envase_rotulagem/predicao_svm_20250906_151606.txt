@@ -1,0 +1,40 @@
+RESULTADO DA PREDIÇÃO - SVM
+==================================================
+
+Timestamp: 20250906_151606
+Dataset: Envase e Rotulagem
+Algoritmo: SVM
+Modelo timestamp: 20250903_105512
+
+DADOS DE ENTRADA:
+--------------------
+tipo_embalagem: 0.0
+estado_embalagem: 1.0
+tampa_correta: 1.0
+vedacao_adequada: 0.0
+higienizacao_previa: 1.0
+uso_epi: 1.0
+local_envase: 1.0
+manipulador_higiene: 1.0
+aspecto_visual: 2.0
+umidade_mel: 1.0
+temperatura_envase: 0.0
+cristalizacao: 1.0
+rotulo_presente: 1.0
+informacoes_completas: 1.0
+data_validade_legivel: 1.0
+lote_identificado: 0.0
+treinamento_equipe: 1.0
+historico_reclamacoes: 1.0
+registro_lote: 1.0
+tempo_exposicao_ar: 6.0
+
+RESULTADO:
+----------
+Classe predita: MÉDIA
+
+Probabilidades por classe:
+    DESPREZÍVEL: 5.1%
+    BAIXA      : 24.3%
+>>> MÉDIA      : 58.6%
+    ALTA       : 12.0%

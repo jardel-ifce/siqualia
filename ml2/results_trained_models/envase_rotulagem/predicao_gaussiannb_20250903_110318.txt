@@ -1,0 +1,40 @@
+RESULTADO DA PREDIÇÃO - GAUSSIANNB
+==================================================
+
+Timestamp: 20250903_110318
+Dataset: Envase e Rotulagem
+Algoritmo: GaussianNB
+Modelo timestamp: 20250903_105458
+
+DADOS DE ENTRADA:
+--------------------
+tipo_embalagem: 0.0
+estado_embalagem: 0.0
+tampa_correta: 0.0
+vedacao_adequada: 0.0
+higienizacao_previa: 0.0
+uso_epi: 0.0
+local_envase: 0.0
+manipulador_higiene: 0.0
+aspecto_visual: 0.0
+umidade_mel: 0.0
+temperatura_envase: 0.0
+cristalizacao: 0.0
+rotulo_presente: 1.0
+informacoes_completas: 1.0
+data_validade_legivel: 1.0
+lote_identificado: 1.0
+treinamento_equipe: 1.0
+historico_reclamacoes: 1.0
+registro_lote: 1.0
+tempo_exposicao_ar: 5.0
+
+RESULTADO:
+----------
+Classe predita: ALTA
+
+Probabilidades por classe:
+    DESPREZÍVEL: 0.0%
+    BAIXA      : 0.0%
+    MÉDIA      : 0.0%
+>>> ALTA       : 100.0%

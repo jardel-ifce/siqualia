@@ -1,3 +1,4 @@
+# ml/scripts/envase_rotulagem/classificador_mel.py
 """
 CLASSIFICADOR DE PROBABILIDADE DE FALHAS - PRODUÇÃO DE MEL
 ===========================================================
