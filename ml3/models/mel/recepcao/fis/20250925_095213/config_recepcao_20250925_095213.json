@@ -1,0 +1,75 @@
+{
+  "etapa": "recepcao",
+  "perigo": "fis",
+  "timestamp": "20250925_095213",
+  "features_usadas": [
+    "fornecedor_auditado",
+    "laudo_residuos_agrotoxicos",
+    "temperatura_recebimento_c",
+    "tempo_desde_coleta_h",
+    "integridade_containers",
+    "sujeira_visivel_externa",
+    "umidade_lote_pct",
+    "documentacao_lote_ok",
+    "transporte_segregado_de_quimicos",
+    "lacre_viagem_integro",
+    "lote_identificado"
+  ],
+  "classes": {
+    "0": "DESPREZÍVEL",
+    "1": "BAIXA",
+    "2": "MÉDIA",
+    "3": "ALTA"
+  },
+  "metrics": {
+    "balanced_accuracy": 1.0,
+    "macro_f1": 0.75,
+    "report": {
+      "0": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 104.0
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0.0
+      },
+      "2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 203.0
+      },
+      "3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 93.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1-score": 0.75,
+        "support": 400.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 400.0
+      }
+    }
+  },
+  "rf_params": {
+    "n_estimators": 300,
+    "max_depth": null,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced_subsample",
+    "random_state": 42,
+    "n_jobs": -1
+  }
+}

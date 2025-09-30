@@ -1,0 +1,9 @@
+feature,importance_mean,importance_std
+veiculo_higienizado,0.4998980814468131,0.030796167148463532
+embalagem_secundaria_protecao,0.49367082850393934,0.021277163876788713
+tempo_transporte_h,0.0,0.0
+temperatura_transporte_c,0.0,0.0
+carga_compartilhada_quimicos,0.0,0.0
+lacres_veiculo_integridade,0.0,0.0
+registro_condicoes_transporte,0.0,0.0
+lote_identificado,0.0,0.0

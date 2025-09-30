@@ -1,0 +1,10 @@
+feature,importance_mean,importance_std
+limpeza_equipamento_pre_turno,0.4966702120324502,0.031634699548253
+higiene_das_maos,0.49464498468920637,0.021176821952375913
+uso_epi,0.3210060893850147,0.018489015335227274
+tempo_centrifugacao_min,0.1951564166061323,0.016130767576671545
+inspecao_fragmentos_cera_pos_centrifuga,0.0,0.0
+lote_identificado,0.0,0.0
+lubrificante_grau_alimentar,0.0,0.0
+vazamento_lubrificante,-0.000990099009900991,0.0012126186845461287
+velocidade_centrifuga_rpm,-0.0012376237623762387,0.0016604465179453898

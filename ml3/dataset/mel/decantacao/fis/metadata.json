@@ -1,0 +1,21 @@
+{
+  "etapa": "decantacao",
+  "tipo_perigo": "fis",
+  "amostras": 2000,
+  "features": [
+    "tempo_decantacao_h",
+    "temperatura_decantacao_c",
+    "tanque_limpio_sanitizado",
+    "cobertura_anti_pragas",
+    "remocao_espuma_impurezas",
+    "material_tanque_inox_grau_alimentar",
+    "claridade_visual_nota",
+    "lote_identificado"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

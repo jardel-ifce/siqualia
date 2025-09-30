@@ -1,0 +1,72 @@
+{
+  "etapa": "peneiragem",
+  "perigo": "qui",
+  "timestamp": "20250925_095222",
+  "features_usadas": [
+    "malha_peneira_microns",
+    "integridade_peneira_sem_rasgos",
+    "frequencia_troca_peneira_h",
+    "higienizacao_peneira_pos_lote",
+    "contagem_residuos_retidos_pct",
+    "protecao_contra_poeira",
+    "separacao_fluxo",
+    "lote_identificado"
+  ],
+  "classes": {
+    "0": "DESPREZÍVEL",
+    "1": "BAIXA",
+    "2": "MÉDIA",
+    "3": "ALTA"
+  },
+  "metrics": {
+    "balanced_accuracy": 1.0,
+    "macro_f1": 0.5,
+    "report": {
+      "0": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 192.0
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0.0
+      },
+      "2": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0.0
+      },
+      "3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 208.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1-score": 0.5,
+        "support": 400.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 400.0
+      }
+    }
+  },
+  "rf_params": {
+    "n_estimators": 300,
+    "max_depth": null,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced_subsample",
+    "random_state": 42,
+    "n_jobs": -1
+  }
+}

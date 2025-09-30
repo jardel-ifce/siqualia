@@ -1,0 +1,33 @@
+{
+  "etapa": "envase",
+  "tipo_perigo": "fis",
+  "amostras": 2000,
+  "features": [
+    "tipo_embalagem",
+    "estado_embalagem",
+    "tampa_correta",
+    "vedacao_adequada",
+    "higienizacao_previa",
+    "uso_epi",
+    "local_envase",
+    "manipulador_higiene",
+    "aspecto_visual",
+    "umidade_mel",
+    "temperatura_envase",
+    "cristalizacao",
+    "rotulo_presente",
+    "informacoes_completas",
+    "data_validade_legivel",
+    "lote_identificado",
+    "registro_lote",
+    "treinamento_equipe",
+    "historico_reclamacoes",
+    "tempo_exposicao_ar"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

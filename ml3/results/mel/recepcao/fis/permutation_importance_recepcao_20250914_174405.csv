@@ -1,0 +1,12 @@
+feature,importance_mean,importance_std
+sujeira_visivel_externa,0.5045,0.024129857024027302
+integridade_containers,0.49049999999999994,0.02621545345783666
+fornecedor_auditado,0.0,0.0
+temperatura_recebimento_c,0.0,0.0
+laudo_residuos_agrotoxicos,0.0,0.0
+tempo_desde_coleta_h,0.0,0.0
+umidade_lote_pct,0.0,0.0
+documentacao_lote_ok,0.0,0.0
+transporte_segregado_de_quimicos,0.0,0.0
+lacre_viagem_integro,0.0,0.0
+lote_identificado,0.0,0.0

@@ -1,0 +1,22 @@
+{
+  "etapa": "armazenamento",
+  "tipo_perigo": "fis",
+  "amostras": 2000,
+  "features": [
+    "temperatura_armazenamento_c",
+    "umidade_relativa_ambiente_pct",
+    "tempo_armazenado_dias",
+    "bombonas_integra_limpa",
+    "lacres_integro",
+    "segregacao_de_produtos_quimicos",
+    "piso_limpo_seco",
+    "PEPS_FEFO_aplicado",
+    "lote_identificado"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

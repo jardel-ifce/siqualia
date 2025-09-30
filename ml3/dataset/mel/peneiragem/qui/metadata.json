@@ -1,0 +1,21 @@
+{
+  "etapa": "peneiragem",
+  "tipo_perigo": "qui",
+  "amostras": 2000,
+  "features": [
+    "malha_peneira_microns",
+    "integridade_peneira_sem_rasgos",
+    "frequencia_troca_peneira_h",
+    "higienizacao_peneira_pos_lote",
+    "contagem_residuos_retidos_pct",
+    "protecao_contra_poeira",
+    "separacao_fluxo",
+    "lote_identificado"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

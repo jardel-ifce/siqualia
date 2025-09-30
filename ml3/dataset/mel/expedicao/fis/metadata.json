@@ -1,0 +1,21 @@
+{
+  "etapa": "expedicao",
+  "tipo_perigo": "fis",
+  "amostras": 2000,
+  "features": [
+    "temperatura_transporte_c",
+    "tempo_transporte_h",
+    "veiculo_higienizado",
+    "carga_compartilhada_quimicos",
+    "embalagem_secundaria_protecao",
+    "lacres_veiculo_integridade",
+    "registro_condicoes_transporte",
+    "lote_identificado"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

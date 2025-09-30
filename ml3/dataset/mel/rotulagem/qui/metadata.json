@@ -1,0 +1,21 @@
+{
+  "etapa": "rotulagem",
+  "tipo_perigo": "qui",
+  "amostras": 2000,
+  "features": [
+    "rotulo_presente",
+    "informacoes_completas",
+    "data_validade_legivel",
+    "lote_identificado",
+    "aviso_nao_recomendado_menores1ano",
+    "conformidade_legislacao",
+    "rotulo_intacto_sem_sujos",
+    "registro_lote"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

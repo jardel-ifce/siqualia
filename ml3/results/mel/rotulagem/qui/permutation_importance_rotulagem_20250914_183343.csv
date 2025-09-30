@@ -1,0 +1,9 @@
+feature,importance_mean,importance_std
+conformidade_legislacao,0.5003610351187537,0.05615496686366625
+registro_lote,0.4191849134029949,0.03182145431672902
+rotulo_presente,0.38926060864735895,0.02907803436881424
+informacoes_completas,0.38592910084471505,0.028846443503734377
+lote_identificado,0.0,0.0
+data_validade_legivel,0.0,0.0
+aviso_nao_recomendado_menores1ano,0.0,0.0
+rotulo_intacto_sem_sujos,0.0,0.0
