@@ -1,0 +1,22 @@
+{
+  "etapa": "desoperculacao",
+  "tipo_perigo": "qui",
+  "amostras": 2000,
+  "features": [
+    "higienizacao_utensilios",
+    "material_utensilios_grau_alimentar",
+    "uso_epi",
+    "higiene_das_maos",
+    "teor_umidade_mel_pct",
+    "controle_particulas_plasticos_areia",
+    "pontos_agua_potavel_ok",
+    "separacao_fluxo_cru_pronto",
+    "lote_identificado"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

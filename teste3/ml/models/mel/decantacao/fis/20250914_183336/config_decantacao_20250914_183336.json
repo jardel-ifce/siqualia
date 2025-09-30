@@ -1,0 +1,72 @@
+{
+  "etapa": "decantacao",
+  "perigo": "fis",
+  "timestamp": "20250914_183336",
+  "features_usadas": [
+    "tempo_decantacao_h",
+    "temperatura_decantacao_c",
+    "tanque_limpio_sanitizado",
+    "cobertura_anti_pragas",
+    "remocao_espuma_impurezas",
+    "material_tanque_inox_grau_alimentar",
+    "claridade_visual_nota",
+    "lote_identificado"
+  ],
+  "classes": {
+    "0": "DESPREZÍVEL",
+    "1": "BAIXA",
+    "2": "MÉDIA",
+    "3": "ALTA"
+  },
+  "metrics": {
+    "balanced_accuracy": 0.975,
+    "macro_f1": 0.9757745071092718,
+    "report": {
+      "0": {
+        "precision": 0.96,
+        "recall": 0.96,
+        "f1-score": 0.96,
+        "support": 25.0
+      },
+      "1": {
+        "precision": 0.972972972972973,
+        "recall": 0.96,
+        "f1-score": 0.9664429530201343,
+        "support": 75.0
+      },
+      "2": {
+        "precision": 0.9865771812080537,
+        "recall": 0.98,
+        "f1-score": 0.9832775919732442,
+        "support": 150.0
+      },
+      "3": {
+        "precision": 0.9868421052631579,
+        "recall": 1.0,
+        "f1-score": 0.9933774834437086,
+        "support": 150.0
+      },
+      "accuracy": 0.9825,
+      "macro avg": {
+        "precision": 0.9765980648610462,
+        "recall": 0.975,
+        "f1-score": 0.9757745071092718,
+        "support": 400.0
+      },
+      "weighted avg": {
+        "precision": 0.9824646648591369,
+        "recall": 0.9825,
+        "f1-score": 0.9824537069726325,
+        "support": 400.0
+      }
+    }
+  },
+  "rf_params": {
+    "n_estimators": 300,
+    "max_depth": null,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced_subsample",
+    "random_state": 42,
+    "n_jobs": -1
+  }
+}

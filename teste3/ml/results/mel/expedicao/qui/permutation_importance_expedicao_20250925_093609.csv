@@ -1,0 +1,9 @@
+feature,importance_mean,importance_std
+carga_compartilhada_quimicos,0.5010501050105011,0.02737060142695072
+temperatura_transporte_c,0.0,0.0
+tempo_transporte_h,0.0,0.0
+veiculo_higienizado,0.0,0.0
+embalagem_secundaria_protecao,0.0,0.0
+lacres_veiculo_integridade,0.0,0.0
+registro_condicoes_transporte,0.0,0.0
+lote_identificado,0.0,0.0

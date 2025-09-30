@@ -1,0 +1,73 @@
+{
+  "etapa": "centrifugacao",
+  "perigo": "bio",
+  "timestamp": "20250914_174410",
+  "features_usadas": [
+    "velocidade_centrifuga_rpm",
+    "tempo_centrifugacao_min",
+    "limpeza_equipamento_pre_turno",
+    "lubrificante_grau_alimentar",
+    "vazamento_lubrificante",
+    "uso_epi",
+    "higiene_das_maos",
+    "inspecao_fragmentos_cera_pos_centrifuga",
+    "lote_identificado"
+  ],
+  "classes": {
+    "0": "DESPREZÍVEL",
+    "1": "BAIXA",
+    "2": "MÉDIA",
+    "3": "ALTA"
+  },
+  "metrics": {
+    "balanced_accuracy": 0.9975247524752475,
+    "macro_f1": 0.9980230810755606,
+    "report": {
+      "0": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 46.0
+      },
+      "1": {
+        "precision": 1.0,
+        "recall": 0.9900990099009901,
+        "f1-score": 0.9950248756218906,
+        "support": 101.0
+      },
+      "2": {
+        "precision": 0.9941520467836257,
+        "recall": 1.0,
+        "f1-score": 0.9970674486803519,
+        "support": 170.0
+      },
+      "3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 83.0
+      },
+      "accuracy": 0.9975,
+      "macro avg": {
+        "precision": 0.9985380116959064,
+        "recall": 0.9975247524752475,
+        "f1-score": 0.9980230810755606,
+        "support": 400.0
+      },
+      "weighted avg": {
+        "precision": 0.997514619883041,
+        "recall": 0.9975,
+        "f1-score": 0.9974974467836769,
+        "support": 400.0
+      }
+    }
+  },
+  "rf_params": {
+    "n_estimators": 300,
+    "max_depth": null,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced_subsample",
+    "random_state": 42,
+    "n_jobs": -1
+  }
+}

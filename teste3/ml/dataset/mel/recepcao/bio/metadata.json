@@ -1,0 +1,24 @@
+{
+  "etapa": "recepcao",
+  "tipo_perigo": "bio",
+  "amostras": 2000,
+  "features": [
+    "fornecedor_auditado",
+    "laudo_residuos_agrotoxicos",
+    "temperatura_recebimento_c",
+    "tempo_desde_coleta_h",
+    "integridade_containers",
+    "sujeira_visivel_externa",
+    "umidade_lote_pct",
+    "documentacao_lote_ok",
+    "transporte_segregado_de_quimicos",
+    "lacre_viagem_integro",
+    "lote_identificado"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

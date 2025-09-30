@@ -1,0 +1,22 @@
+{
+  "etapa": "centrifugacao",
+  "tipo_perigo": "qui",
+  "amostras": 2000,
+  "features": [
+    "velocidade_centrifuga_rpm",
+    "tempo_centrifugacao_min",
+    "limpeza_equipamento_pre_turno",
+    "lubrificante_grau_alimentar",
+    "vazamento_lubrificante",
+    "uso_epi",
+    "higiene_das_maos",
+    "inspecao_fragmentos_cera_pos_centrifuga",
+    "lote_identificado"
+  ],
+  "faixas_alvo": {
+    "0": "Desprezível",
+    "1": "Baixa",
+    "2": "Média",
+    "3": "Alta"
+  }
+}

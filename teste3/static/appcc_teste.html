@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <title>Teste • Predição por Etapa × Perigo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="appcc_teste.css"/>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Teste de Modelos (mel)</h1>
+    <div id="statusBar" class="muted">API: <span id="apiStatus">—</span></div>
+  </div>
+
+  <main>
+    <section class="step active">
+      <h2>Entrada</h2>
+      <div class="grid grid-2">
+        <label>Etapa
+          <select id="etapa">
+            <option>recepcao</option><option>desoperculacao</option><option>centrifugacao</option>
+            <option>peneiragem</option><option>decantacao</option><option>envase</option>
+            <option>rotulagem</option><option>armazenamento</option><option>expedicao</option>
+            <option>envase_rotulagem</option>
+          </select>
+        </label>
+
+        <label>Tipo de perigo
+          <select id="tipoPerigo">
+            <option value="bio">Biológico (bio)</option>
+            <option value="fis">Físico (fis)</option>
+            <option value="qui">Químico (qui)</option>
+          </select>
+        </label>
+
+        <label>Top-N features (Permutation Importance)
+          <input id="topN" type="number" min="1" max="32" value="8"/>
+        </label>
+
+        <div class="box">
+          <button id="btnCarregar" class="secondary">Carregar campos</button>
+          <!--
+            <span class="muted">ou</span>
+          <button id="btnAutoFill" class="ghost">Autopreencher (demo)</button>
+          --></div>
+      </div>
+
+      <div id="formArea" class="box"></div>
+
+      <div class="nav">
+        <button id="btnLimpar" class="ghost">Limpar</button>
+        <button id="btnPredizer" class="primary">Predizer</button>
+      </div>
+    </section>
+
+    <section class="step active">
+      <h2>Resultado</h2>
+      <div id="outResumo" class="risk-badge risk-desp hidden"></div>
+      <div id="outJSON" class="review hidden"></div>
+    </section>
+  </main>
+
+  <div class="footer">
+    <button id="btnPing" class="ghost">Ping API</button>
+  </div>
+
+  <script src="appcc_teste.js"></script>
+</body>
+</html>

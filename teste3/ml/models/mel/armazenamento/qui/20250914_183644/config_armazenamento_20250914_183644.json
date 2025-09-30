@@ -1,0 +1,61 @@
+{
+  "etapa": "armazenamento",
+  "perigo": "qui",
+  "timestamp": "20250914_183644",
+  "features_usadas": [
+    "temperatura_armazenamento_c",
+    "umidade_relativa_ambiente_pct",
+    "tempo_armazenado_dias",
+    "bombonas_integra_limpa",
+    "lacres_integro",
+    "segregacao_de_produtos_quimicos",
+    "piso_limpo_seco",
+    "PEPS_FEFO_aplicado",
+    "lote_identificado"
+  ],
+  "classes": {
+    "0": "DESPREZÍVEL",
+    "1": "BAIXA",
+    "2": "MÉDIA",
+    "3": "ALTA"
+  },
+  "metrics": {
+    "balanced_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "report": {
+      "0": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 197.0
+      },
+      "3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 203.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 400.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 400.0
+      }
+    }
+  },
+  "rf_params": {
+    "n_estimators": 300,
+    "max_depth": null,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced_subsample",
+    "random_state": 42,
+    "n_jobs": -1
+  }
+}
